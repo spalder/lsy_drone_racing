@@ -62,7 +62,7 @@ markers = ["unit", "integration"]
 ########################
 [tool.pixi.workspace]
 channels = ["conda-forge"]
-platforms = ["linux-64", "osx-arm64", "win-64"]
+platforms = ["linux-64", { name = "linux-aarch64-glibc-2-34", platform = "linux-aarch64", glibc = "2.34" }, "osx-arm64", "win-64"]  # aarch64 warp-lang wheels are manylinux_2_34
 
 [tool.pixi.dependencies]
 python = ">=3.11.12,<3.14"

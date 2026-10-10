@@ -21,6 +21,12 @@ case "$(uname -s)-$(uname -m)" in
     T_RENDERER_URL="https://github.com/acados/tera_renderer/releases/download/v0.0.34/t_renderer-v0.0.34-linux"
     CMAKE_PLATFORM_ARGS=()
     ;;
+  Linux-aarch64)
+    LIB_EXT="so"
+    CPU_COUNT="$(nproc)"
+    T_RENDERER_URL="https://github.com/acados/tera_renderer/releases/download/v0.2.0/t_renderer-v0.2.0-linux-arm64"
+    CMAKE_PLATFORM_ARGS=(-DBLASFEO_TARGET=ARMV8A_ARM_CORTEX_A57)
+    ;;
   Darwin-arm64)
     LIB_EXT="dylib"
     CPU_COUNT="$(sysctl -n hw.ncpu)"
