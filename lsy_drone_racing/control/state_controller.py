@@ -59,9 +59,11 @@ class StateController(Controller):
                 [0.25, 1.25, 1.2],
             ]
         )
-        self._t_total = 22.5  # s
+        self._t_total = 29.5  # s
         t = np.linspace(0, self._t_total, len(waypoints))
         self._des_pos_spline = CubicSpline(t, waypoints)
+        self._des_vel_spline = self._des_pos_spline.derivative()
+        self._last_yaw = 0.0
 
         self._tick = 0
         self._finished = False
@@ -85,9 +87,16 @@ class StateController(Controller):
             self._finished = True
 
         des_pos = self._des_pos_spline(t)
-        des_yaw = 0.0
-        des_quat = R.from_euler("z", des_yaw).as_quat()
-        action = np.concatenate((des_pos, np.zeros(6), des_quat, np.zeros(3)), dtype=np.float32)
+        des_vel = self._des_vel_spline(t)
+        des_acc = self._des_pos_spline(t, 2)
+        # Face the direction of travel. Keep the last yaw at low horizontal speeds, where atan2
+        # would be noisy.
+        if np.linalg.norm(des_vel[:2]) > 0.05:
+            self._last_yaw = np.arctan2(des_vel[1], des_vel[0])
+        des_quat = R.from_euler("z", self._last_yaw).as_quat()
+        action = np.concatenate(
+            (des_pos, des_vel, des_acc, des_quat, np.zeros(3)), dtype=np.float32
+        )
         return action
 
     def step_callback(
@@ -110,6 +119,7 @@ class StateController(Controller):
     def episode_callback(self):
         """Reset the internal state."""
         self._tick = 0
+        self._last_yaw = 0.0
 
     def render_callback(self, sim: Sim):
         """Visualize the desired trajectory and the current setpoint."""
