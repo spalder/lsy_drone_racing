@@ -62,7 +62,7 @@ markers = ["unit", "integration"]
 ########################
 [tool.pixi.workspace]
 channels = ["conda-forge"]
-platforms = ["linux-64", { name = "linux-aarch64-glibc-2-34", platform = "linux-aarch64", glibc = "2.34" }, "osx-arm64", "win-64"]  # aarch64 warp-lang wheels are manylinux_2_34
+platforms = ["linux-64", "osx-arm64", "win-64"]
 
 [tool.pixi.dependencies]
 python = ">=3.11.12,<3.14"
@@ -137,6 +137,7 @@ scripts = ["tools/setup_mocap.sh"]
 RMW_IMPLEMENTATION = "rmw_zenoh_cpp"
 ZENOH_ROUTER_CHECK_ATTEMPTS = "-1"  # Do not check for a router when a node starts
 ZENOH_CONFIG_OVERRIDE = 'listen/endpoints=["tcp/0.0.0.0:0"];scouting/multicast/enabled=true'
+RUST_LOG = "zenoh=error"
 
 ## feature [deploy]
 [tool.pixi.feature.deploy.tasks]
