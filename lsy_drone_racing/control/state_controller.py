@@ -75,7 +75,7 @@ class StateController(Controller):
         # Gate each waypoint is attached to, or -1 for free waypoints. Attached waypoints move
         # rigidly with their gate when its true pose is revealed.
         self._waypoint_gates = np.array([-1, -1, 0, -1, -1, 1, -1, 2, -1, -1, -1, 3, -1, -1, 1, -1])
-        self._t_total = 29.5  # s
+        self._t_total = 23.0  # s
         # Original 12 waypoints are evenly spaced in time, the via points sit halfway in between
         t_base = np.linspace(0, self._t_total, 12)
         self._t_waypoints = np.sort(
