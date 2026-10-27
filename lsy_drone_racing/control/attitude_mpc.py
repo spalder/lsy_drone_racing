@@ -19,12 +19,14 @@ from acados_template.builders import ocp_get_default_cmake_builder
 from crazyflow.dynamics import Dynamics, load_params
 from crazyflow.dynamics.so_rpy import symbolic_dynamics_euler
 from crazyflow.dynamics.utils.rotation import ang_vel2rpy_rates
+from crazyflow.sim.visualize import draw_line, draw_points
 from scipy.interpolate import CubicSpline
 from scipy.spatial.transform import Rotation as R
 
 from lsy_drone_racing.control import Controller
 
 if TYPE_CHECKING:
+    from crazyflow import Sim
     from numpy.typing import NDArray
 
 
@@ -309,3 +311,18 @@ class AttitudeMPC(Controller):
     def episode_callback(self):
         """Reset the integral error."""
         self._tick = 0
+
+    def render_callback(self, sim: Sim):
+        """Draw the reference in green, MPC prediction in blue, and reference setpoint in red."""
+        trajectory = self._des_pos_spline(np.linspace(0, self._t_total, 100))
+        draw_line(sim, trajectory, rgba=(0.0, 1.0, 0.0, 1.0))
+
+        predicted_pos = np.array(
+            [self._acados_ocp_solver.get(j, "x")[:3] for j in range(self._N + 1)]
+        )
+        draw_line(sim, predicted_pos, rgba=(0.0, 0.4, 1.0, 1.0))
+
+        # The step callback increments the tick before rendering the latest solution.
+        i = min(max(self._tick - 1, 0), self._tick_max)
+        setpoint = self._waypoints_pos[i].reshape(1, 3)
+        draw_points(sim, setpoint, rgba=(1.0, 0.0, 0.0, 1.0), size=0.02)
