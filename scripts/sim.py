@@ -33,6 +33,8 @@ def simulate(
     controller: str | None = None,
     n_runs: int = 1,
     render: bool | None = None,
+    seed: int | None = None,
+    seeds: list[int] | None = None,
 ) -> list[float]:
     """Evaluate the drone controller over multiple episodes.
 
@@ -42,6 +44,8 @@ def simulate(
             the controller specified in the config file is used.
         n_runs: The number of episodes.
         render: Enable/disable rendering the simulation.
+        seed: Explicit reset seed for each episode.
+        seeds: Ordered explicit reset seeds; determines the number of episodes.
 
     Returns:
         A list of episode times.
@@ -52,6 +56,15 @@ def simulate(
         render = config.sim.render
     else:
         config.sim.render = render
+    if seed is not None and seeds is not None:
+        raise ValueError("Use seed or seeds, not both.")
+    if seeds is not None:
+        if not seeds:
+            raise ValueError("seeds must not be empty.")
+        n_runs = len(seeds)
+        config.env.seed = seeds[0]
+    elif seed is not None:
+        config.env.seed = seed
     # Load the controller module
     control_path = Path(__file__).parents[1] / "lsy_drone_racing/control"
     controller_path = control_path / (controller or config.controller.file)
@@ -71,8 +84,9 @@ def simulate(
     env = JaxToNumpy(env)
 
     ep_times = []
-    for _ in range(n_runs):  # Run n_runs episodes with the controller
-        obs, info = env.reset()
+    for episode in range(n_runs):  # Run n_runs episodes with the controller
+        reset_seed = seeds[episode] if seeds is not None else seed
+        obs, info = env.reset(seed=reset_seed)
         controller: Controller = controller_cls(obs, info, config)
         i = 0
         fps = 60

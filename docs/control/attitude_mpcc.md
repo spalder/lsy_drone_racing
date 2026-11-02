@@ -1,112 +1,113 @@
 # control.attitude_mpcc
 
-`AttitudeMPCC` uses the same identified drone dynamics and `[roll, pitch, yaw, thrust]`
-commands as `AttitudeMPC`. It follows a geometric spline with an optimized virtual
-progress state, rather than a reference indexed by elapsed time.
+`AttitudeMPCC` is the restored original end-of-stage-2 implementation. It uses
+the identified attitude model from `AttitudeMPC` and issues the first optimized
+`[roll, pitch, yaw, thrust]` input synchronously at each control tick. The
+reference is a geometric spline with an optimized progress state and speed input.
 
-Run the supplied nominal-track configuration:
+The controller source matches archived SHA-256
+`2033f45e88df6931b734155281b1cb3c80e71a10bb8358be754ff39ed8324b3c`.
+The original stage-2 boundary was completed on October 27, 2026. The standalone
+geometry and corridor modules belong to that implementation.
+
+Run the randomized Level 2 configuration with an explicit reset seed:
 
 ```bash
-pixi run python scripts/sim.py --config attitude_mpcc.toml
+SCIPY_ARRAY_API=1 pixi run python scripts/sim.py --config level2.toml --seed=7
 ```
 
-For Level 2, including mass/inertia, starting-pose, gate, and obstacle randomization:
+`--render=False` disables graphical rendering. `attitude_mpcc.toml` selects the
+nominal course; `attitude_mpcc_level2.toml` supplies the Level 2 randomizations.
+The evaluated `level2.toml` uses first-principles physics at 500 Hz and a 50 Hz
+environment/control loop, with attitude commands and a 0.7 m sensor range.
+
+The actual evaluate entry point accepts explicit ordered seeds and an external
+output directory. Without these arguments it retains its original 20-run default.
+Run this command in Bash to reproduce the historical comparison set:
 
 ```bash
-pixi run python scripts/sim.py --config attitude_mpcc_level2.toml
+SCIPY_ARRAY_API=1 pixi run evaluate --seeds {1..50} 1337 --output-dir /tmp/stage2-evaluation
 ```
 
-Use `--render=False` to measure controller performance without GUI/rendering overhead.
+Evaluation writes `evaluation.csv` to the requested directory. Generated acados
+solver files are relative to the process working directory, under
+`c_generated_code/attitude_mpcc`. A new controller instance is constructed for
+each episode. `--seed` on the simulator applies that explicit reset seed;
+the evaluator passes its ordered list through `simulate(seeds=...)`.
 
-To use another track configuration, set these entries:
+## Controller behavior
 
-```toml
-[controller]
-file = "attitude_mpcc.py"
+The objective penalizes contour and lag error, rewards progress, and penalizes
+attitude/thrust command changes. The previous physical command is a discrete
+state. RK4 integrates the identified model, and two synchronous SQP-RTI passes
+update the prediction each tick. A bounded online thrust-gain estimate uses
+public velocity and orientation observations; it resets between episodes.
 
-[env]
-control_mode = "attitude"
-```
+The default spline follows the nominal course. Local gate corrections align
+approach, crossing and departure anchors with observed gate geometry. Pole
+repulsion preserves those anchors. Corrections retain the existing progress
+coordinates. Custom `waypoints` bypass automatic gate/pole path correction.
+The correction procedure does not enforce a final joint clearance constraint.
 
-Optional settings (shown with their defaults):
+`track_geometry` retains nominal poses, configured bounded uncertainties and
+revealed poses separately. Public visited flags drive detection, including a
+revelation whose position equals the nominal position. Revealed geometry persists
+until `episode_reset()`. `reset()` clears optimizer progress and warm starts on
+the existing path; a new starting position or track requires a new instance.
+
+`plan_corridor(obs, tracking_margin, max_tilt=0.35)` is the original explicit
+offline review API. It describes geometric regions and may report a certified
+route, an observation request or search failure. It is not called by the racing
+feedback loop and does not alter command ownership or constrain the optimizer.
+Its results do not establish dynamic feasibility; bounded search failure does
+not establish physical blockage.
+
+A failed or nonfinite numerical solve freezes progress, clears the warm start
+and returns the original upright-hover command. This behavior is part of the
+archived implementation. The optimizer has no hard gate, pole, corridor or
+terminal stopping constraints.
+
+Optional settings and their defaults:
 
 ```toml
 [controller.mpcc]
 horizon_steps = 40
-reference_speed = 1.3  # Preferred progress speed, approximately m/s
-max_speed = 1.8        # Upper bound on virtual progress speed
+reference_speed = 1.3
+max_speed = 1.8
 contour_weight = 400.0
 lag_weight = 400.0
 progress_weight = 12.0
-max_angle = 0.6        # Attitude state and command bound, radians
+max_angle = 0.6
 attitude_rate_weight = 0.1
 attitude_slew_weight = 0.02
 thrust_slew_weight = 0.1
 terminal_weight = 0.2
-adaptation_rate = 2.0  # Thrust-gain estimator bandwidth, 1/s; 0 disables estimation
-obstacle_clearance = 0.26  # Desired path-to-pole distance, meters (not a hard constraint)
-# waypoints = [[...], [...]]  # Path after the automatically prepended start position
+adaptation_rate = 2.0
+obstacle_clearance = 0.26
 ```
 
-The objective penalizes perpendicular contour error and tangential lag error,
-and rewards progress with quadratic speed regularization. It also penalizes
-changes between consecutive attitude/thrust commands throughout the horizon,
-including the change from the last issued command. This reduces alternating
-commands when the fitted attitude dynamics differ from the real inner loop.
-The previous command is an additional discrete state; RK4 integrates the drone
-dynamics and SQP-RTI updates the solution twice per control step. Bulk acados
-state/input transfers reduce Python overhead. The smaller terminal weight and
-angular-rate weight reduce unnecessary braking at the end of the short horizon.
+Progress speed is not a hard physical-speed bound. Local spline deformation can
+change its metric. Desired pole clearance is not a hard collision constraint.
+The MuJoCo 3.10 compatibility shim retains the upstream box-contact algorithm
+while making the no-contact sentinel representable in float32.
 
-Increasing `reference_speed` or `progress_weight` favors faster progress. Increase
-`attitude_slew_weight` to reduce abrupt roll/pitch/yaw commands, or
-`thrust_slew_weight` to smooth vertical control. For example, try `0.04` and `0.2`
-respectively if commands still chatter; stronger smoothing also slows reactions
-to turns and newly observed objects. `max_speed` bounds virtual progress rather
-than physical drone velocity. The path starts approximately parameterized by
-arc length; local corrections can change that parameterization's metric scale.
+## Verified baseline results
 
-The online estimator compares acceleration from successive velocity observations
-with acceleration predicted from the previously issued thrust and observed
-orientation. A bounded, filtered gain accounts for effective inverse mass and
-thrust calibration. It adjusts the prediction and hover reference, excludes
-ground contact and large thrust transients, and resets between episodes. It does
-not read hidden simulator mass/inertia or identify the full inertia tensor.
-Slew penalties and receding-horizon feedback reduce sensitivity to inertia-driven
-changes in attitude response; they do not provide formal robustness guarantees.
+The matched historical loop reproduces 28 completions among seeds 1–50 plus
+1337, with the same per-seed outcomes, step counts and command hashes as the
+archived baseline. Successful laps have a 9.77 s median. Seeds 7 and 42 finish
+in 9.86 s and 9.72 s; seed 1337 collides with gate ID 2 after three passages
+at 6.98 s. There are no solver failures or timeouts in this comparison.
 
-The default route is based on the example MPC's nominal-course waypoints. Its
-ordered crossings are corrected locally to observed gate centers and orientations,
-with entry/exit points aligned to the gate normal. Local pole repulsion preserves
-these anchors, and a departure clearance adjustment keeps the immediate climb
-from intersecting a shifted gate frame. Only observed object poses are used;
-objects outside sensor range retain their nominal poses. Path corrections retain
-the same progress coordinates instead of resetting or jumping to another branch.
+`sim.py` honors the completion callback and stops successful episodes one tick
+earlier than the historical comparison harness, which waited for environment
+termination. Its original `i / freq` log/CSV convention also reports the start
+time of the final tick. Thus successful evaluate CSV times are 0.04 s below
+the historical harness's completed-step times. This is a reporting/termination
+convention difference, not a controller change.
 
-These are local adjustments to a fixed route, not a general planner. Different
-gate order or track layouts may require custom `waypoints`; custom paths bypass
-automatic gate/pole corrections. There are no hard obstacle/gate/tunnel constraints
-or MPCC++ terminal-set guarantees. Test multiple Level 2 seeds before increasing
-speed. A failed or nonfinite solve freezes progress, clears the warm start, and
-returns upright hover thrust using the estimated thrust gain. Hover is a fallback
-command, not an emergency braking policy.
-
-Validation on the first-principles simulator at 50 Hz used seeds `1337`, `42`,
-and `7`. With randomized mass/inertia and starting pose but nominal objects, all
-three races completed in 9.74–9.82 seconds. With all Level 2 randomizations, two
-of three completed in 9.70–9.84 seconds; seed `1337` still collided with gate 3's
-frame after crossing it. These short checks do not establish a general success
-rate. The local route correction remains the limitation in that case.
-
-On those full Level 2 runs, roll/pitch command-change RMS fell from roughly
-0.33 rad per control step with the original controller to 0.02–0.03 rad, and
-median controller computation fell from roughly 9.8 ms to roughly 5 ms on the
-test machine. These metrics include incomplete flights and are diagnostic
-comparisons, not a matched successful-lap benchmark.
-
-Green shows the reference path, blue the predicted flight, and red the virtual
-progress point. Generated solver files live under `c_generated_code/attitude_mpcc`.
-Construct a new controller for a new starting position or track; `reset()` resets
-progress and solver state on the existing path.
+Green shows the reference spline, blue the optimizer prediction, and red the
+virtual progress point. These measurements describe the restored baseline on
+the declared finite seed set. Holdout seeds 51–100 were not evaluated.
 
 ::: lsy_drone_racing.control.attitude_mpcc

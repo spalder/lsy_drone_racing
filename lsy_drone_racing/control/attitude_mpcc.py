@@ -26,6 +26,8 @@ from scipy.spatial.transform import Rotation
 
 from lsy_drone_racing.control import Controller
 from lsy_drone_racing.control.attitude_mpc import create_acados_model
+from lsy_drone_racing.control.corridor import CorridorPlanner, CorridorResult
+from lsy_drone_racing.control.track_geometry import TrackGeometry
 
 if TYPE_CHECKING:
     from crazyflow import Sim
@@ -273,9 +275,9 @@ class AttitudeMPCC(Controller):
             self._warp_inverse = np.linalg.inv(np.exp(-0.5 * (delta / self._warp_width) ** 2))
             delta = self._base_path.x[:, None] - self._anchors[None, :]
             self._warp_basis = np.exp(-0.5 * (delta / self._warp_width) ** 2)
-        self._observed_gate_positions = None
-        self._observed_gate_quaternions = None
-        self._observed_obstacles = None
+        self.track_geometry = TrackGeometry(config)
+        self._corridor_gate_order = list(config.env.track.gate_order)
+        self._path_geometry_revision = -1
         self._update_gate_path(obs)
         self.drone_params = load_params(Dynamics.so_rpy, config.sim.drone)
         self._solver, self._ocp = create_mpcc_solver(
@@ -306,6 +308,7 @@ class AttitudeMPCC(Controller):
 
     def episode_reset(self):
         """Reset the controller between episodes (new tracks need a new instance)."""
+        self.track_geometry.reset()
         self.reset()
 
     def _update_thrust_gain(self, obs: dict[str, NDArray]):
@@ -342,21 +345,12 @@ class AttitudeMPCC(Controller):
         This preserves the nominal route and gate anchors. It is a local path
         adjustment, not a collision-free global planner or a safety guarantee.
         """
-        if self._gate_ids is None:
+        self.last_geometry_update = self.track_geometry.update(obs)
+        if self._gate_ids is None or self._path_geometry_revision == self.track_geometry.revision:
             return
-        gates = np.asarray(obs["gates_pos"])
-        quaternions = np.asarray(obs["gates_quat"])
-        obstacles = np.asarray(obs["obstacles_pos"])
-        if (
-            self._observed_gate_positions is not None
-            and np.array_equal(gates, self._observed_gate_positions)
-            and np.array_equal(quaternions, self._observed_gate_quaternions)
-            and np.array_equal(obstacles, self._observed_obstacles)
-        ):
-            return
-        self._observed_gate_positions = gates.copy()
-        self._observed_gate_quaternions = quaternions.copy()
-        self._observed_obstacles = obstacles.copy()
+        gates = np.array([gate.planning_pose.position for gate in self.track_geometry.gates])
+        quaternions = np.array([gate.planning_pose.quaternion for gate in self.track_geometry.gates])
+        obstacles = np.array([pole.planning_pose.position for pole in self.track_geometry.obstacles])
         correction = np.zeros((len(self._anchors), 3))
         normals = Rotation.from_quat(quaternions[self._gate_ids]).as_matrix()[:, :, 0]
         targets = (
@@ -419,6 +413,7 @@ class AttitudeMPCC(Controller):
             points += shift[:, None] * rotation[:, 0] * direction
         self._path = CubicSpline(self._base_path.x, points)
         self._path_derivative = self._path.derivative()
+        self._path_geometry_revision = self.track_geometry.revision
 
     def compute_control(self, obs: dict[str, NDArray], info: dict | None = None) -> NDArray:
         """Solve the contouring problem without modifying the observation dictionary."""
@@ -486,6 +481,23 @@ class AttitudeMPCC(Controller):
         self._progress = float(np.clip(prediction[1, 12], 0, self._length))
         self._last_action = inputs[0, :4].copy()
         return self._last_action.copy()
+
+    def plan_corridor(
+        self, obs: dict[str, NDArray], tracking_margin: float, max_tilt: float = 0.35
+    ) -> CorridorResult:
+        """Build a geometric corridor for review before optimizer integration.
+
+        This explicit planning call may be slower than a feedback cycle. It does
+        not replace the active spline, enforce tilt limits, or issue commands.
+        The start must be airborne; takeoff and dynamic feasibility are separate.
+        """
+        self._update_gate_path(obs)
+        planner = CorridorPlanner(self.track_geometry, tracking_margin, max_tilt)
+        guides = self._path(np.linspace(0, self._length, 80))
+        return planner.build(
+            obs["pos"], self._corridor_gate_order, guides,
+            finish=self._path(self._length), first_occurrence=int(obs["n_gates_passed"]),
+        )
 
     def step_callback(
         self,

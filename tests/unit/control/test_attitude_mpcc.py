@@ -71,6 +71,15 @@ class TestAttitudeMPCC(TestCase):
             "n_gates_passed": np.array(0),
             "gate_sequence": np.array([0, 1, 0]),
         }
+        cls.obs.update(
+            gates_pos=np.array([g["pos"] for g in config.env.track.gates]),
+            gates_quat=Rotation.from_euler(
+                "xyz", [g["rpy"] for g in config.env.track.gates]
+            ).as_quat(),
+            obstacles_pos=np.array([o["pos"] for o in config.env.track.obstacles]),
+            gates_visited=np.zeros(len(config.env.track.gates), dtype=bool),
+            obstacles_visited=np.zeros(len(config.env.track.obstacles), dtype=bool),
+        )
         controller_cls = load_controller(root / "lsy_drone_racing/control/attitude_mpcc.py")
         cls.ctrl = controller_cls(cls.obs, {}, config)
 
@@ -203,6 +212,10 @@ class TestObservedPath(TestCase):
             ).as_quat(),
             "obstacles_pos": np.array([pole["pos"] for pole in config.env.track.obstacles]),
         }
+        cls.obs.update(
+            gates_visited=np.ones(len(config.env.track.gates), dtype=bool),
+            obstacles_visited=np.ones(len(config.env.track.obstacles), dtype=bool),
+        )
         cls.ctrl = AttitudeMPCC(cls.obs, {}, config)
 
     def test_observed_gate_centers_and_departure_clearance(self):

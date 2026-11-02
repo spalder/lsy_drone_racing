@@ -45,6 +45,21 @@ This project builds upon [**crazyflow**](https://github.com/learnsyslab/crazyflo
 
 ---
 
+## Racing controller
+
+Level 2 uses the restored original stage-2 synchronous attitude MPCC. Run an
+explicit simulator seed or evaluate the historical comparison set in Bash:
+
+```bash
+SCIPY_ARRAY_API=1 pixi run python scripts/sim.py --config level2.toml --seed=7
+SCIPY_ARRAY_API=1 pixi run evaluate --seeds {1..50} 1337 --output-dir /tmp/stage2-evaluation
+```
+
+See the [controller documentation](docs/control/attitude_mpcc.md) for its behavior,
+configuration, offline geometry API and verified baseline results.
+
+---
+
 ## Difficulty Levels
 
 Each task setup — from track design to dynamics configuration — is defined by a TOML file (e.g., [`level0.toml`](config/level0.toml)).  

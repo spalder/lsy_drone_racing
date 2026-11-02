@@ -40,6 +40,7 @@ from flax.struct import dataclass
 from gymnasium import spaces
 from scipy.spatial.transform import Rotation as R
 
+from lsy_drone_racing.envs.mjx_compat import install_box_contact_fix
 from lsy_drone_racing.envs.randomize import (
     build_full_track_randomization_fn,
     randomize_drone_inertia_fn,
@@ -363,6 +364,7 @@ class RaceCoreEnv:
             device: Device used for the environment and the simulation.
         """
         super().__init__()
+        install_box_contact_fix()
         # 1) Sanitize args
         if sim_config.freq % freq != 0:
             raise ValueError(f"({sim_config.freq=}) is no multiple of ({freq=})")
