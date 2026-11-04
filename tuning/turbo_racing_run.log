@@ -1,0 +1,415 @@
+Initial design: 24 candidates x 12 races, logging to /home/spalder/Work/lsy_drone_racing/tuning/turbo_20261105_003000.jsonl
+  init: reward  -5.495  success  67%  time 5.29s
+  init: reward  -8.692  success  25%  time 4.86s
+  init: reward  -7.719  success  33%  time 4.42s
+  init: reward -11.623  success   0%  time   -  
+  init: reward  -6.072  success  75%  time 6.15s
+  init: reward  -8.326  success  33%  time 6.00s
+  evaluations 6/240, best reward so far -5.495
+  init: reward -11.516  success   0%  time   -  
+  init: reward -11.333  success   0%  time   -  
+  init: reward -11.425  success   0%  time   -  
+  init: reward -11.463  success   0%  time   -  
+  init: reward  -7.800  success  33%  time 5.35s
+  init: reward -10.548  success   8%  time 6.48s
+  evaluations 12/240, best reward so far -5.495
+  init: reward  -9.745  success  17%  time 5.58s
+  init: reward -11.467  success   0%  time   -  
+  init: reward -11.358  success   0%  time   -  
+  init: reward  -7.092  success  42%  time 5.62s
+  init: reward -11.342  success   0%  time   -  
+  init: reward -11.566  success   0%  time   -  
+  evaluations 18/240, best reward so far -5.495
+  init: reward -11.358  success   0%  time   -  
+  init: reward -11.540  success   0%  time   -  
+  init: reward -10.367  success   8%  time 5.00s
+  init: reward -11.439  success   0%  time   -  
+  init: reward -10.542  success   8%  time 4.46s
+  init: reward  -9.488  success  17%  time 4.88s
+  evaluations 24/240, best reward so far -5.495
+Batch 1, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.811  success  67%  time 5.75s
+  turbo: reward  -6.188  success  58%  time 6.45s
+  turbo: reward  -6.360  success  75%  time 6.57s
+  turbo: reward -10.597  success   8%  time 5.14s
+  turbo: reward -11.292  success   0%  time   -  
+  turbo: reward  -8.682  success  25%  time 5.16s
+  evaluations 30/240, best reward so far -5.495
+Batch 2, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.782  success  67%  time 5.75s
+  turbo: reward  -6.208  success  67%  time 6.40s
+  turbo: reward  -7.140  success  42%  time 5.80s
+  turbo: reward  -7.780  success  33%  time 5.02s
+  turbo: reward  -5.495  success  67%  time 5.30s
+  turbo: reward  -7.982  success  33%  time 5.87s
+  evaluations 36/240, best reward so far -5.495
+Batch 3, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -7.047  success  42%  time 5.42s
+  turbo: reward  -6.277  success  58%  time 6.60s
+  turbo: reward  -7.948  success  33%  time 5.64s
+  turbo: reward  -8.583  success  25%  time 4.73s
+  turbo: reward  -8.449  success  33%  time 6.74s
+  turbo: reward  -6.217  success  58%  time 6.49s
+  evaluations 42/240, best reward so far -5.495
+Batch 4, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 1.6]
+  turbo: reward  -5.690  success  92%  time 5.69s
+  turbo: reward  -6.087  success  75%  time 5.96s
+  turbo: reward  -5.751  success  92%  time 5.71s
+  turbo: reward  -6.223  success  50%  time 5.60s
+  turbo: reward  -5.910  success  75%  time 5.84s
+  turbo: reward  -5.803  success  67%  time 5.66s
+  evaluations 48/240, best reward so far -5.495
+Batch 5, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 1.6]
+  turbo: reward  -6.087  success  67%  time 6.21s
+  turbo: reward  -6.233  success  58%  time 6.47s
+  turbo: reward  -6.063  success  67%  time 6.22s
+  turbo: reward  -7.163  success  42%  time 5.85s
+  turbo: reward  -7.150  success  42%  time 5.78s
+  turbo: reward  -6.112  success  50%  time 5.34s
+  evaluations 54/240, best reward so far -5.495
+Batch 6, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 1.6]
+  turbo: reward  -5.892  success  83%  time 5.83s
+  turbo: reward  -5.533  success  75%  time 5.39s
+  turbo: reward  -5.916  success  75%  time 5.87s
+  turbo: reward  -9.502  success  17%  time 5.11s
+  turbo: reward  -5.748  success  58%  time 5.71s
+  turbo: reward  -5.705  success  83%  time 5.70s
+  evaluations 60/240, best reward so far -5.495
+Batch 7, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 1.6]
+  turbo: reward  -6.254  success  50%  time 5.65s
+  turbo: reward  -5.737  success  67%  time 5.69s
+  turbo: reward  -6.900  success  42%  time 5.26s
+  turbo: reward -10.390  success   8%  time 4.98s
+  turbo: reward  -9.703  success  17%  time 5.61s
+  turbo: reward  -7.218  success  42%  time 5.56s
+  evaluations 66/240, best reward so far -5.495
+Batch 8, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 1.6]
+  turbo: reward  -5.848  success  58%  time 5.90s
+  turbo: reward  -8.369  success  33%  time 5.73s
+  turbo: reward  -6.242  success  58%  time 6.53s
+  turbo: reward  -8.000  success  33%  time 5.92s
+  turbo: reward  -8.927  success  25%  time 6.41s
+  turbo: reward  -9.014  success  25%  time 6.55s
+  evaluations 72/240, best reward so far -5.495
+Process SpawnPoolWorker-7:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 131, in worker
+    put((job, i, result))
+    ~~~^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Process SpawnPoolWorker-1:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 131, in worker
+    put((job, i, result))
+    ~~~^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Process SpawnPoolWorker-4:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 131, in worker
+    put((job, i, result))
+    ~~~^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Process SpawnPoolWorker-8:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 131, in worker
+    put((job, i, result))
+    ~~~^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Process SpawnPoolWorker-3:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 131, in worker
+    put((job, i, result))
+    ~~~^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Process SpawnPoolWorker-5:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 131, in worker
+    put((job, i, result))
+    ~~~^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Process SpawnPoolWorker-2:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 131, in worker
+    put((job, i, result))
+    ~~~^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+Process SpawnPoolWorker-6:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 131, in worker
+    put((job, i, result))
+    ~~~^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+During handling of the above exception, another exception occurred:
+Traceback (most recent call last):
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 313, in _bootstrap
+    self.run()
+    ~~~~~~~~^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/pool.py", line 136, in worker
+    put((job, i, (False, wrapped)))
+    ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/queues.py", line 397, in put
+    self._writer.send_bytes(obj)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 205, in send_bytes
+    self._send_bytes(m[offset:offset + size])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 432, in _send_bytes
+    self._send(header + buf)
+    ~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/connection.py", line 389, in _send
+    n = write(self._handle, buf)
+BrokenPipeError: [Errno 32] Broken pipe
+/home/spalder/Work/lsy_drone_racing/.pixi/envs/default/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-a48ugad9', '/mp-hu7_c17u', '/mp-xqmc9r8z', '/mp-i5gs5q45', '/mp-ac1mttay', '/mp-88as5u6f'}
+  warnings.warn(

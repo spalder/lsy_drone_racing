@@ -1,0 +1,327 @@
+Initial design: 24 candidates x 12 races, logging to /home/spalder/Work/lsy_drone_racing/tuning/turbo_20261104_225146.jsonl
+  init: reward  -7.207  success  25%  time 4.81s
+  init: reward  -7.784  success  17%  time 4.62s
+  init: reward  -7.758  success  17%  time 4.75s
+  init: reward  -5.630  success  50%  time 4.84s
+  init: reward  -5.709  success  50%  time 5.11s
+  init: reward  -8.335  success   8%  time 5.42s
+  evaluations 6/240, best reward so far -5.630
+  init: reward  -7.837  success  17%  time 5.32s
+  init: reward  -7.670  success  17%  time 4.42s
+  init: reward  -8.233  success   8%  time 4.50s
+  init: reward  -7.826  success  17%  time 5.00s
+  init: reward  -7.737  success  17%  time 4.72s
+  init: reward  -8.433  success   8%  time 4.16s
+  evaluations 12/240, best reward so far -5.630
+  init: reward  -7.763  success  17%  time 4.73s
+  init: reward  -8.752  success   8%  time 5.08s
+  init: reward  -9.156  success   0%  time   -  
+  init: reward  -8.547  success   8%  time 5.52s
+  init: reward  -8.315  success   8%  time 4.88s
+  init: reward  -8.673  success   8%  time 5.68s
+  evaluations 18/240, best reward so far -5.630
+  init: reward  -9.437  success   0%  time   -  
+  init: reward  -7.996  success  17%  time 5.27s
+  init: reward  -8.875  success   0%  time   -  
+  init: reward  -9.339  success   0%  time   -  
+  init: reward  -8.882  success   0%  time   -  
+  init: reward  -8.739  success   8%  time 4.90s
+  evaluations 24/240, best reward so far -5.630
+Batch 1, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.653  success  75%  time 5.44s
+  turbo: reward  -6.326  success  42%  time 5.35s
+  turbo: reward  -7.249  success  33%  time 5.34s
+  turbo: reward  -8.978  success   0%  time   -  
+  turbo: reward  -7.545  success  25%  time 5.15s
+  turbo: reward  -8.883  success   0%  time   -  
+  evaluations 30/240, best reward so far -5.630
+Batch 2, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -7.450  success  25%  time 5.07s
+  turbo: reward  -6.838  success  33%  time 5.20s
+  turbo: reward  -5.925  success  50%  time 5.53s
+  turbo: reward  -7.825  success  17%  time 5.10s
+  turbo: reward  -7.067  success  25%  time 4.37s
+  turbo: reward  -7.832  success  17%  time 4.92s
+  evaluations 36/240, best reward so far -5.630
+Batch 3, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.667  success  58%  time 5.21s
+  turbo: reward  -5.856  success  67%  time 5.61s
+  turbo: reward  -6.076  success  50%  time 5.62s
+  turbo: reward  -8.395  success   8%  time 5.34s
+  turbo: reward  -7.738  success  17%  time 4.78s
+  turbo: reward  -6.005  success  75%  time 5.91s
+  evaluations 42/240, best reward so far -5.630
+Batch 4, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.895  success  58%  time 5.62s
+  turbo: reward  -6.318  success  42%  time 5.15s
+  turbo: reward  -6.107  success  58%  time 5.98s
+  turbo: reward  -7.128  success  25%  time 4.61s
+  turbo: reward  -6.808  success  33%  time 5.12s
+  turbo: reward  -6.349  success  42%  time 5.23s
+  evaluations 48/240, best reward so far -5.630
+Batch 5, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.965  success  75%  time 5.88s
+  turbo: reward  -5.926  success  50%  time 5.27s
+  turbo: reward  -6.273  success  67%  time 6.27s
+  turbo: reward  -7.730  success  17%  time 4.24s
+  turbo: reward  -5.633  success  67%  time 5.29s
+  turbo: reward  -6.407  success  83%  time 6.46s
+  evaluations 54/240, best reward so far -5.630
+Batch 6, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.905  success  58%  time 5.65s
+  turbo: reward  -7.010  success  33%  time 5.71s
+  turbo: reward  -6.757  success  83%  time 6.87s
+  turbo: reward  -8.307  success   8%  time 4.88s
+  turbo: reward  -6.173  success  67%  time 6.13s
+  turbo: reward  -6.180  success  67%  time 6.14s
+  evaluations 60/240, best reward so far -5.630
+Batch 7, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.771  success  58%  time 5.29s
+  turbo: reward  -7.362  success  25%  time 5.28s
+  turbo: reward  -5.900  success  58%  time 5.48s
+  turbo: reward  -7.825  success  17%  time 4.95s
+  turbo: reward  -6.042  success  58%  time 5.74s
+  turbo: reward  -5.924  success  75%  time 5.78s
+  evaluations 66/240, best reward so far -5.630
+Batch 8, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -7.773  success  17%  time 4.86s
+  turbo: reward  -8.586  success   8%  time 4.46s
+  turbo: reward  -6.432  success  42%  time 5.55s
+  turbo: reward  -8.297  success   8%  time 4.24s
+  turbo: reward  -6.849  success  33%  time 4.86s
+  turbo: reward  -7.666  success  25%  time 5.49s
+  evaluations 72/240, best reward so far -5.630
+Batch 9, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -7.186  success  25%  time 4.72s
+  turbo: reward  -5.954  success  75%  time 5.73s
+  turbo: reward  -5.686  success  67%  time 5.29s
+  turbo: reward  -7.122  success  25%  time 4.45s
+  turbo: reward  -5.963  success  50%  time 5.55s
+  turbo: reward  -6.180  success  42%  time 4.90s
+  evaluations 78/240, best reward so far -5.630
+Batch 10, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.732  success  75%  time 5.54s
+  turbo: reward  -6.290  success  42%  time 5.20s
+  turbo: reward  -5.842  success  67%  time 5.64s
+  turbo: reward  -7.693  success  17%  time 4.31s
+  turbo: reward  -6.730  success  42%  time 6.07s
+  turbo: reward  -5.908  success  75%  time 5.77s
+  evaluations 84/240, best reward so far -5.630
+Batch 11, trust region lengths [0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.665  success  75%  time 5.45s
+  turbo: reward  -5.728  success  58%  time 5.33s
+  turbo: reward  -5.906  success  50%  time 5.31s
+  turbo: reward  -6.585  success  33%  time 4.61s
+  turbo: reward  -5.746  success  50%  time 5.18s
+  turbo: reward  -6.014  success  75%  time 5.79s
+  evaluations 90/240, best reward so far -5.630
+Batch 12, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -6.363  success  58%  time 6.37s
+  turbo: reward  -5.968  success  58%  time 5.67s
+  turbo: reward  -6.224  success  67%  time 6.12s
+  turbo: reward  -8.917  success   0%  time   -  
+  turbo: reward  -5.962  success 100%  time 5.93s
+  turbo: reward  -5.882  success 100%  time 5.88s
+  evaluations 96/240, best reward so far -5.630
+Batch 13, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.340  success  83%  time 5.15s
+  turbo: reward  -5.874  success  50%  time 5.38s
+  turbo: reward  -5.604  success  75%  time 5.33s
+  turbo: reward  -8.237  success   8%  time 4.34s
+  turbo: reward  -5.952  success  58%  time 5.64s
+  turbo: reward  -6.447  success  75%  time 6.46s
+  evaluations 102/240, best reward so far -5.340
+Batch 14, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.797  success  50%  time 5.18s
+  turbo: reward  -7.334  success  25%  time 5.17s
+  turbo: reward  -7.202  success  25%  time 4.94s
+  turbo: reward  -7.140  success  25%  time 4.56s
+  turbo: reward  -5.725  success  58%  time 5.36s
+  turbo: reward  -5.808  success  50%  time 5.22s
+  evaluations 108/240, best reward so far -5.340
+Batch 15, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.445  success  83%  time 5.29s
+  turbo: reward  -5.430  success  58%  time 4.84s
+  turbo: reward  -5.869  success  67%  time 5.54s
+  turbo: reward  -5.697  success  50%  time 5.14s
+  turbo: reward  -5.929  success  75%  time 5.73s
+  turbo: reward  -6.195  success  42%  time 5.07s
+  evaluations 114/240, best reward so far -5.340
+Batch 16, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.8, 0.8]
+  turbo: reward  -5.720  success  58%  time 5.32s
+  turbo: reward  -5.695  success  50%  time 5.02s
+  turbo: reward  -5.714  success  58%  time 5.21s
+  turbo: reward  -7.272  success  25%  time 5.05s
+  turbo: reward  -5.959  success  50%  time 5.60s
+  turbo: reward  -6.930  success  33%  time 5.15s
+  evaluations 120/240, best reward so far -5.340
+Batch 17, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.4, 0.8]
+  turbo: reward  -6.158  success  42%  time 4.98s
+  turbo: reward  -6.152  success  42%  time 4.92s
+  turbo: reward  -6.215  success  42%  time 5.10s
+  turbo: reward  -9.105  success   0%  time   -  
+  turbo: reward  -7.037  success  33%  time 6.08s
+  turbo: reward  -7.808  success  17%  time 5.00s
+  evaluations 126/240, best reward so far -5.340
+Batch 18, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.4, 0.8]
+  turbo: reward  -5.955  success  67%  time 5.79s
+  turbo: reward  -6.033  success  58%  time 5.82s
+  turbo: reward  -6.117  success  58%  time 5.97s
+  turbo: reward  -7.607  success  17%  time 4.29s
+  turbo: reward  -7.398  success  25%  time 5.83s
+  turbo: reward  -6.898  success  33%  time 5.50s
+  evaluations 132/240, best reward so far -5.340
+Batch 19, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.4, 0.8]
+  turbo: reward  -6.880  success  33%  time 5.51s
+  turbo: reward  -5.750  success  50%  time 5.15s
+  turbo: reward  -6.280  success  58%  time 6.22s
+  turbo: reward  -8.342  success   8%  time 5.40s
+  turbo: reward  -5.857  success  58%  time 5.52s
+  turbo: reward  -7.773  success  17%  time 5.14s
+  evaluations 138/240, best reward so far -5.340
+Batch 20, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.4, 0.8]
+  turbo: reward  -6.930  success  33%  time 5.46s
+  turbo: reward  -6.300  success  42%  time 5.38s
+  turbo: reward  -8.858  success   0%  time   -  
+  turbo: reward  -6.282  success  42%  time 5.18s
+  turbo: reward  -5.872  success  75%  time 5.74s
+  turbo: reward  -6.897  success  33%  time 5.47s
+  evaluations 144/240, best reward so far -5.340
+Batch 21, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.4, 0.8]
+  turbo: reward  -7.098  success  33%  time 6.12s
+  turbo: reward  -7.760  success  17%  time 4.86s
+  turbo: reward  -5.930  success  50%  time 5.56s
+  turbo: reward  -7.302  success  25%  time 5.34s
+  turbo: reward  -5.760  success  50%  time 5.24s
+  turbo: reward  -8.392  success   8%  time 5.30s
+  evaluations 150/240, best reward so far -5.340
+Batch 22, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.4, 0.8]
+  turbo: reward  -6.878  success  33%  time 5.51s
+  turbo: reward  -5.803  success  58%  time 5.43s
+  turbo: reward  -8.012  success  17%  time 5.95s
+  turbo: reward  -8.808  success   0%  time   -  
+  turbo: reward  -6.533  success  42%  time 5.71s
+  turbo: reward  -8.808  success   0%  time   -  
+  evaluations 156/240, best reward so far -5.340
+Batch 23, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.4, 0.8]
+  turbo: reward  -5.793  success  58%  time 5.43s
+  turbo: reward  -5.865  success  58%  time 5.53s
+  turbo: reward  -7.783  success  17%  time 5.15s
+  turbo: reward  -7.877  success  17%  time 5.71s
+  turbo: reward  -6.334  success  42%  time 5.06s
+  turbo: reward  -7.267  success  25%  time 4.93s
+  evaluations 162/240, best reward so far -5.340
+Batch 24, trust region lengths [0.4, 0.4, 0.8, 0.8, 0.4, 0.8]
+  turbo: reward  -6.160  success  50%  time 6.04s
+  turbo: reward  -5.833  success  50%  time 5.38s
+  turbo: reward  -5.899  success  58%  time 5.59s
+  turbo: reward  -5.810  success  50%  time 5.27s
+  turbo: reward  -5.514  success  75%  time 5.19s
+  turbo: reward  -6.288  success  42%  time 5.21s
+  evaluations 168/240, best reward so far -5.340
+Batch 25, trust region lengths [0.2, 0.4, 0.4, 0.8, 0.4, 0.8]
+  turbo: reward  -5.730  success 100%  time 5.73s
+  turbo: reward  -5.730  success  50%  time 4.89s
+  turbo: reward  -7.895  success  17%  time 5.67s
+  turbo: reward  -7.263  success  25%  time 5.05s
+  turbo: reward  -5.377  success  92%  time 5.29s
+  turbo: reward  -5.752  success  50%  time 5.15s
+  evaluations 174/240, best reward so far -5.340
+Batch 26, trust region lengths [0.2, 0.4, 0.4, 0.8, 0.4, 0.8]
+  turbo: reward  -6.762  success  33%  time 5.16s
+  turbo: reward  -5.980  success  50%  time 5.69s
+  turbo: reward  -7.247  success  25%  time 5.05s
+  turbo: reward  -6.065  success  50%  time 5.81s
+  turbo: reward  -5.633  success  58%  time 5.19s
+  turbo: reward  -7.799  success  17%  time 4.86s
+  evaluations 180/240, best reward so far -5.340
+Batch 27, trust region lengths [0.2, 0.2, 0.4, 0.4, 0.4, 0.8]
+  turbo: reward  -5.722  success  50%  time 5.03s
+  turbo: reward  -5.950  success  42%  time 4.40s
+  turbo: reward  -7.455  success  25%  time 5.36s
+  turbo: reward  -6.852  success  33%  time 5.26s
+  turbo: reward  -6.279  success  42%  time 5.15s
+  turbo: reward  -6.802  success  33%  time 4.87s
+  evaluations 186/240, best reward so far -5.340
+Batch 28, trust region lengths [0.2, 0.2, 0.4, 0.4, 0.4, 0.8]
+  turbo: reward  -6.981  success  33%  time 5.48s
+  turbo: reward  -6.773  success  33%  time 5.15s
+  turbo: reward  -7.137  success  33%  time 5.83s
+  turbo: reward  -6.148  success  42%  time 4.86s
+  turbo: reward  -5.942  success  50%  time 5.55s
+  turbo: reward  -5.733  success  50%  time 5.15s
+  evaluations 192/240, best reward so far -5.340
+Batch 29, trust region lengths [0.2, 0.2, 0.4, 0.4, 0.4, 0.8]
+  turbo: reward  -7.287  success  25%  time 5.31s
+  turbo: reward  -6.719  success  33%  time 4.93s
+  turbo: reward  -5.697  success  50%  time 5.11s
+  turbo: reward  -7.840  success  17%  time 5.34s
+  turbo: reward  -6.198  success  50%  time 6.06s
+  turbo: reward  -7.820  success  17%  time 5.32s
+  evaluations 198/240, best reward so far -5.340
+Batch 30, trust region lengths [0.2, 0.2, 0.4, 0.4, 0.4, 0.8]
+  turbo: reward  -6.183  success  42%  time 5.02s
+  turbo: reward  -5.580  success  58%  time 5.08s
+  turbo: reward  -5.877  success  58%  time 5.55s
+  turbo: reward  -6.012  success  42%  time 4.59s
+  turbo: reward  -6.518  success  42%  time 5.82s
+  turbo: reward  -7.445  success  25%  time 5.02s
+  evaluations 204/240, best reward so far -5.340
+Batch 31, trust region lengths [0.2, 0.2, 0.4, 0.4, 0.4, 0.8]
+  turbo: reward  -5.841  success  50%  time 5.28s
+  turbo: reward  -6.125  success  42%  time 4.94s
+  turbo: reward  -5.830  success  58%  time 5.54s
+  turbo: reward  -7.165  success  25%  time 4.56s
+  turbo: reward  -6.247  success  83%  time 6.25s
+  turbo: reward  -5.800  success  50%  time 5.21s
+  evaluations 210/240, best reward so far -5.340
+Batch 32, trust region lengths [0.2, 0.2, 0.4, 0.4, 0.4, 0.8]
+  turbo: reward  -7.805  success  17%  time 4.36s
+  turbo: reward  -5.578  success  83%  time 5.36s
+  turbo: reward  -5.913  success  58%  time 5.67s
+  turbo: reward  -6.392  success  42%  time 5.52s
+  turbo: reward  -5.727  success  67%  time 5.49s
+  turbo: reward  -6.677  success  33%  time 4.83s
+  evaluations 216/240, best reward so far -5.340
+Batch 33, trust region lengths [0.2, 0.2, 0.4, 0.4, 0.4, 0.8]
+  turbo: reward  -6.598  success  42%  time 6.04s
+  turbo: reward  -7.227  success  25%  time 4.97s
+  turbo: reward  -7.021  success  33%  time 5.81s
+  turbo: reward  -8.833  success   0%  time   -  
+  turbo: reward  -6.113  success  83%  time 6.08s
+  turbo: reward  -8.842  success   0%  time   -  
+  evaluations 222/240, best reward so far -5.340
+Batch 34, trust region lengths [0.2, 0.2, 0.4, 0.4, 0.4, 0.8]
+  turbo: reward  -6.205  success  42%  time 5.19s
+  turbo: reward  -8.280  success   8%  time 5.16s
+  turbo: reward  -8.225  success   8%  time 4.70s
+  turbo: reward  -8.235  success   8%  time 4.82s
+  turbo: reward  -7.213  success  25%  time 5.15s
+  turbo: reward  -7.887  success  17%  time 5.27s
+  evaluations 228/240, best reward so far -5.340
+Batch 35, trust region lengths [0.2, 0.2, 0.4, 0.4, 0.4, 0.8]
+  turbo: reward  -5.648  success  58%  time 5.12s
+  turbo: reward  -5.758  success  67%  time 5.39s
+  turbo: reward  -6.033  success  67%  time 5.88s
+  turbo: reward  -7.795  success  17%  time 5.12s
+  turbo: reward  -8.292  success   8%  time 4.72s
+  turbo: reward  -7.505  success  25%  time 5.83s
+  evaluations 234/240, best reward so far -5.340
+Batch 36, trust region lengths [0.2, 0.2, 0.4, 0.4, 0.4, 0.8]
+  turbo: reward  -5.973  success  50%  time 5.60s
+  turbo: reward  -6.148  success  42%  time 4.86s
+  turbo: reward  -6.114  success  50%  time 5.89s
+  turbo: reward  -7.822  success  17%  time 5.18s
+  turbo: reward  -6.923  success  33%  time 5.22s
+  turbo: reward  -7.823  success  17%  time 4.97s
+  evaluations 240/240, best reward so far -5.340
+Validating the 4 best candidates on 60 races each
+reward -5.744, success 63%, mean time 5.385s
+  {"max_speed": 8.0, "contour_weight": 61.44124, "lag_weight": 85.65382, "progress_weight": 10.40027, "reference_speed": 3.42918, "rate_weight": 0.36359, "attitude_slew_weight": 0.2599, "thrust_slew_weight": 1.84226, "unobserved_speed": 2.16814, "tunnel_margin": 0.01712, "residual_gain": 0.06137, "max_angle": 0.78529, "plan_angle": 0.7868}
+reward -5.806, success 60%, mean time 5.358s
+  {"max_speed": 8.0, "contour_weight": 68.14425, "lag_weight": 99.89216, "progress_weight": 13.14604, "reference_speed": 4.1951, "rate_weight": 0.07009, "attitude_slew_weight": 0.26141, "thrust_slew_weight": 1.86613, "unobserved_speed": 2.11367, "tunnel_margin": 0.031, "residual_gain": 0.07954, "max_angle": 0.87486, "plan_angle": 0.62583}
+reward -5.879, success 70%, mean time 5.680s
+  {"max_speed": 8.0, "contour_weight": 125.63534, "lag_weight": 50.37764, "progress_weight": 23.1206, "reference_speed": 3.01662, "rate_weight": 0.03858, "attitude_slew_weight": 0.38552, "thrust_slew_weight": 1.38677, "unobserved_speed": 1.94577, "tunnel_margin": 0.01996, "residual_gain": 0.12294, "max_angle": 0.81199, "plan_angle": 0.73517}
+reward -5.964, success 55%, mean time 5.647s
+  {"max_speed": 8.0, "contour_weight": 110.1609, "lag_weight": 58.17747, "progress_weight": 15.52578, "reference_speed": 3.3325, "rate_weight": 0.00625, "attitude_slew_weight": 0.20254, "thrust_slew_weight": 1.71549, "unobserved_speed": 1.94388, "tunnel_margin": 0.03906, "residual_gain": 0.06061, "max_angle": 1.00213, "plan_angle": 0.65208}
+Full log: /home/spalder/Work/lsy_drone_racing/tuning/turbo_20261104_225146.jsonl
