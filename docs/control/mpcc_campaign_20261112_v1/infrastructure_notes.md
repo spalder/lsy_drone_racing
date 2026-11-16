@@ -1,0 +1,5 @@
+# Infrastructure notes
+
+After all 1,000 Stage A races completed and the frozen top-five selection was written, analysis printed a NumPy int64 through the standard JSON encoder and exited. CSVs and episode records were complete. The printing conversion was corrected; controller, simulator, settings, seeds, selection rule and measured data were unchanged. The orchestrator was restarted to resume from saved records.
+
+The first added numerical diagnostic reused a generated-library pathname across fresh builds while retaining a bound solver method, which could keep the previous library loaded. That diagnostic produced non-identical action traces despite matching outcomes. It was archived as `numerical_replays_initial_nonisolated/` and excluded from all performance metrics and technical conclusions. The corrected diagnostic gives every episode a unique build directory. All 11 episodes with observed solver/fallback events then reproduced float32 actions, steps, outcomes and fallback counts exactly. This change only affects post-campaign diagnostic replay; the frozen main runner uses intentionally fixed separate caches per candidate and was unchanged.

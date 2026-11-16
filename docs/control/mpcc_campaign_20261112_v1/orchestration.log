@@ -1,0 +1,32 @@
+selected B ['G07_pole_width_0p4375', 'F1', 'F1_2', 'RECHECK_R24', 'E09_attitude_rate_weight_0p05']
+Traceback (most recent call last):
+  File "/home/askho/repos/lsy_drone_racing/docs/control/mpcc_campaign_20261112_v1/analyze.py", line 71, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/home/askho/repos/lsy_drone_racing/docs/control/mpcc_campaign_20261112_v1/analyze.py", line 70, in main
+    print(json.dumps(allrows,indent=2))
+          ~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/json/__init__.py", line 242, in dumps
+    **kw).encode(obj)
+          ~~~~~~^^^^^
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/json/encoder.py", line 202, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/json/encoder.py", line 263, in iterencode
+    return _iterencode(o, 0)
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/json/encoder.py", line 182, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type int64 is not JSON serializable
+Traceback (most recent call last):
+  File "/home/askho/repos/lsy_drone_racing/docs/control/mpcc_campaign_20261112_v1/orchestrate.py", line 19, in <module>
+    for st,nxt,n in [('A','B',5),('B','C',3)]:launch(st);select(st,nxt,n)
+                                                         ~~~~~~^^^^^^^^^^
+  File "/home/askho/repos/lsy_drone_racing/docs/control/mpcc_campaign_20261112_v1/orchestrate.py", line 16, in select
+    subprocess.run([PY,str(D/'analyze.py')],stdout=(D/f'analysis_after_{stage}.log').open('w'),check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/home/askho/repos/lsy_drone_racing/.pixi/envs/default/bin/python', '/home/askho/repos/lsy_drone_racing/docs/control/mpcc_campaign_20261112_v1/analyze.py']' returned non-zero exit status 1.
+selected B ['G07_pole_width_0p4375', 'F1', 'F1_2', 'RECHECK_R24', 'E09_attitude_rate_weight_0p05']
+selected C ['F1', 'G07_pole_width_0p4375', 'F1_2']

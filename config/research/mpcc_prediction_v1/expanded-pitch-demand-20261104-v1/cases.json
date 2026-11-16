@@ -1,0 +1,87 @@
+{
+  "baseline_hard": {},
+  "soft_reference": {},
+  "speed_33": {
+    "mpcc": {
+      "reference_speed": 3.3,
+      "max_speed": 3.5
+    }
+  },
+  "speed_36": {
+    "mpcc": {
+      "reference_speed": 3.6,
+      "max_speed": 3.8
+    }
+  },
+  "drag_030": {
+    "prediction": {
+      "drag_strength": 0.3
+    }
+  },
+  "speed33_drag": {
+    "mpcc": {
+      "reference_speed": 3.3,
+      "max_speed": 3.5
+    },
+    "prediction": {
+      "drag_strength": 0.3
+    }
+  },
+  "speed36_drag": {
+    "mpcc": {
+      "reference_speed": 3.6,
+      "max_speed": 3.8
+    },
+    "prediction": {
+      "drag_strength": 0.3
+    }
+  },
+  "attitude11": {
+    "prediction": {
+      "attitude_response_scale": 1.1
+    }
+  },
+  "speed33_attitude": {
+    "mpcc": {
+      "reference_speed": 3.3,
+      "max_speed": 3.5
+    },
+    "prediction": {
+      "attitude_response_scale": 1.1
+    }
+  },
+  "speed33_combined": {
+    "mpcc": {
+      "reference_speed": 3.3,
+      "max_speed": 3.5
+    },
+    "prediction": {
+      "drag_strength": 0.3,
+      "attitude_response_scale": 1.1
+    }
+  },
+  "speed33_tracking": {
+    "mpcc": {
+      "reference_speed": 3.3,
+      "max_speed": 3.5,
+      "progress_weight": 18.0
+    }
+  },
+  "speed33_thrust": {
+    "mpcc": {
+      "reference_speed": 3.3,
+      "max_speed": 3.5,
+      "command_thrust_weight": 25.0
+    }
+  },
+  "diagnostic_cap10": {
+    "prediction": {
+      "drag_strength": 0.3
+    }
+  },
+  "diagnostic_expanded": {
+    "prediction": {
+      "drag_strength": 0.3
+    }
+  }
+}

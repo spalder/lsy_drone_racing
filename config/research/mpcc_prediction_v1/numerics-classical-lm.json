@@ -1,0 +1,5 @@
+{
+  "qp_solver_cond_ric_alg": 1,
+  "qp_solver_ric_alg": 0,
+  "levenberg_marquardt": 0.0001
+}

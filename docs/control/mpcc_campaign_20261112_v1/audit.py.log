@@ -1,0 +1,1 @@
+[{'stage': 'A', 'candidates': 10, 'episodes': 1000, 'all_episode_and_state_checks': 'PASS'}, {'stage': 'B', 'candidates': 5, 'episodes': 1000, 'all_episode_and_state_checks': 'PASS'}, {'stage': 'C', 'candidates': 3, 'episodes': 1500, 'all_episode_and_state_checks': 'PASS'}]

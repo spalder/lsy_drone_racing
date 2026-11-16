@@ -1,0 +1,11 @@
+{
+  "drag_030_parent": {},
+  "drag030_slew_003": {
+    "mpcc": {
+      "attitude_slew_weight": 0.03
+    },
+    "prediction": {
+      "drag_strength": 0.3
+    }
+  }
+}

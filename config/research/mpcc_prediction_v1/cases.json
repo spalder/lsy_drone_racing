@@ -1,0 +1,51 @@
+{
+  "baseline": {},
+  "drag_05": {
+    "prediction": {
+      "drag_strength": 0.5
+    }
+  },
+  "drag_10": {
+    "prediction": {
+      "drag_strength": 1.0
+    }
+  },
+  "drag_15": {
+    "prediction": {
+      "drag_strength": 1.5
+    }
+  },
+  "attitude_09": {
+    "prediction": {
+      "attitude_response_scale": 0.9
+    }
+  },
+  "attitude_11": {
+    "prediction": {
+      "attitude_response_scale": 1.1
+    }
+  },
+  "attitude_gain_11": {
+    "prediction": {
+      "attitude_command_gain_scale": 1.1
+    }
+  },
+  "ema_4": {
+    "mpcc": {
+      "adaptation_rate": 4.0
+    }
+  },
+  "scalar_kf": {
+    "prediction": {
+      "thrust_gain_mode": "kf"
+    }
+  },
+  "combined_example": {
+    "prediction": {
+      "drag_strength": 1.0,
+      "attitude_response_scale": 1.1,
+      "attitude_command_gain_scale": 1.1,
+      "thrust_gain_mode": "kf"
+    }
+  }
+}

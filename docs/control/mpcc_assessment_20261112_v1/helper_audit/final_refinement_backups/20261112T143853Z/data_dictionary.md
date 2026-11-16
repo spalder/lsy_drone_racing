@@ -1,0 +1,170 @@
+# Data dictionary
+
+CSV numeric values retain full Python/NumPy precision, without percent signs or units in cells. Units are explicit in column names. Missing numeric measurements are blank, **except mean_control_call_ms, which is literal nan**. Zero is a measured zero, never a replacement for missing data. JSON cells use standard JSON; unresolved provenance is explicitly labeled.
+
+Datasets: one row per configuration/cohort in cohort_metrics.csv; one per configuration/environment using the selected primary in configuration_metrics.csv; one matched-seed reference comparison in paired_comparisons.csv; all independent-validation links in validation_comparisons.csv.
+
+## Column definitions
+
+- **`active_behavior_json`** (cohort_metrics.csv, configuration_metrics.csv): Machine-readable JSON payload.
+- **`aliases`** (configuration_metrics.csv): Aliases.
+- **`calls_over_20ms`** (cohort_metrics.csv, configuration_metrics.csv): Calls over 20ms.
+- **`calls_over_20ms_percent`** (cohort_metrics.csv, configuration_metrics.csv): 100 × number of whole calls >20 ms / known total calls; includes numerical failures.
+- **`case_name`** (cohort_metrics.csv, configuration_metrics.csv): Case name.
+- **`ci_lower_strictly_above_70_percent`** (cohort_metrics.csv, configuration_metrics.csv): 1 only if exact 95% LOWER endpoint >0.70, distinct from observed threshold.
+- **`cohort_count`** (configuration_metrics.csv): Cohort count.
+- **`cohort_group`** (paired_comparisons.csv): Cohort group.
+- **`cohort_id`** (cohort_metrics.csv, paired_comparisons.csv): Stable ID of source cohort, case label and complete source record content. Genuine reruns separate.
+- **`cohort_ids`** (configuration_metrics.csv): Cohort ids.
+- **`cohort_role`** (cohort_metrics.csv, configuration_metrics.csv): Cohort role.
+- **`comparison_id`** (paired_comparisons.csv): Stable identifier; join tables by this field.
+- **`comparison_kind`** (paired_comparisons.csv): Comparison kind.
+- **`completion_ci_lower`** (cohort_metrics.csv, configuration_metrics.csv): Lower endpoint of two-sided 95% exact Clopper–Pearson binomial interval, fraction.
+- **`completion_ci_upper`** (cohort_metrics.csv, configuration_metrics.csv): Upper endpoint of the same exact binomial interval, fraction.
+- **`completion_percent`** (cohort_metrics.csv, configuration_metrics.csv): 100 × completion_rate; numeric percent, no percent sign.
+- **`completion_rate`** (cohort_metrics.csv, configuration_metrics.csv): Observed completion fraction in [0,1]; higher preferred.
+- **`complexity_baseline`** (cohort_metrics.csv, configuration_metrics.csv): Complexity baseline.
+- **`complexity_provisional`** (cohort_metrics.csv, configuration_metrics.csv): True when classification/active behavior requires further manual review.
+- **`complexity_rationale`** (cohort_metrics.csv, configuration_metrics.csv): Complexity rationale.
+- **`complexity_score`** (cohort_metrics.csv, configuration_metrics.csv): Manual 0–4 relative to the pinned basic MPCC; parameter-only changes do not increase score. See complexity_assessments.json.
+- **`complexity_sources`** (cohort_metrics.csv, configuration_metrics.csv): Supporting source paths or source pins.
+- **`confidence_level`** (cohort_metrics.csv, configuration_metrics.csv): 0.95 throughout.
+- **`confidence_method`** (cohort_metrics.csv, configuration_metrics.csv): two_sided_exact_Clopper_Pearson.
+- **`configuration_id`** (cohort_metrics.csv, configuration_metrics.csv, paired_comparisons.csv, validation_comparisons.csv): Stable SHA256-derived identity of normalized settings, implementation ID and environment ID; aliases never define identity.
+- **`contact_patch_attribution`** (cohort_metrics.csv, configuration_metrics.csv): Contact patch attribution.
+- **`control_frequency_hz`** (cohort_metrics.csv, configuration_metrics.csv): Control frequency hz.
+- **`control_period_ms`** (cohort_metrics.csv, configuration_metrics.csv): Milliseconds.
+- **`controller_call_p99_ms`** (cohort_metrics.csv, configuration_metrics.csv): Pooled 99th percentile of complete retained per-call durations, milliseconds; never an average of episode p99s.
+- **`controller_module`** (cohort_metrics.csv, configuration_metrics.csv): Controller module.
+- **`environment_full_equivalence_status`** (cohort_metrics.csv, configuration_metrics.csv): Explicit evidence/resolution status.
+- **`environment_id`** (cohort_metrics.csv, configuration_metrics.csv, paired_comparisons.csv): Stable identifier; join tables by this field.
+- **`environment_json`** (cohort_metrics.csv, configuration_metrics.csv): Normalized simulator/environment config (seed/render excluded), source pins, patch state; unresolved scope retained.
+- **`environment_kind`** (cohort_metrics.csv, configuration_metrics.csv): Environment kind.
+- **`environment_provenance_evidence`** (cohort_metrics.csv, configuration_metrics.csv): Supporting provenance/evidence record.
+- **`environment_provenance_group`** (cohort_metrics.csv, configuration_metrics.csv): Environment provenance group.
+- **`environment_status`** (cohort_metrics.csv, configuration_metrics.csv): Explicit evidence/resolution status.
+- **`episodes`** (cohort_metrics.csv, configuration_metrics.csv): Count of completed race episodes in the frozen cohort. Infrastructure errors/unattempted cells excluded.
+- **`expected_control_calls`** (cohort_metrics.csv, configuration_metrics.csv): Completed control steps summed across all episodes where recoverable.
+- **`failed_solve_episodes`** (cohort_metrics.csv, configuration_metrics.csv): Episode count; blank when not recoverable.
+- **`failed_solve_ticks`** (cohort_metrics.csv, configuration_metrics.csv): Control timestep count; not automatically solver-pass count.
+- **`failed_ticks_per_1000_calls`** (cohort_metrics.csv, configuration_metrics.csv): 1000 × failed solve ticks / known total control calls; not failed solver PASSES.
+- **`failure_penalty_s`** (cohort_metrics.csv, configuration_metrics.csv): Seconds.
+- **`fallback_episodes`** (cohort_metrics.csv, configuration_metrics.csv): Episode count; blank when not recoverable.
+- **`fallback_ticks`** (cohort_metrics.csv, configuration_metrics.csv): Control timestep count; not automatically solver-pass count.
+- **`finishes`** (cohort_metrics.csv, configuration_metrics.csv): Successful races; completion = finishes / episodes.
+- **`hardware_runtime_context`** (cohort_metrics.csv, configuration_metrics.csv): Hardware runtime context.
+- **`health_basis`** (cohort_metrics.csv, configuration_metrics.csv): Explicit union or labeled failed-solve proxy where frozen hover fallback is coupled to failure.
+- **`health_missing_reason`** (cohort_metrics.csv, configuration_metrics.csv): Explicit selection/missingness rationale.
+- **`historical_rank`** (configuration_metrics.csv): Historical rank.
+- **`identity_status`** (cohort_metrics.csv, configuration_metrics.csv, paired_comparisons.csv): resolved only when settings, pinned core implementation, and environment config/source evidence are established.
+- **`implementation_family`** (cohort_metrics.csv, configuration_metrics.csv): Implementation family.
+- **`implementation_id`** (cohort_metrics.csv, configuration_metrics.csv): Stable identifier; join tables by this field.
+- **`implementation_sources_json`** (cohort_metrics.csv, configuration_metrics.csv): Relevant recorded source path/basename → SHA256 bundle. Unresolved source scope prevents unsupported cross-study merge.
+- **`implementation_status`** (cohort_metrics.csv, configuration_metrics.csv): Explicit evidence/resolution status.
+- **`independence_evidence`** (validation_comparisons.csv): Supporting provenance/evidence record.
+- **`independent_validation_cohorts`** (configuration_metrics.csv): Independent validation cohorts.
+- **`infrastructure_error_evidence_count`** (cohort_metrics.csv, configuration_metrics.csv): Count of infrastructure evidence items attached to source context; may apply to whole shared cohort group. Not added to race failures.
+- **`infrastructure_evidence`** (cohort_metrics.csv, configuration_metrics.csv): Supporting provenance/evidence record.
+- **`is_primary`** (cohort_metrics.csv, configuration_metrics.csv): Is primary.
+- **`matched_episodes`** (paired_comparisons.csv): Number of unique explicit seeds shared within same cohort group/environment, excluding differing recorded initial states.
+- **`matched_seeds`** (paired_comparisons.csv): Matched seeds.
+- **`matching_status`** (paired_comparisons.csv): Explicit evidence/resolution status.
+- **`max_episode_p99_ms`** (cohort_metrics.csv, configuration_metrics.csv): Maximum SAVED episode p99; accurately labeled substitute, NOT a pooled p99.
+- **`mean_control_call_ms`** (cohort_metrics.csv, configuration_metrics.csv): Sum of whole compute_control duration samples / timed calls, including failed episodes. Requires COMPLETE test timing; literal nan if missing/partial. Never inferred from medians/p99/wall time. Markdown N/A.
+- **`mean_original_completed_step_time_s`** (cohort_metrics.csv, configuration_metrics.csv): Mean recorded study/completed-step/elapsed time on successes before any verified normalization.
+- **`mean_original_official_time_s`** (cohort_metrics.csv, configuration_metrics.csv): Mean recorded official final-zero-based-step time on successes; no automatic correction to unavailable records.
+- **`mean_success_time_s`** (cohort_metrics.csv, configuration_metrics.csv): Mean completed-step race time over successful episodes only, seconds. Lower preferred.
+- **`numerical_or_fallback_episodes`** (cohort_metrics.csv, configuration_metrics.csv): Episode count; blank when not recoverable.
+- **`numerical_or_fallback_percent`** (cohort_metrics.csv, configuration_metrics.csv): 100 × episodes with any failed solve OR fallback / n; union avoids double counting.
+- **`observed_at_least_70_percent`** (cohort_metrics.csv, configuration_metrics.csv): Numeric percent; no unit suffix in cells.
+- **`official_reference_source_path`** (cohort_metrics.csv, configuration_metrics.csv): Original source path relative to main worktree or absolute for external worktree/USB.
+- **`p90_provisional`** (cohort_metrics.csv, configuration_metrics.csv): 1 if fewer than 30 successes; 0 otherwise.
+- **`p90_quantile_method`** (cohort_metrics.csv, configuration_metrics.csv): P90 quantile method.
+- **`p90_success_time_s`** (cohort_metrics.csv, configuration_metrics.csv): 90th percentile successful completed-step time, seconds; NumPy linear quantile h=(n−1)*0.9.
+- **`p99_basis`** (cohort_metrics.csv, configuration_metrics.csv): P99 basis.
+- **`paired_completion_gain`** (paired_comparisons.csv): (rescues − regressions) / matched_episodes, fraction.
+- **`paired_completion_gain_pp`** (paired_comparisons.csv): 100 × paired_completion_gain, percentage points.
+- **`paired_mean_success_time_difference_s`** (paired_comparisons.csv): Mean(candidate − reference) seconds on shared successes; negative faster. Blank if none.
+- **`penalized_mean_time_s`** (cohort_metrics.csv, configuration_metrics.csv): Chosen score: (sum successful race times + 30 × failures) / episodes; not actual failure elapsed time.
+- **`penalty_convention`** (cohort_metrics.csv, configuration_metrics.csv): Penalty convention.
+- **`physical_config_comparison_status`** (cohort_metrics.csv, configuration_metrics.csv): Explicit evidence/resolution status.
+- **`physical_config_non_interface_diff_count`** (cohort_metrics.csv, configuration_metrics.csv): Physical config non interface diff count.
+- **`physical_config_non_interface_differences_json`** (cohort_metrics.csv, configuration_metrics.csv): Machine-readable JSON payload.
+- **`primary_cohort_id`** (configuration_metrics.csv): Largest eligible n before filtering; equal n latest genuine recorded test timestamp; no pooling.
+- **`primary_eligible`** (configuration_metrics.csv): 1 if a general-seed screening/independent cohort exists. Smoke/targeted tests never estimate general reliability.
+- **`primary_selection_reason`** (cohort_metrics.csv, configuration_metrics.csv): Explicit selection/missingness rationale.
+- **`provenance_sources`** (cohort_metrics.csv, configuration_metrics.csv): Supporting source paths or source pins.
+- **`qualifies_observed_70`** (configuration_metrics.csv): 1 if resolved primary eligible n>=10 and observed completion>=0.70; NO 9-second filter.
+- **`race_time_convention`** (cohort_metrics.csv, configuration_metrics.csv): Source semantic basis; recorded completed-step fields preferred; explicit frozen-driver N/50 fallback recorded.
+- **`race_time_missing_reason`** (cohort_metrics.csv, configuration_metrics.csv): Explicit selection/missingness rationale.
+- **`ranking_group`** (configuration_metrics.csv): Ranking group.
+- **`recorded_control_mode`** (cohort_metrics.csv, configuration_metrics.csv): Recorded control mode.
+- **`recorded_race_core_sha256`** (cohort_metrics.csv, configuration_metrics.csv): SHA256 source content fingerprint.
+- **`reference_case`** (paired_comparisons.csv): Reference case.
+- **`reference_cohort_id`** (paired_comparisons.csv): Stable identifier; join tables by this field.
+- **`reference_configuration_id`** (paired_comparisons.csv): Stable identifier; join tables by this field.
+- **`reference_selection`** (paired_comparisons.csv): Reference selection.
+- **`regressions`** (paired_comparisons.csv): Reference finishes, candidate fails on same matched seed.
+- **`rescues`** (paired_comparisons.csv): Candidate finishes, reference fails on same matched seed.
+- **`retained_official_race_core_sha256`** (cohort_metrics.csv, configuration_metrics.csv): SHA256 source content fingerprint.
+- **`role_evidence`** (cohort_metrics.csv, configuration_metrics.csv): Supporting provenance/evidence record.
+- **`run_path`** (cohort_metrics.csv, configuration_metrics.csv): Original source path relative to main worktree or absolute for external worktree/USB.
+- **`runtime_missing_reason`** (cohort_metrics.csv, configuration_metrics.csv): Explicit selection/missingness rationale.
+- **`saved_report_comparison`** (cohort_metrics.csv, configuration_metrics.csv): Saved report comparison.
+- **`screening_cohort_id`** (validation_comparisons.csv): Stable identifier; join tables by this field.
+- **`screening_completion_percent`** (validation_comparisons.csv): Numeric percent; no unit suffix in cells.
+- **`screening_finishes`** (validation_comparisons.csv): Screening finishes.
+- **`screening_n`** (validation_comparisons.csv): Screening n.
+- **`screening_only_evidence`** (configuration_metrics.csv): 1 if no provenance-labeled independent validation cohort exists for this exact configuration/environment.
+- **`seed_overlap`** (validation_comparisons.csv): Seed overlap.
+- **`settings_json`** (cohort_metrics.csv, configuration_metrics.csv): Complete recorded/reconstructed effective settings, preserved as JSON; unresolved status identifies incompleteness.
+- **`settings_status`** (cohort_metrics.csv, configuration_metrics.csv): Explicit evidence/resolution status.
+- **`shared_success_seeds`** (paired_comparisons.csv): Shared success seeds.
+- **`shared_successes`** (paired_comparisons.csv): Matched seeds on which BOTH finish and both normalized times available.
+- **`shortlist_rank`** (configuration_metrics.csv): Lexicographic evidence → lower-CI 5 pp band → complexity → primary n → successful time, stable-ID tie break; blank if ineligible.
+- **`simulator_package_versions_json`** (cohort_metrics.csv, configuration_metrics.csv): Machine-readable JSON payload.
+- **`source_file_timestamp_utc`** (cohort_metrics.csv, configuration_metrics.csv): Filesystem modification timestamp, explicitly NOT necessarily execution time.
+- **`source_path`** (cohort_metrics.csv, configuration_metrics.csv): Original source path relative to main worktree or absolute for external worktree/USB.
+- **`source_sha256`** (cohort_metrics.csv, configuration_metrics.csv): SHA256 source content fingerprint.
+- **`successful_time_episodes`** (cohort_metrics.csv, configuration_metrics.csv): Successful episode count with normalized race times; denominator for conditional mean/p90.
+- **`test_timestamp_utc`** (cohort_metrics.csv, configuration_metrics.csv): Actual execution timestamp if available, otherwise the result-file timestamp; see timestamp_kind.
+- **`time_difference_direction`** (paired_comparisons.csv): Time difference direction.
+- **`timed_control_calls`** (cohort_metrics.csv, configuration_metrics.csv): Number of retained finite nonnegative whole-call duration samples.
+- **`timestamp_kind`** (cohort_metrics.csv, configuration_metrics.csv): Timestamp kind.
+- **`timing_coverage_percent`** (cohort_metrics.csv, configuration_metrics.csv): 100 × timed_control_calls / expected_control_calls; blank if denominator unknown.
+- **`timing_missing_reason`** (cohort_metrics.csv, configuration_metrics.csv): Why the full-test compute mean is nan; empty only when complete.
+- **`timing_scope`** (cohort_metrics.csv, configuration_metrics.csv): Whole-call timing boundary; explicitly identifies included research/tick instrumentation. Excludes construction and simulator step.
+- **`total_control_calls`** (cohort_metrics.csv, configuration_metrics.csv): Total control calls.
+- **`unknown_initial_state_pairs`** (paired_comparisons.csv): Unknown initial state pairs.
+- **`validation_cohort_id`** (validation_comparisons.csv): Stable identifier; join tables by this field.
+- **`validation_comparison_count`** (configuration_metrics.csv): Validation comparison count.
+- **`validation_comparisons`** (configuration_metrics.csv): All supportable earlier-screen/independent-validation links, not a best-case selection.
+- **`validation_completion_percent`** (validation_comparisons.csv): Numeric percent; no unit suffix in cells.
+- **`validation_finishes`** (validation_comparisons.csv): Validation finishes.
+- **`validation_minus_screening_pp`** (validation_comparisons.csv): 100 × (validation completion fraction − screening fraction). Independent/disjoint provenance required.
+- **`validation_n`** (validation_comparisons.csv): Validation n.
+- **`within_provenance_rank`** (configuration_metrics.csv): Within provenance rank.
+
+## Evidence and scope
+
+cohort_evidence.jsonl.gz retains native episode fields (including timing arrays where retained), effective settings, contexts, source hashes and attached summary checks. source_inventory.json records source roots, archive/USB reconciliation, copy exclusions and unresolved evaluation summaries. complexity_assessments.json is the manually maintained assessment registry. analyze.py does not import controller implementations; it only uses the existing NumPy/SciPy installation for statistics.
+
+
+## Provenance-aware additions (derived from recorded evidence)
+
+- **`environment_provenance_group`**: Pinned race_core.py relative to a retained official historical snapshot: retained_official_core_match, verified_modified_core_source, or unverified_core_source. This is NOT full simulator equivalence.
+- **`environment_provenance_evidence`**: Exact basis for source match/mismatch/unknown classification.
+- **`recorded_race_core_sha256`**: Pinned race_core.py SHA256 in the recorded environment provenance, blank when absent.
+- **`retained_official_race_core_sha256`**: SHA256 of retained official historical reference source.
+- **`contact_patch_attribution`**: Whether a known recovered hash establishes the MJX collision box-box hook.
+- **`physical_config_comparison_status`**: Recorded config comparison after excluding only known interface/seed/render fields. Not proof of physical equivalence.
+- **`physical_config_non_interface_diff_count`**: Count of config paths differing or missing beyond excluded fields; blank if recorded config absent.
+- **`physical_config_non_interface_differences_json`**: Specific non-interface config paths; absence of complete config is documented separately.
+- **`recorded_control_mode`**: Recorded control interface (state/attitude), which should not alone be treated as changed dynamics.
+- **`environment_full_equivalence_status`**: Explicit note that complete simulator package/runtime closure has not been verified.
+- **`official_reference_source_path`**: Historical retained source path used as the comparison basis.
+- **`ranking_group`**: Within-source-provenance group used for ranked display; no cross-group completion ranking.
+- **`within_provenance_rank`**: Evidence-led lexicographic rank within each provenance group.
+- **`historical_rank`**: Rank in verified-modified-core group only; not a continuation of the primary shortlist.
+- **`comparison_kind`**: Targeted direct comparison or conventional reference comparison; no automatic independent-validation inference.
+- **`unknown_initial_state_pairs`**: Matched seeds whose original initial-state vectors are not recorded in both cohorts; count explicitly retained.

@@ -1,0 +1,830 @@
+/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:687: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:687: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+validation 1 vertical_taper_higher 536071259 True 6.03
+validation 1 S28_D20_P9 536071259 True 5.15
+validation 1 reference_speed_2p8 536071259 True 10.79
+validation 1 depth_0p35 536071259 True 10.54
+validation 1 drag_10 536071259 True 10.18
+validation 1 speed33_combined 536071259 True 10.5
+validation 2 S28_D20_P9 1976093966 False 0.46
+validation 2 reference_speed_2p8 1976093966 False 9.3
+validation 2 depth_0p35 1976093966 True 10.37
+validation 2 drag_10 1976093966 False 0.21
+validation 2 speed33_combined 1976093966 False 0.24
+validation 2 vertical_taper_higher 1976093966 False 0.17
+validation 3 reference_speed_2p8 599447372 True 10.55
+validation 3 depth_0p35 599447372 True 10.62
+validation 3 drag_10 599447372 True 1.24
+validation 3 speed33_combined 599447372 True 1.46
+validation 3 vertical_taper_higher 599447372 True 0.95
+validation 3 S28_D20_P9 599447372 True 0.93
+validation 4 depth_0p35 249613405 True 10.69
+validation 4 drag_10 249613405 True 1.24
+validation 4 speed33_combined 249613405 True 1.49
+validation 4 vertical_taper_higher 249613405 True 1.0
+validation 4 S28_D20_P9 249613405 True 0.97
+validation 4 reference_speed_2p8 249613405 True 10.61
+validation 5 drag_10 365495580 True 1.23
+validation 5 speed33_combined 365495580 True 1.43
+validation 5 vertical_taper_higher 365495580 True 0.99
+validation 5 S28_D20_P9 365495580 True 0.94
+validation 5 reference_speed_2p8 365495580 True 10.59
+validation 5 depth_0p35 365495580 True 10.42
+validation 6 speed33_combined 2102952396 False 0.97
+validation 6 vertical_taper_higher 2102952396 False 0.64
+validation 6 S28_D20_P9 2102952396 False 0.7
+validation 6 reference_speed_2p8 2102952396 False 10.15
+validation 6 depth_0p35 2102952396 False 9.8
+validation 6 drag_10 2102952396 False 0.82
+validation 7 vertical_taper_higher 793061517 False 0.24
+validation 7 S28_D20_P9 793061517 False 0.24
+validation 7 reference_speed_2p8 793061517 False 9.43
+validation 7 depth_0p35 793061517 False 9.22
+validation 7 drag_10 793061517 False 0.28
+validation 7 speed33_combined 793061517 False 0.32
+validation 8 S28_D20_P9 1941107997 False 0.77
+validation 8 reference_speed_2p8 1941107997 False 10.16
+validation 8 depth_0p35 1941107997 False 10.26
+validation 8 drag_10 1941107997 False 0.95
+validation 8 speed33_combined 1941107997 False 1.08
+validation 8 vertical_taper_higher 1941107997 False 0.77
+validation 9 reference_speed_2p8 1633674208 False 10.12
+validation 9 depth_0p35 1633674208 False 10.23
+validation 9 drag_10 1633674208 False 0.93
+validation 9 speed33_combined 1633674208 False 1.06
+validation 9 vertical_taper_higher 1633674208 True 0.93
+validation 9 S28_D20_P9 1633674208 False 0.7
+validation 10 depth_0p35 1513803143 False 9.42
+validation 10 drag_10 1513803143 False 0.28
+validation 10 speed33_combined 1513803143 False 0.34
+validation 10 vertical_taper_higher 1513803143 True 0.9
+validation 10 S28_D20_P9 1513803143 False 0.71
+validation 10 reference_speed_2p8 1513803143 False 10.26
+MPCC solve failed (status 4); using hover.
+MPCC solve failed (status 4); using hover.
+MPCC solve failed (status 4); using hover.
+validation 11 drag_10 1874692549 False 0.89
+validation 11 speed33_combined 1874692549 False 1.04
+validation 11 vertical_taper_higher 1874692549 False 0.66
+validation 11 S28_D20_P9 1874692549 False 0.65
+validation 11 reference_speed_2p8 1874692549 False 10.14
+validation 11 depth_0p35 1874692549 False 10.25
+validation 12 speed33_combined 1815726090 True 1.42
+validation 12 vertical_taper_higher 1815726090 True 0.99
+validation 12 S28_D20_P9 1815726090 True 0.92
+validation 12 reference_speed_2p8 1815726090 True 10.5
+validation 12 depth_0p35 1815726090 True 10.45
+validation 12 drag_10 1815726090 True 1.15
+validation 13 vertical_taper_higher 1743263316 False 0.24
+validation 13 S28_D20_P9 1743263316 False 0.23
+validation 13 reference_speed_2p8 1743263316 False 9.36
+validation 13 depth_0p35 1743263316 False 9.36
+validation 13 drag_10 1743263316 False 0.3
+validation 13 speed33_combined 1743263316 False 0.34
+validation 14 S28_D20_P9 1015361626 False 0.43
+validation 14 reference_speed_2p8 1015361626 True 10.56
+validation 14 depth_0p35 1015361626 True 10.43
+validation 14 drag_10 1015361626 False 0.93
+validation 14 speed33_combined 1015361626 False 1.12
+validation 14 vertical_taper_higher 1015361626 False 0.44
+validation 15 reference_speed_2p8 431130505 False 9.5
+validation 15 depth_0p35 431130505 False 9.21
+validation 15 drag_10 431130505 False 0.29
+validation 15 speed33_combined 431130505 False 0.31
+validation 15 vertical_taper_higher 431130505 True 0.9
+validation 15 S28_D20_P9 431130505 True 0.9
+validation 16 depth_0p35 765304318 True 10.29
+validation 16 drag_10 765304318 False 0.72
+validation 16 speed33_combined 765304318 False 1.04
+validation 16 vertical_taper_higher 765304318 True 0.91
+validation 16 S28_D20_P9 765304318 True 0.89
+validation 16 reference_speed_2p8 765304318 True 10.53
+MPCC solve failed (status 4); using hover.
+MPCC solve failed (status 4); using hover.
+validation 17 drag_10 746097177 False 0.79
+validation 17 speed33_combined 746097177 True 1.4
+validation 17 vertical_taper_higher 746097177 True 0.94
+validation 17 S28_D20_P9 746097177 True 0.93
+validation 17 reference_speed_2p8 746097177 True 10.44
+validation 17 depth_0p35 746097177 True 10.55
+validation 18 speed33_combined 13237289 True 1.46
+validation 18 vertical_taper_higher 13237289 True 0.97
+validation 18 S28_D20_P9 13237289 True 0.93
+validation 18 reference_speed_2p8 13237289 True 10.54
+validation 18 depth_0p35 13237289 True 10.55
+validation 18 drag_10 13237289 True 1.21
+validation 19 vertical_taper_higher 538028809 True 0.94
+validation 19 S28_D20_P9 538028809 True 0.91
+validation 19 reference_speed_2p8 538028809 True 10.29
+validation 19 depth_0p35 538028809 False 9.92
+validation 19 drag_10 538028809 False 0.74
+validation 19 speed33_combined 538028809 True 1.37
+validation 20 S28_D20_P9 841471573 True 0.92
+validation 20 reference_speed_2p8 841471573 True 10.6
+validation 20 depth_0p35 841471573 True 10.63
+validation 20 drag_10 841471573 True 1.25
+validation 20 speed33_combined 841471573 False 1.03
+validation 20 vertical_taper_higher 841471573 True 0.94
+validation 21 reference_speed_2p8 1071045878 False 9.36
+validation 21 depth_0p35 1071045878 True 10.57
+validation 21 drag_10 1071045878 True 1.19
+validation 21 speed33_combined 1071045878 True 1.44
+validation 21 vertical_taper_higher 1071045878 False 0.17
+validation 21 S28_D20_P9 1071045878 True 0.88
+validation 22 depth_0p35 889938524 True 10.48
+MPCC solve failed (status 4); using hover.
+validation 22 drag_10 889938524 False 0.62
+validation 22 speed33_combined 889938524 True 1.41
+validation 22 vertical_taper_higher 889938524 True 0.94
+validation 22 S28_D20_P9 889938524 True 0.92
+validation 22 reference_speed_2p8 889938524 True 10.4
+validation 23 drag_10 1578029447 True 1.19
+validation 23 speed33_combined 1578029447 True 1.38
+validation 23 vertical_taper_higher 1578029447 True 0.99
+validation 23 S28_D20_P9 1578029447 True 0.93
+validation 23 reference_speed_2p8 1578029447 True 10.47
+validation 23 depth_0p35 1578029447 True 10.43
+validation 24 speed33_combined 511559230 True 1.34
+validation 24 vertical_taper_higher 511559230 True 0.92
+validation 24 S28_D20_P9 511559230 True 0.89
+validation 24 reference_speed_2p8 511559230 True 10.52
+validation 24 depth_0p35 511559230 True 10.46
+validation 24 drag_10 511559230 True 1.16
+validation 25 vertical_taper_higher 2072557250 True 0.93
+validation 25 S28_D20_P9 2072557250 True 0.9
+validation 25 reference_speed_2p8 2072557250 False 9.38
+validation 25 depth_0p35 2072557250 False 9.34
+validation 25 drag_10 2072557250 False 0.3
+validation 25 speed33_combined 2072557250 True 1.43
+validation 26 S28_D20_P9 1858777423 True 0.9
+validation 26 reference_speed_2p8 1858777423 True 10.32
+validation 26 depth_0p35 1858777423 True 10.28
+validation 26 drag_10 1858777423 False 0.28
+validation 26 speed33_combined 1858777423 True 1.37
+validation 26 vertical_taper_higher 1858777423 True 0.92
+validation 27 reference_speed_2p8 596295891 True 10.13
+validation 27 depth_0p35 596295891 True 10.19
+validation 27 drag_10 596295891 True 1.12
+validation 27 speed33_combined 596295891 True 1.31
+validation 27 vertical_taper_higher 596295891 True 0.89
+validation 27 S28_D20_P9 596295891 True 0.86
+validation 28 depth_0p35 1834960643 True 10.72
+validation 28 drag_10 1834960643 False 0.8
+validation 28 speed33_combined 1834960643 False 0.92
+validation 28 vertical_taper_higher 1834960643 True 0.96
+validation 28 S28_D20_P9 1834960643 True 0.94
+validation 28 reference_speed_2p8 1834960643 True 10.6
+validation 29 drag_10 854045216 False 0.3
+validation 29 speed33_combined 854045216 False 0.34
+validation 29 vertical_taper_higher 854045216 True 0.93
+validation 29 S28_D20_P9 854045216 False 0.25
+validation 29 reference_speed_2p8 854045216 False 9.48
+validation 29 depth_0p35 854045216 False 9.32
+validation 30 speed33_combined 618268986 True 1.49
+validation 30 vertical_taper_higher 618268986 True 0.97
+validation 30 S28_D20_P9 618268986 True 0.96
+validation 30 reference_speed_2p8 618268986 True 10.42
+validation 30 depth_0p35 618268986 True 10.56
+validation 30 drag_10 618268986 True 1.22
+validation 31 vertical_taper_higher 1896663864 True 0.94
+validation 31 S28_D20_P9 1896663864 False 0.69
+validation 31 reference_speed_2p8 1896663864 True 10.69
+validation 31 depth_0p35 1896663864 False 9.85
+validation 31 drag_10 1896663864 False 0.7
+validation 31 speed33_combined 1896663864 False 1.04
+validation 32 S28_D20_P9 583973510 True 0.86
+validation 32 reference_speed_2p8 583973510 True 10.27
+validation 32 depth_0p35 583973510 True 10.26
+validation 32 drag_10 583973510 True 1.12
+validation 32 speed33_combined 583973510 True 1.31
+validation 32 vertical_taper_higher 583973510 True 0.9
+validation 33 reference_speed_2p8 255112156 True 10.41
+validation 33 depth_0p35 255112156 True 10.6
+validation 33 drag_10 255112156 True 1.19
+validation 33 speed33_combined 255112156 True 1.41
+validation 33 vertical_taper_higher 255112156 True 0.93
+validation 33 S28_D20_P9 255112156 True 0.9
+validation 34 depth_0p35 656726361 False 9.42
+validation 34 drag_10 656726361 False 0.28
+validation 34 speed33_combined 656726361 False 0.33
+validation 34 vertical_taper_higher 656726361 False 0.24
+validation 34 S28_D20_P9 656726361 False 0.23
+validation 34 reference_speed_2p8 656726361 False 9.23
+validation 35 drag_10 305025853 False 0.93
+validation 35 speed33_combined 305025853 False 1.11
+validation 35 vertical_taper_higher 305025853 False 0.76
+validation 35 S28_D20_P9 305025853 False 0.73
+validation 35 reference_speed_2p8 305025853 False 10.18
+validation 35 depth_0p35 305025853 False 10.05
+validation 36 speed33_combined 1141829277 True 1.36
+validation 36 vertical_taper_higher 1141829277 True 0.93
+validation 36 S28_D20_P9 1141829277 True 0.87
+validation 36 reference_speed_2p8 1141829277 True 10.47
+validation 36 depth_0p35 1141829277 True 10.46
+validation 36 drag_10 1141829277 True 1.18
+validation 37 vertical_taper_higher 1714209324 True 0.92
+validation 37 S28_D20_P9 1714209324 True 0.89
+validation 37 reference_speed_2p8 1714209324 False 10.33
+validation 37 depth_0p35 1714209324 False 10.27
+validation 37 drag_10 1714209324 False 0.92
+validation 37 speed33_combined 1714209324 False 0.97
+validation 38 S28_D20_P9 1493360138 False 0.43
+validation 38 reference_speed_2p8 1493360138 True 10.59
+validation 38 depth_0p35 1493360138 True 10.69
+validation 38 drag_10 1493360138 True 1.14
+MPCC solve failed (status 4); using hover.
+validation 38 speed33_combined 1493360138 False 0.97
+validation 38 vertical_taper_higher 1493360138 False 0.46
+validation 39 reference_speed_2p8 972119654 False 10.27
+validation 39 depth_0p35 972119654 False 10.18
+validation 39 drag_10 972119654 False 0.85
+validation 39 speed33_combined 972119654 False 0.35
+validation 39 vertical_taper_higher 972119654 False 0.24
+validation 39 S28_D20_P9 972119654 True 0.96
+validation 40 depth_0p35 534092233 False 10.05
+validation 40 drag_10 534092233 False 0.91
+validation 40 speed33_combined 534092233 True 1.49
+validation 40 vertical_taper_higher 534092233 False 0.7
+validation 40 S28_D20_P9 534092233 True 0.91
+validation 40 reference_speed_2p8 534092233 True 10.78
+validation 41 drag_10 1822746494 False 0.27
+validation 41 speed33_combined 1822746494 False 0.32
+validation 41 vertical_taper_higher 1822746494 False 0.23
+validation 41 S28_D20_P9 1822746494 False 0.23
+validation 41 reference_speed_2p8 1822746494 False 9.42
+validation 41 depth_0p35 1822746494 False 9.45
+validation 42 speed33_combined 701620970 True 1.42
+validation 42 vertical_taper_higher 701620970 True 1.0
+validation 42 S28_D20_P9 701620970 True 0.98
+validation 42 reference_speed_2p8 701620970 True 10.58
+validation 42 depth_0p35 701620970 True 10.61
+validation 42 drag_10 701620970 True 1.19
+validation 43 vertical_taper_higher 1830204316 True 0.92
+validation 43 S28_D20_P9 1830204316 True 0.9
+validation 43 reference_speed_2p8 1830204316 True 10.5
+validation 43 depth_0p35 1830204316 False 9.28
+validation 43 drag_10 1830204316 False 0.28
+validation 43 speed33_combined 1830204316 False 0.33
+validation 44 S28_D20_P9 336299317 False 0.65
+validation 44 reference_speed_2p8 336299317 False 10.3
+validation 44 depth_0p35 336299317 False 10.58
+validation 44 drag_10 336299317 False 0.9
+validation 44 speed33_combined 336299317 False 1.04
+validation 44 vertical_taper_higher 336299317 False 0.71
+validation 45 reference_speed_2p8 2090359441 False 9.82
+validation 45 depth_0p35 2090359441 False 9.52
+validation 45 drag_10 2090359441 False 0.28
+validation 45 speed33_combined 2090359441 False 0.31
+validation 45 vertical_taper_higher 2090359441 True 0.91
+validation 45 S28_D20_P9 2090359441 True 0.91
+validation 46 depth_0p35 823463262 True 10.8
+validation 46 drag_10 823463262 True 1.27
+validation 46 speed33_combined 823463262 True 1.49
+validation 46 vertical_taper_higher 823463262 True 0.97
+validation 46 S28_D20_P9 823463262 True 0.92
+validation 46 reference_speed_2p8 823463262 True 10.52
+validation 47 drag_10 251489052 True 1.21
+validation 47 speed33_combined 251489052 False 1.13
+validation 47 vertical_taper_higher 251489052 True 0.95
+validation 47 S28_D20_P9 251489052 True 0.93
+validation 47 reference_speed_2p8 251489052 True 10.61
+validation 47 depth_0p35 251489052 True 10.58
+validation 48 speed33_combined 849738733 False 0.32
+validation 48 vertical_taper_higher 849738733 True 0.98
+validation 48 S28_D20_P9 849738733 True 0.95
+validation 48 reference_speed_2p8 849738733 True 10.68
+validation 48 depth_0p35 849738733 True 10.48
+validation 48 drag_10 849738733 False 0.74
+validation 49 vertical_taper_higher 1252061796 False 0.71
+validation 49 S28_D20_P9 1252061796 False 0.67
+validation 49 reference_speed_2p8 1252061796 False 10.05
+validation 49 depth_0p35 1252061796 True 10.22
+validation 49 drag_10 1252061796 True 1.15
+validation 49 speed33_combined 1252061796 False 0.97
+validation 50 S28_D20_P9 557092195 False 0.22
+validation 50 reference_speed_2p8 557092195 False 9.22
+validation 50 depth_0p35 557092195 False 9.17
+validation 50 drag_10 557092195 False 0.27
+validation 50 speed33_combined 557092195 False 0.32
+validation 50 vertical_taper_higher 557092195 False 0.22
+validation 51 reference_speed_2p8 396600539 True 10.54
+validation 51 depth_0p35 396600539 True 10.53
+validation 51 drag_10 396600539 True 1.22
+validation 51 speed33_combined 396600539 False 0.75
+validation 51 vertical_taper_higher 396600539 True 0.95
+validation 51 S28_D20_P9 396600539 True 0.92
+validation 52 depth_0p35 261354049 False 9.5
+validation 52 drag_10 261354049 False 0.28
+validation 52 speed33_combined 261354049 False 0.34
+validation 52 vertical_taper_higher 261354049 False 0.22
+validation 52 S28_D20_P9 261354049 False 0.22
+validation 52 reference_speed_2p8 261354049 False 9.47
+MPCC solve failed (status 4); using hover.
+validation 53 drag_10 1124319490 True 1.2
+validation 53 speed33_combined 1124319490 False 1.59
+validation 53 vertical_taper_higher 1124319490 True 1.02
+validation 53 S28_D20_P9 1124319490 True 0.94
+validation 53 reference_speed_2p8 1124319490 True 10.6
+validation 53 depth_0p35 1124319490 True 10.55
+validation 54 speed33_combined 1120650563 True 1.44
+validation 54 vertical_taper_higher 1120650563 False 0.69
+validation 54 S28_D20_P9 1120650563 False 0.66
+validation 54 reference_speed_2p8 1120650563 True 10.53
+validation 54 depth_0p35 1120650563 True 10.63
+validation 54 drag_10 1120650563 False 1.0
+validation 55 vertical_taper_higher 742963348 True 0.96
+validation 55 S28_D20_P9 742963348 True 0.94
+validation 55 reference_speed_2p8 742963348 True 10.64
+validation 55 depth_0p35 742963348 True 10.53
+validation 55 drag_10 742963348 True 1.2
+validation 55 speed33_combined 742963348 False 1.02
+validation 56 S28_D20_P9 1010720518 True 0.91
+validation 56 reference_speed_2p8 1010720518 True 10.41
+validation 56 depth_0p35 1010720518 True 10.5
+validation 56 drag_10 1010720518 True 1.19
+validation 56 speed33_combined 1010720518 False 1.01
+validation 56 vertical_taper_higher 1010720518 True 0.93
+validation 57 reference_speed_2p8 1536580806 True 10.53
+validation 57 depth_0p35 1536580806 False 10.03
+MPCC solve failed (status 4); using hover.
+MPCC solve failed (status 4); using hover.
+validation 57 drag_10 1536580806 False 7.05
+validation 57 speed33_combined 1536580806 False 1.12
+validation 57 vertical_taper_higher 1536580806 True 0.9
+validation 57 S28_D20_P9 1536580806 True 0.88
+validation 58 depth_0p35 1306548504 False 9.47
+validation 58 drag_10 1306548504 True 1.19
+validation 58 speed33_combined 1306548504 False 0.57
+validation 58 vertical_taper_higher 1306548504 True 0.95
+validation 58 S28_D20_P9 1306548504 True 0.94
+validation 58 reference_speed_2p8 1306548504 True 10.52
+MPCC solve failed (status 4); using hover.
+validation 59 drag_10 1249587665 True 1.16
+validation 59 speed33_combined 1249587665 False 0.97
+validation 59 vertical_taper_higher 1249587665 True 0.95
+validation 59 S28_D20_P9 1249587665 True 0.93
+validation 59 reference_speed_2p8 1249587665 False 9.9
+validation 59 depth_0p35 1249587665 False 9.28
+validation 60 speed33_combined 2133270851 False 0.58
+validation 60 vertical_taper_higher 2133270851 True 0.95
+validation 60 S28_D20_P9 2133270851 True 0.92
+validation 60 reference_speed_2p8 2133270851 True 10.53
+validation 60 depth_0p35 2133270851 False 9.98
+validation 60 drag_10 2133270851 True 1.16
+validation 61 vertical_taper_higher 1054046050 True 0.96
+validation 61 S28_D20_P9 1054046050 True 0.92
+validation 61 reference_speed_2p8 1054046050 True 10.62
+validation 61 depth_0p35 1054046050 True 10.42
+validation 61 drag_10 1054046050 True 1.21
+validation 61 speed33_combined 1054046050 True 1.38
+validation 62 S28_D20_P9 95687081 True 0.9
+validation 62 reference_speed_2p8 95687081 True 10.31
+validation 62 depth_0p35 95687081 True 10.12
+validation 62 drag_10 95687081 True 1.14
+validation 62 speed33_combined 95687081 False 1.01
+validation 62 vertical_taper_higher 95687081 True 0.92
+validation 63 reference_speed_2p8 1650896922 False 10.12
+validation 63 depth_0p35 1650896922 False 9.8
+MPCC solve failed (status 4); using hover.
+validation 63 drag_10 1650896922 False 0.82
+validation 63 speed33_combined 1650896922 False 1.14
+validation 63 vertical_taper_higher 1650896922 True 0.94
+validation 63 S28_D20_P9 1650896922 True 0.93
+validation 64 depth_0p35 1242745349 False 9.44
+validation 64 drag_10 1242745349 False 0.28
+validation 64 speed33_combined 1242745349 False 0.33
+validation 64 vertical_taper_higher 1242745349 False 0.24
+validation 64 S28_D20_P9 1242745349 False 0.22
+validation 64 reference_speed_2p8 1242745349 False 9.52
+validation 65 drag_10 1911520027 False 0.95
+validation 65 speed33_combined 1911520027 False 1.14
+validation 65 vertical_taper_higher 1911520027 True 0.96
+validation 65 S28_D20_P9 1911520027 True 0.95
+validation 65 reference_speed_2p8 1911520027 True 10.69
+validation 65 depth_0p35 1911520027 True 10.63
+validation 66 speed33_combined 1471832367 False 0.99
+validation 66 vertical_taper_higher 1471832367 True 0.94
+validation 66 S28_D20_P9 1471832367 True 0.89
+validation 66 reference_speed_2p8 1471832367 True 10.64
+validation 66 depth_0p35 1471832367 True 10.3
+validation 66 drag_10 1471832367 False 0.88
+validation 67 vertical_taper_higher 269636879 True 0.94
+validation 67 S28_D20_P9 269636879 True 0.91
+validation 67 reference_speed_2p8 269636879 True 10.45
+validation 67 depth_0p35 269636879 True 10.58
+validation 67 drag_10 269636879 True 1.2
+validation 67 speed33_combined 269636879 True 1.43
+validation 68 S28_D20_P9 1546155786 True 0.96
+validation 68 reference_speed_2p8 1546155786 True 10.68
+validation 68 depth_0p35 1546155786 True 10.65
+validation 68 drag_10 1546155786 True 1.25
+validation 68 speed33_combined 1546155786 True 1.42
+validation 68 vertical_taper_higher 1546155786 True 0.95
+validation 69 reference_speed_2p8 1904781780 False 10.24
+validation 69 depth_0p35 1904781780 True 10.49
+validation 69 drag_10 1904781780 False 0.95
+validation 69 speed33_combined 1904781780 False 1.0
+validation 69 vertical_taper_higher 1904781780 True 0.99
+validation 69 S28_D20_P9 1904781780 False 0.75
+validation 70 depth_0p35 1722426165 False 9.42
+validation 70 drag_10 1722426165 False 0.31
+validation 70 speed33_combined 1722426165 False 0.35
+validation 70 vertical_taper_higher 1722426165 False 0.76
+validation 70 S28_D20_P9 1722426165 False 0.71
+validation 70 reference_speed_2p8 1722426165 False 10.1
+MPCC solve failed (status 4); using hover.
+validation 71 drag_10 1047430116 False 0.66
+MPCC solve failed (status 4); using hover.
+validation 71 speed33_combined 1047430116 False 1.03
+validation 71 vertical_taper_higher 1047430116 True 0.96
+validation 71 S28_D20_P9 1047430116 True 0.93
+validation 71 reference_speed_2p8 1047430116 True 10.37
+validation 71 depth_0p35 1047430116 True 10.44
+validation 72 speed33_combined 1233681065 True 1.37
+validation 72 vertical_taper_higher 1233681065 True 0.91
+validation 72 S28_D20_P9 1233681065 True 0.89
+validation 72 reference_speed_2p8 1233681065 True 10.31
+validation 72 depth_0p35 1233681065 True 10.55
+validation 72 drag_10 1233681065 True 1.2
+validation 73 vertical_taper_higher 963915410 True 0.92
+validation 73 S28_D20_P9 963915410 True 0.91
+validation 73 reference_speed_2p8 963915410 True 10.48
+MPCC solve failed (status 4); using hover.
+validation 73 depth_0p35 963915410 False 10.16
+MPCC solve failed (status 4); using hover.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 12.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 12.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 12.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 12.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 12.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 7.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 7.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 13.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error statusvalidation 73 drag_10 963915410 False 0.88
+MPCC solve failed (status 4); using hover.
+validation 73 speed33_combined 963915410 False 1.01
+validation 74 S28_D20_P9 756264737 True 0.92
+validation 74 reference_speed_2p8 756264737 True 10.74
+validation 74 depth_0p35 756264737 False 9.66
+validation 74 drag_10 756264737 False 0.29
+validation 74 speed33_combined 756264737 True 1.44
+validation 74 vertical_taper_higher 756264737 True 0.99
+validation 75 reference_speed_2p8 563555665 True 10.52
+validation 75 depth_0p35 563555665 True 10.65
+validation 75 drag_10 563555665 True 1.19
+MPCC solve failed (status 4); using hover.
+validation 75 speed33_combined 563555665 True 1.41
+validation 75 vertical_taper_higher 563555665 False 0.74
+validation 75 S28_D20_P9 563555665 True 0.91
+validation 76 depth_0p35 808269241 True 10.68
+validation 76 drag_10 808269241 True 1.23
+validation 76 speed33_combined 808269241 True 1.44
+validation 76 vertical_taper_higher 808269241 True 0.94
+validation 76 S28_D20_P9 808269241 True 0.92
+validation 76 reference_speed_2p8 808269241 True 10.62
+MPCC solve failed (status 4); using hover.
+MPCC solve failed (status 4); using hover.
+validation 77 drag_10 1849343278 False 0.59
+validation 77 speed33_combined 1849343278 True 1.4
+validation 77 vertical_taper_higher 1849343278 True 0.94
+validation 77 S28_D20_P9 1849343278 True 0.94
+validation 77 reference_speed_2p8 1849343278 True 10.62
+validation 77 depth_0p35 1849343278 True 10.43
+validation 78 speed33_combined 1699486354 False 0.33
+validation 78 vertical_taper_higher 1699486354 False 0.23
+validation 78 S28_D20_P9 1699486354 False 0.22
+validation 78 reference_speed_2p8 1699486354 False 9.5
+validation 78 depth_0p35 1699486354 False 9.21
+validation 78 drag_10 1699486354 False 0.28
+validation 79 vertical_taper_higher 867907901 True 0.92
+validation 79 S28_D20_P9 867907901 True 0.88
+validation 79 reference_speed_2p8 867907901 True 10.25
+validation 79 depth_0p35 867907901 True 10.44
+validation 79 drag_10 867907901 True 1.15
+validation 79 speed33_combined 867907901 True 1.53
+validation 80 S28_D20_P9 1051387259 False 0.22
+validation 80 reference_speed_2p8 1051387259 False 9.43
+validation 80 depth_0p35 1051387259 False 9.5
+validation 80 drag_10 1051387259 False 0.27
+validation 80 speed33_combined 1051387259 False 0.31
+validation 80 vertical_taper_higher 1051387259 False 0.22
+validation 81 reference_speed_2p8 1563769570 True 10.44
+validation 81 depth_0p35 1563769570 True 10.4
+MPCC solve failed (status 4); using hover.
+validation 81 drag_10 1563769570 True 1.18
+validation 81 speed33_combined 1563769570 True 1.39
+validation 81 vertical_taper_higher 1563769570 True 0.91
+validation 81 S28_D20_P9 1563769570 True 0.9
+validation 82 depth_0p35 373456940 True 10.57
+validation 82 drag_10 373456940 True 1.25
+validation 82 speed33_combined 373456940 True 1.44
+validation 82 vertical_taper_higher 373456940 True 0.96
+validation 82 S28_D20_P9 373456940 True 0.96
+validation 82 reference_speed_2p8 373456940 True 10.75
+validation 83 drag_10 73961390 True 1.2
+validation 83 speed33_combined 73961390 False 0.92
+validation 83 vertical_taper_higher 73961390 False 0.75
+validation 83 S28_D20_P9 73961390 False 0.67
+validation 83 reference_speed_2p8 73961390 True 10.71
+validation 83 depth_0p35 73961390 False 10.01
+validation 84 speed33_combined 1395303100 False 0.36
+validation 84 vertical_taper_higher 1395303100 True 0.98
+validation 84 S28_D20_P9 1395303100 True 0.92
+validation 84 reference_speed_2p8 1395303100 True 10.6
+validation 84 depth_0p35 1395303100 True 10.62
+validation 84 drag_10 1395303100 True 1.28
+validation 85 vertical_taper_higher 1852136579 True 0.96
+validation 85 S28_D20_P9 1852136579 True 0.91
+validation 85 reference_speed_2p8 1852136579 True 10.57
+validation 85 depth_0p35 1852136579 True 10.68
+validation 85 drag_10 1852136579 True 1.15
+validation 85 speed33_combined 1852136579 True 1.34
+validation 86 S28_D20_P9 1025513157 True 0.9
+validation 86 reference_speed_2p8 1025513157 True 10.56
+validation 86 depth_0p35 1025513157 True 10.48
+validation 86 drag_10 1025513157 False 0.75
+validation 86 speed33_combined 1025513157 True 1.46
+validation 86 vertical_taper_higher 1025513157 True 0.93
+validation 87 reference_speed_2p8 1022392660 True 10.68
+validation 87 depth_0p35 1022392660 True 10.59
+validation 87 drag_10 1022392660 False 0.99
+validation 87 speed33_combined 1022392660 False 1.21
+validation 87 vertical_taper_higher 1022392660 True 1.0
+validation 87 S28_D20_P9 1022392660 True 0.96
+validation 88 depth_0p35 220291256 False 10.04
+validation 88 drag_10 220291256 False 0.29
+validation 88 speed33_combined 220291256 False 1.11
+validation 88 vertical_taper_higher 220291256 True 0.92
+validation 88 S28_D20_P9 220291256 True 0.92
+validation 88 reference_speed_2p8 220291256 True 10.8
+validation 89 drag_10 1583403681 False 0.98
+validation 89 speed33_combined 1583403681 False 0.39
+validation 89 vertical_taper_higher 1583403681 False 0.25
+validation 89 S28_D20_P9 1583403681 False 0.25
+validation 89 reference_speed_2p8 1583403681 False 9.52
+validation 89 depth_0p35 1583403681 False 9.4
+MPCC solve failed (status 4); using hover.
+validation 90 speed33_combined 1019555715 False 0.98
+validation 90 vertical_taper_higher 1019555715 False 0.66
+validation 90 S28_D20_P9 1019555715 False 0.65
+validation 90 reference_speed_2p8 1019555715 True 10.31
+validation 90 depth_0p35 1019555715 False 9.76
+validation 90 drag_10 1019555715 False 0.83
+validation 91 vertical_taper_higher 1061110683 True 0.91
+validation 91 S28_D20_P9 1061110683 True 0.89
+validation 91 reference_speed_2p8 1061110683 True 10.49
+validation 91 depth_0p35 1061110683 False 10.11
+validation 91 drag_10 1061110683 False 0.93
+validation 91 speed33_combined 1061110683 False 1.05
+validation 92 S28_D20_P9 1684668881 False 0.67
+validation 92 reference_speed_2p8 1684668881 False 10.19
+validation 92 depth_0p35 1684668881 False 10.34
+MPCC solve failed (status 4); using hover.
+validation 92 drag_10 1684668881 True 1.32
+validation 92 speed33_combined 1684668881 False 1.03
+validation 92 vertical_taper_higher 1684668881 False 0.69
+validation 93 reference_speed_2p8 264078475 True 10.71
+validation 93 depth_0p35 264078475 True 10.73
+validation 93 drag_10 264078475 False 0.96
+validation 93 speed33_combined 264078475 True 1.35
+validation 93 vertical_taper_higher 264078475 True 0.93
+validation 93 S28_D20_P9 264078475 True 0.9
+validation 94 depth_0p35 351604641 False 9.3
+validation 94 drag_10 351604641 False 0.31
+validation 94 speed33_combined 351604641 False 0.33
+validation 94 vertical_taper_higher 351604641 False 0.23
+validation 94 S28_D20_P9 351604641 False 0.23
+validation 94 reference_speed_2p8 351604641 False 9.3
+validation 95 drag_10 1811647233 True 1.19
+validation 95 speed33_combined 1811647233 True 1.39
+validation 95 vertical_taper_higher 1811647233 True 0.93
+validation 95 S28_D20_P9 1811647233 True 0.9
+validation 95 reference_speed_2p8 1811647233 True 10.3
+validation 95 depth_0p35 1811647233 True 10.4
+validation 96 speed33_combined 610143121 False 1.14
+validation 96 vertical_taper_higher 610143121 False 0.77
+validation 96 S28_D20_P9 610143121 False 0.75
+validation 96 reference_speed_2p8 610143121 False 10.13
+validation 96 depth_0p35 610143121 False 10.1
+validation 96 drag_10 610143121 False 0.98
+validation 97 vertical_taper_higher 485176458 True 0.92
+validation 97 S28_D20_P9 485176458 True 0.91
+validation 97 reference_speed_2p8 485176458 True 10.43
+validation 97 depth_0p35 485176458 True 10.4
+validation 97 drag_10 485176458 True 1.16
+validation 97 speed33_combined 485176458 True 1.41
+validation 98 S28_D20_P9 1748850989 False 0.7
+validation 98 reference_speed_2p8 1748850989 False 10.06
+validation 98 depth_0p35 1748850989 False 10.17
+validation 98 drag_10 1748850989 False 0.93
+validation 98 speed33_combined 1748850989 False 1.08
+validation 98 vertical_taper_higher 1748850989 False 0.74
+validation 99 reference_speed_2p8 151322463 True 10.66
+validation 99 depth_0p35 151322463 True 10.59
+MPCC solve failed (status 4); using hover.
+validation 99 drag_10 151322463 True 1.19
+validation 99 speed33_combined 151322463 False 0.77
+validation 99 vertical_taper_higher 151322463 False 0.68
+validation 99 S28_D20_P9 151322463 False 0.63
+validation 100 depth_0p35 648523965 True 10.43
+validation 100 drag_10 648523965 True 1.14
+validation 100 speed33_combined 648523965 True 1.34
+validation 100 vertical_taper_higher 648523965 True 0.92
+validation 100 S28_D20_P9 648523965 True 0.89
+validation 100 reference_speed_2p8 648523965 True 10.46
+ 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 7.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 13.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 15.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 13.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 13.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 11.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 12.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 14.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 8.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 7.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 7.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 7.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 9.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 12.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 10.
+
+SQP_RTI: QP solver returned error status 3 QP iteration 12.

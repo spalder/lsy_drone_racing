@@ -1,0 +1,53 @@
+--- a/analyze.py
++++ b/analyze.py
+@@ -5,6 +5,7 @@
+ import argparse,collections,csv,gzip,hashlib,itertools,json,math,pathlib,statistics
+ import numpy as np
+ from scipy.stats import beta
++from mpcc_provenance_extension import environment_fields, augment_pair_comparisons, ranking_groups
+ OUT=pathlib.Path(__file__).resolve().parent
+ CONFIDENCE=.95
+ 
+@@ -92,7 +93,7 @@
+     with gzip.open(OUT/'cohort_evidence.jsonl.gz','rt') as f:cohorts=[json.loads(line) for line in f]
+     complexity=json.loads((OUT/'complexity_assessments.json').read_text());rows=[];checks=[]
+     for c in cohorts:
+-        r=metrics(c);score=complexity['families'].get(r['implementation_family'],{})
++        r=metrics(c);r.update(environment_fields(c['identity']));score=complexity['families'].get(r['implementation_family'],{})
+         r.update(complexity_score=score.get('score'),complexity_provisional=score.get('provisional',True),complexity_rationale=score.get('rationale','unresolved implementation'),complexity_sources=score.get('sources',[]),complexity_baseline=complexity['baseline'])
+         saved=c['saved_summary'];sn=saved.get('runs',saved.get('n',saved.get('completed_episodes')));sk=saved.get('completed',saved.get('finishes',saved.get('successful_finishes')));sm=saved.get('average_success_time_s',saved.get('successful_mean_s'));official_saved=saved.get('average_successful_official_lap_s')
+         diffs=[]
+@@ -130,6 +131,7 @@
+             shared=[s for s in valid if a[s]['_success'] and b[s]['_success'] and a[s]['_rank_time_s'] is not None and b[s]['_rank_time_s'] is not None]
+             differences=[b[s]['_rank_time_s']-a[s]['_rank_time_s'] for s in shared]
+             paired.append(dict(comparison_id='pair_'+hashlib.sha256((ref['cohort_id']+c['cohort_id']).encode()).hexdigest()[:16],configuration_id=c['configuration_id'],reference_configuration_id=ref['configuration_id'],cohort_id=c['cohort_id'],reference_cohort_id=ref['cohort_id'],reference_case=ref['case_name'],reference_selection=reference_basis,environment_id=env,cohort_group=group,matched_episodes=n,rescues=rescues,regressions=regressions,paired_completion_gain=(rescues-regressions)/n,paired_completion_gain_pp=100*(rescues-regressions)/n,shared_successes=len(shared),paired_mean_success_time_difference_s=statistics.mean(differences) if shared else None,time_difference_direction='candidate_minus_reference; negative=faster',matched_seeds=valid,shared_success_seeds=shared,matching_status='same frozen cohort group and environment, matched explicit seeds; differing recorded initial states excluded',identity_status='resolved' if c['identity']['identity_status']==ref['identity']['identity_status']=='resolved' else 'unresolved_provenance; descriptive_only'))
++    augment_pair_comparisons(paired, cohorts)
+     # Keep every supportable validation-to-earlier-screen comparison, not just the best.
+     validation=[];configgroups=collections.defaultdict(list)
+     for r in rows:configgroups[r['configuration_id']].append(r)
+@@ -160,6 +162,7 @@
+     qualifying=sorted([r for r in configs if r['qualifies_observed_70']],key=rank)
+     ranks={r['configuration_id']:i for i,r in enumerate(qualifying,1)}
+     for r in configs:r['shortlist_rank']=ranks.get(r['configuration_id'])
++    ranking_groups(configs)
+     # Required invariants run before report generation.
+     assert len({r['configuration_id'] for r in configs})==len(configs)
+     for r in rows:
+--- a/report.py
++++ b/report.py
+@@ -2,6 +2,7 @@
+ import collections,csv,json,math,pathlib,sys
+ csv.field_size_limit(sys.maxsize)
+ OUT=pathlib.Path(__file__).resolve().parent
++from mpcc_provenance_extension import report_postprocess
+ 
+ def read(name):
+     with (OUT/name).open() as f:return list(csv.DictReader(f))
+@@ -54,6 +55,7 @@
+     lines+=['', 'These alternatives remain outside the qualifying shortlist; larger/independent cohorts or a simpler implementation can make them more informative than a small favorable screen.','', '## Checks, unresolved evidence and limitations','', f'Automated count/rate/CI, primary-selection, unique-identity, timing-coverage and paired-environment checks **{checks["status"]}**. Markdown numbers are formatted directly from the written CSVs. Saved-report checks: {len(checks["saved_summary_checks"])} attached scalar summaries; {sum(bool(r["discrepancies"]) for r in checks["saved_summary_checks"])} discrepancies (details in `checks.json`).','', '- Exact 95% intervals describe binomial uncertainty within a cohort; they do not adjust for selecting among many configurations. The shortlist is exploratory and subject to winner’s bias.','- Seed difficulty varies substantially. Do not pool arbitrary cohorts, compare conditional successful means as though they shared successful seeds, or treat repeated seeds as independent replication.','- Different environment IDs and implementation source bundles remain separate. Unresolved identities are retained in CSVs and excluded from the ranked shortlist, even if their observed completion is high. Source-local unresolved IDs may split configurations that later provenance work could merge.','- Classification of implementation complexity is a manual review aid, not an objective line-count score. Provisional scores and conservative source-bundle boundaries are explicit.','- Original selected-controller evaluation CSVs are overwrite-only summaries and do not retain controller identity, episode records, seeds or run history. They are listed in the inventory rather than attached to the currently selected controller or retroactively reconstructed from conversational claims.','- File timestamps are not execution timestamps. Equal-n selection using file times is explicitly labeled; copied exports are not genuine reruns.','- Research instrumentation, hardware load, dependency/runtime versions and timing scope can differ. Full-test compute means are never inferred from percentiles or wall time.','- Smoke tests and targeted failing-seed replays are not estimates of general completion probability. Stopped studies retain completed episodes and separate infrastructure evidence; unfinished/unattempted cells are not race failures.','- USB/archive copies do not add sample size. Only scalar/tick evidence needed for these metrics was read; bulk solver arrays were not re-audited.','']
+     (OUT/'assessment.md').write_text('\n'.join(lines)+'\n')
+     dictionary(co,cs,pa,va)
++    report_postprocess()
+ 
+ def dictionary(co,cs,pa,va):
+     defs={

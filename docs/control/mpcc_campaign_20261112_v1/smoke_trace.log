@@ -1,0 +1,10 @@
+/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:687: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:687: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+smoke 1 F1 2025352502 False 6.68
+smoke 1 REF 2025352502 False 5.01
+smoke 2 REF 1398534533 True 5.41
+smoke 2 F1 1398534533 True 5.41
+smoke 3 F1 604179033 True 5.43
+smoke 3 REF 604179033 True 5.27

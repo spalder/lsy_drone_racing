@@ -1,0 +1,42 @@
+Traceback (most recent call last):
+  File "/home/askho/repos/lsy_drone_racing/docs/control/mpcc_campaign_20261112_v1/diagnose_warning.py", line 13, in <module>
+    env=gymnasium.make(cfg.env.id,freq=cfg.env.freq,sim_config=cfg.sim,sensor_range=cfg.env.sensor_range,control_mode=cfg.env.control_mode,track=cfg.env.track,disturbances=cfg.env.disturbances,randomizations=cfg.env.randomizations,seed=m['seeds']['smoke'][0])
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/gymnasium/envs/registration.py", line 738, in make
+    env = env_creator(**env_spec_kwargs)  # ty:ignore[call-top-callable]
+  File "/home/askho/repos/lsy_drone_racing/docs/control/mpcc_campaign_20261112_v1/source/lsy_drone_racing/envs/drone_race.py", line 54, in __init__
+    super().__init__(
+    ~~~~~~~~~~~~~~~~^
+        n_envs=1,
+        ^^^^^^^^^
+    ...<10 lines>...
+        device=device,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/askho/repos/lsy_drone_racing/docs/control/mpcc_campaign_20261112_v1/source/lsy_drone_racing/envs/race_core.py", line 402, in __init__
+    contact_masks = _load_contact_masks(self.sim)
+  File "/home/askho/repos/lsy_drone_racing/docs/control/mpcc_campaign_20261112_v1/source/lsy_drone_racing/envs/race_core.py", line 826, in _load_contact_masks
+    sim.contacts()  # Trigger initial contact information computation
+    ~~~~~~~~~~~~^^
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/crazyflow/sim/sim.py", line 60, in wrapper
+    sim.data, sim.mjx_data = sync_sim2mjx(sim.data, sim.mjx_data, sim.mjx_model)
+                             ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/crazyflow/sim/sim.py", line 723, in sync_sim2mjx
+    mjx_data = jax.vmap(mjx.collision, in_axes=(None, 0))(mjx_model, mjx_data)
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/mujoco/mjx/_src/collision_driver.py", line 437, in collision
+    dist, pos, frame = func(m, d, key, contact.geom)
+                       ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/mujoco/mjx/_src/collision_convex.py", line 74, in collide
+    dist, pos, frame = jax.vmap(fn, in_axes=in_axes)(*infos)  # pytype: disable=wrong-keyword-args
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/mujoco/mjx/_src/collision_convex.py", line 938, in box_box
+    dist, pos, n = _box_box(b1, b2)
+                   ~~~~~~~~^^^^^^^^
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/mujoco/mjx/_src/collision_convex.py", line 717, in _box_box
+    dist = jp.where(jp.isinf(dist), jp.finfo(float).max, dist)
+  File "/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/numpy/lax_numpy.py", line 2800, in where
+    return util._where(condition, x, y)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+RuntimeWarning: overflow encountered in cast
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.

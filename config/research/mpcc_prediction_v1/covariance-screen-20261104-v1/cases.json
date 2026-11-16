@@ -1,0 +1,14 @@
+{
+  "baseline": {},
+  "scalar_kf": {"prediction": {"thrust_gain_mode": "kf"}},
+  "kf_p0_0001": {"prediction": {"thrust_gain_mode": "kf", "initial_covariance": 0.0001}},
+  "kf_p0_0005": {"prediction": {"thrust_gain_mode": "kf", "initial_covariance": 0.0005}},
+  "kf_p0_0100": {"prediction": {"thrust_gain_mode": "kf", "initial_covariance": 0.01}},
+  "kf_q_00008": {"prediction": {"thrust_gain_mode": "kf", "process_noise_rate": 0.00008}},
+  "kf_q_008": {"prediction": {"thrust_gain_mode": "kf", "process_noise_rate": 0.008}},
+  "kf_r_0025": {"prediction": {"thrust_gain_mode": "kf", "measurement_variance": 0.0025}},
+  "kf_r_0400": {"prediction": {"thrust_gain_mode": "kf", "measurement_variance": 0.04}},
+  "drag_005": {"prediction": {"drag_strength": 0.05}},
+  "drag_015": {"prediction": {"drag_strength": 0.15}},
+  "drag_030": {"prediction": {"drag_strength": 0.3}}
+}

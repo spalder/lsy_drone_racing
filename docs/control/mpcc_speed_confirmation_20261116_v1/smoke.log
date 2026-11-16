@@ -1,0 +1,16 @@
+/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:687: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+/home/askho/repos/lsy_drone_racing/.pixi/envs/default/lib/python3.13/site-packages/jax/_src/core.py:687: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+smoke 1 vertical_taper_higher 1417053390 True 6.01
+smoke 1 S28_D20_P9 1417053390 True 5.07
+smoke 1 reference_speed_2p8 1417053390 True 10.7
+smoke 1 depth_0p35 1417053390 True 10.59
+smoke 1 drag_10 1417053390 True 10.0
+smoke 1 speed33_combined 1417053390 True 10.46
+smoke 2 S28_D20_P9 941393456 False 2.02
+smoke 2 reference_speed_2p8 941393456 True 10.55
+smoke 2 depth_0p35 941393456 False 10.07
+smoke 2 drag_10 941393456 False 0.91
+smoke 2 speed33_combined 941393456 False 1.13
+smoke 2 vertical_taper_higher 941393456 True 0.97
