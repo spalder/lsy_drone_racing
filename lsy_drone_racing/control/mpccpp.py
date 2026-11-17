@@ -102,7 +102,53 @@ ROUTE_SECTIONS = {
                 "angle": 35.0,
                 "entry": 0.4,
             },
-        }
+        },
+        # As 0, but more perpendicular approaches of gate 3 (30, 25, 20 deg from its normal). The
+        # last via point lies on the approach line, 0.7 m from the gate center. Pole 3 stands on
+        # the gate's center line 0.5 m in front of it, so the approach passes it at 0.5 sin(angle).
+        **{
+            variant: {
+                2: {"via": [([-0.2, 0.25, 0.9], 2)], "angle": 40.0},
+                3: {
+                    "via": [
+                        ([-1.4, -0.7, 0.85], 2),
+                        ([-1.15, -1.15, 1.1], 2),
+                        (
+                            [
+                                -0.7 * np.cos(np.deg2rad(angle)),
+                                -0.75 - 0.7 * np.sin(np.deg2rad(angle)),
+                                1.2,
+                            ],
+                            3,
+                        ),
+                    ],
+                    "angle": angle,
+                    "entry": 0.4,
+                },
+            }
+            for variant, angle in ((1, 30.0), (2, 25.0), (3, 20.0))
+        },
+        # Steep turn after gate 2: south past the side of its frame while climbing, then north-east
+        # past pole 3 on the inside (north) and into gate 3 at 35 deg from the north-west
+        4: {
+            # Enter gate 2 nearly perpendicular (15 deg) on a 0.4 m straight run-in, and leave it at
+            # 40 deg as before to clear pole 2 behind it. The via point is on the approach line.
+            2: {
+                "via": [([-0.25, -0.05, 0.85], 2)],
+                "angle": 15.0,
+                "exit_angle": 40.0,
+                "entry": 0.4,
+            },
+            3: {
+                "via": [
+                    ([-1.3, -0.8, 0.9], 2),
+                    ([-0.95, -0.85, 1.1], 2),
+                    ([-0.6, -0.4, 1.2], 3),
+                ],
+                "angle": -35.0,
+                "entry": 0.4,
+            },
+        },
     },
 }
 GATE_OFFSET = 0.25  # m, distance of the default entry and exit points from the gate center
@@ -123,6 +169,20 @@ def _box_distance(points: NDArray, center: NDArray, half: NDArray, rot: R) -> ND
     """Distance from points to an oriented box."""
     local = rot.inv().apply(points - center)
     return np.linalg.norm(np.maximum(np.abs(local) - half, 0.0), axis=-1)
+
+
+def _pole_distance(points: NDArray, pos: NDArray, inflation: float | NDArray) -> NDArray:
+    """Horizontal distance from points to the surface of a pole with an uncertain position.
+
+    The inflation is either a radius by which the pole is grown, or the half extents [x, y] of
+    the axis-aligned box in which the pole axis may be, e.g. its randomization range. Points
+    inside the box get a negative distance.
+    """
+    delta = points[:, :2] - pos[:2]
+    if np.ndim(inflation) == 0:
+        return np.linalg.norm(delta, axis=-1) - OBSTACLE_RADIUS - inflation
+    outside = np.maximum(np.abs(delta) - np.asarray(inflation), 0.0)
+    return np.linalg.norm(outside, axis=-1) - OBSTACLE_RADIUS
 
 
 def clearance(
@@ -147,8 +207,7 @@ def clearance(
             center = pos + rot.apply(box[:3])
             dist = np.minimum(dist, _box_distance(points, center, box[3:], rot))
     for pos, inflation in zip(obstacles_pos, obstacles_inflation):
-        radius = OBSTACLE_RADIUS + inflation
-        horizontal = np.linalg.norm(points[:, :2] - pos[:2], axis=-1) - radius
+        horizontal = _pole_distance(points, pos, inflation)
         above = np.maximum(points[:, 2] - OBSTACLE_HEIGHT, 0.0)
         dist = np.minimum(dist, np.hypot(np.maximum(horizontal, 0.0), above))
     return dist
@@ -207,8 +266,7 @@ def free_space(
             dist = np.linalg.norm(np.maximum(np.abs(local) - half, 0.0) * scale, axis=-1)
             free = np.minimum(free, dist - extent)
     for pos, inflation in zip(obstacles_pos, obstacles_inflation):
-        radius = OBSTACLE_RADIUS + inflation
-        side = np.maximum(np.linalg.norm(points[:, :2] - pos[:2], axis=-1) - radius, 0.0)
+        side = np.maximum(_pole_distance(points, pos, inflation), 0.0)
         above = k * np.maximum(points[:, 2] - OBSTACLE_HEIGHT, 0.0)
         free = np.minimum(free, np.hypot(side, above) - horizontal)
     return free
@@ -317,6 +375,19 @@ def racing_line(
     return route
 
 
+def min_extents(a: NDArray, b: NDArray) -> NDArray:
+    """Intersection of two tunnel cross sections given as signed extents [-n, +n, -b, +b].
+
+    Where two neighboring cross sections were shifted to different sides of a blocked centerline,
+    the intersection can be empty. The first cross section is used for that axis instead.
+    """
+    out = np.minimum(a, b)
+    for axis in (slice(0, 2), slice(2, 4)):
+        empty = out[:, axis].sum(axis=1) < 0.0
+        out[empty, axis] = a[empty, axis]
+    return out
+
+
 class Track:
     """Arc-length parametrized centerline with a tunnel around it, sampled on a dense grid."""
 
@@ -349,7 +420,10 @@ class Track:
             direction = np.array([np.cos(angle), np.sin(angle), 0.0])
             entry_distance = leg_route.get("entry", GATE_OFFSET) * settings["entry_scale"]
             entry = -max(entry_distance, 0.1) * direction
-            exit_ = (EXTENSION if leg == len(gate_order) - 1 else GATE_OFFSET) * direction
+            # The exit may leave at another angle than the entry, see "exit_angle"
+            exit_angle = np.deg2rad(leg_route.get("exit_angle", leg_route.get("angle", 0.0)))
+            exit_direction = np.array([np.cos(exit_angle), np.sin(exit_angle), 0.0])
+            exit_ = (EXTENSION if leg == len(gate_order) - 1 else GATE_OFFSET) * exit_direction
             for offset, is_gate in ((entry, False), (np.zeros(3), True), (exit_, False)):
                 points.append(gates_pos[gate] + rots[gate].apply(offset))
                 gate_flags.append(is_gate)
@@ -440,36 +514,60 @@ class Track:
         """Free extents [-n, +n, -b, +b] of the tunnel cross section at every grid point.
 
         Rays are cast along the four cross section directions. A ray stops where the drone would
-        get closer than its radius plus a margin to any collision geometry.
+        get closer than its radius plus a margin to any collision geometry. Where the centerline
+        itself is blocked (e.g. it passes closer to a pole than the drone's radius, or through the
+        inflated area of a pole that has not been observed), the cross section is centered on the
+        nearest free point along the four directions instead. The extents are signed offsets from
+        the centerline, so such a cross section does not contain the centerline: one of the bounds
+        of that axis is on the far side, i.e. -n or -b is negative.
         """
         max_width, min_width = settings["tunnel_max"], settings["tunnel_min"]
+        margin = settings["tunnel_margin"]
         if settings["footprint"]:
             footprint = drone_footprint(settings["max_angle"], gates_quat)
         else:  # A sphere that contains the drone
             footprint = (DRONE_RADIUS, DRONE_RADIUS, np.full(len(gates_quat), DRONE_RADIUS))
+
+        def free(points: NDArray) -> NDArray:
+            return free_space(
+                points.reshape(-1, 3),
+                gates_pos,
+                gates_quat,
+                obstacles[0],
+                limits,
+                obstacles[1],
+                footprint,
+                self._gates_inflation,
+            ).reshape(points.shape[:-1])
+
         steps = np.arange(0.0, max_width + 1e-9, 0.01)[1:]
         # Cast rays on a coarser grid, then take the smaller extent of the two neighboring rays
         stride = 4
         coarse = np.arange(0, len(self.s) + stride - 1, stride).clip(max=len(self.s) - 1)
-        directions = np.stack((-self.normal, self.normal, -self.binormal, self.binormal))
-        points = (
-            self.pos[None, None, coarse] + steps[None, :, None, None] * directions[:, None, coarse]
-        )  # (direction, step, point, xyz)
-        free_dist = free_space(
-            points.reshape(-1, 3),
-            gates_pos,
-            gates_quat,
-            obstacles[0],
-            limits,
-            obstacles[1],
-            footprint,
-            self._gates_inflation,
-        )
-        free = np.cumprod(free_dist.reshape(points.shape[:3]) > settings["tunnel_margin"], axis=1)
-        extent = np.where(free.any(axis=1), steps[np.maximum(free.sum(axis=1) - 1, 0)], 0.0)
+        directions = np.stack((-self.normal, self.normal, -self.binormal, self.binormal))[:, coarse]
+        center = self.pos[coarse].copy()
+        # Move the center of blocked cross sections to the closest free point along the axes
+        offset = np.zeros((4, len(coarse)))  # Shift along -n, +n, -b, +b
+        blocked = np.flatnonzero(free(center) <= margin)
+        if len(blocked):
+            rays = (
+                center[None, None, blocked]
+                + steps[None, :, None, None] * directions[:, None, blocked]
+            )
+            reached = free(rays) > margin  # (direction, step, point)
+            distance = np.where(reached.any(axis=1), steps[np.argmax(reached, axis=1)], np.inf)
+            best = np.argmin(distance, axis=0)
+            shift = distance[best, np.arange(len(blocked))]
+            found = np.isfinite(shift)
+            blocked, best, shift = blocked[found], best[found], shift[found]
+            offset[best, blocked] = shift
+            center[blocked] += shift[:, None] * directions[best, blocked]
+        points = center[None, None] + steps[None, :, None, None] * directions[:, None]
+        reached = np.cumprod(free(points) > margin, axis=1)  # (direction, step, point)
+        extent = np.where(reached.any(axis=1), steps[np.maximum(reached.sum(axis=1) - 1, 0)], 0.0)
         # The rays only check the axes of the cross section. Shrink it until its corners are free
         # as well, e.g. where the path crosses a gate at an angle and a ray passes behind the frame.
-        center, n, b = self.pos[coarse], self.normal[coarse], self.binormal[coarse]
+        n, b = directions[1], directions[3]
         for _ in range(8):
             ok = np.ones(len(coarse), dtype=bool)
             for i_n, sign_n in ((0, -1), (1, 1)):
@@ -479,26 +577,18 @@ class Track:
                         + sign_n * extent[i_n, :, None] * n
                         + sign_b * extent[i_b, :, None] * b
                     )
-                    corner_free = free_space(
-                        corner,
-                        gates_pos,
-                        gates_quat,
-                        obstacles[0],
-                        limits,
-                        obstacles[1],
-                        footprint,
-                        self._gates_inflation,
-                    )
-                    bad = corner_free <= settings["tunnel_margin"]
+                    bad = free(corner) <= margin
                     extent[i_n, bad] *= 0.8
                     extent[i_b, bad] *= 0.8
                     ok &= ~bad
             if ok.all():
                 break
+        # Signed extents relative to the centerline: a shift towards +n moves the -n bound in
+        extent = np.maximum(extent, min_width)
+        extent = extent + offset[[0, 1, 2, 3]] - offset[[1, 0, 3, 2]]
         lower = np.arange(len(self.s)) // stride
         upper = np.minimum(lower + 1, len(coarse) - 1)
-        extents = np.minimum(extent[:, lower], extent[:, upper]).T
-        return np.maximum(extents, min_width)
+        return min_extents(extent[:, lower].T, extent[:, upper].T)
 
     def lookup(self, s: NDArray) -> tuple[NDArray, ...]:
         """Interpolate centerline position, frame and tunnel extents at progress s."""
@@ -514,7 +604,7 @@ class Track:
             interp(self.tangent),
             interp(self.normal),
             interp(self.binormal),
-            np.minimum(self.extents[idx], self.extents[idx + 1]),
+            min_extents(self.extents[idx], self.extents[idx + 1]),
             interp(self.curvature),
         )
 
@@ -716,60 +806,25 @@ class MPCCPlusPlus(Controller):
     # x 12 races, crash scored as 6.5 s). Validated on 160 level 2 races: 51% success, 5.27 s mean
     # lap time.
     SETTINGS = dict(
-        horizon=30,
-        horizon_near=30,  # Number of stages with the control period as length
-        dt_far=0.04,  # Length of the remaining stages, s
-        path_order=2.0,  # 1: linear centerline expansion in the solver, 2: with curvature
+
+        # --- Free space: the tunnel around the centerline the drone center must stay inside ---
+        tunnel_max=0.4,  # m, largest extent of the tunnel on each side of its center
+        tunnel_min=0.02,  # m, smallest extent, also used where no free space was found
+        tunnel_margin=0.01,  # m, extra distance between the drone's collision box and any geometry
         footprint=1.0,  # 1: tunnel from the collision box of the drone, 0: from a 0.1 m sphere
-        # Model corrections identified from closed-loop flight data (.mpcc_dev/model_id.py): they
-        # halve the 0.6 s position prediction error. The old step-response fit used a thrust lag of
-        # 7/s, an attitude command lag of 20/s, unit gains and no drag.
-        model_thrust_gain=1.034,
-        model_attitude_gain=0.95,
-        thrust_lag=20.4,  # 1/s
-        rpy_cmd_lag=300.0,  # 1/s, effectively no lag
-        drag_x=0.427,  # 1/s, body frame
-        drag_y=0.375,
-        plan_angle=0.7256,  # Soft roll and pitch bound of the predicted states, rad
-        plan_angle_start=5,  # First stage of the soft bound, earlier stages may use max_angle
-        contour_weight=42.7,
-        lag_weight=228.9,
-        rate_weight=0.0189,
-        yaw_weight=1.0,
-        attitude_slew_weight=0.2098,
-        thrust_slew_weight=1.7698,
-        progress_weight=5.3216,
-        progress_acc_weight=0.01,
-        reference_speed=4.214,
-        max_speed=8.0,
-        max_progress_acc=25.0,
-        max_angle=0.926,
-        thrust_headroom=1.0,  # Fraction of the maximum thrust the MPC may command
-        slack_l1=5000.0,
-        slack_l2=1e5,
-        tunnel_max=0.4,
-        tunnel_min=0.02,
-        tunnel_margin=0.0374,
-        obstacle_clearance=0.4,
-        grid_step=0.01,
-        residual_gain=0.1299,
-        residual_max=4.0,
-        residual_xy=0.0,  # Scale of the horizontal residual estimate, 0 estimates only z
-        rti_iterations=2,
-        # Speed limit along the path before gates whose true pose is not yet known
-        unobserved_speed=2.0877,
-        unobserved_distance=1.0,
+        robust_gates=0.0,  # 1: tunnel through the part of an unobserved gate free for all poses
+        # Scales the box in which an undetected pole may be (its randomization range) for the
+        # tunnel: 1 avoids every possible position, 0 plans with the nominal position
+        unseen_pole_scale=1.0,
+
+        # --- Contour: the centerline (route) drawn through the free space ---
+        grid_step=0.01,  # m, arc length spacing of the centerline and tunnel grid
+        obstacle_clearance=0.20,  # m, the centerline is pushed at least this far from poles
         route_start=1,  # Route section variants, see ROUTE_SECTIONS
         route_gate1=0,
-        route_gate23=0,
+        route_gate23=4,  # 0: outside of pole 3, 1-3: gate 3 at 30-20 deg, 4: inside of pole 3
         route_tighten=0.0,  # Pulls via points towards their neighbors, 0: as defined, 1: midpoint
         entry_scale=1.0,  # Scales the straight final approach before each gate
-        tunnel_at_position=1.0,
-        adaptive_caps=0.0,  # 1: speed limits per gate from the reveal model, 0: unobserved_speed
-        reveal_acc=8.0,  # m/s^2, lateral acceleration available for corrections after a reveal
-        reveal_delay=0.1,  # s, response delay after a reveal
-        reveal_margin=0.02,  # m, safety margin between the drone and the opening of a gate
-        robust_gates=0.0,  # 1: tunnel through the part of an unobserved gate free for all poses
         racing_line=0.0,  # 1: replace the hand-made route by a time-optimal racing line
         racing_line_tilt=0.8,  # rad, tilt limit of the point mass model
         racing_line_clearance=0.3,  # m, distance of the racing line to the poles
@@ -779,6 +834,63 @@ class MPCCPlusPlus(Controller):
         racing_line_spacing=0.3,  # m, minimum distance between via points of the racing line
         racing_line_max_angle=40.0,  # deg, maximum angle between gate normal and passage
         racing_line_min_height=0.15,  # m
+
+        # --- MPCC: the optimal control problem that tracks the contour inside the free space ---
+        # Horizon and solver
+        horizon=30,
+        horizon_near=30,  # Number of stages with the control period as length
+        dt_far=0.04,  # Length of the remaining stages, s
+        rti_iterations=2,
+        path_order=2.0,  # 1: linear centerline expansion in the solver, 2: with curvature
+        tunnel_at_position=1.0,  # 1: tunnel bounds where the prediction projects, 0: at theta
+        
+        # Prediction model. Corrections identified from closed-loop flight data
+        # (.mpcc_dev/model_id.py): they halve the 0.6 s position prediction error. The old
+        # step-response fit used a thrust lag of 7/s, an attitude command lag of 20/s, unit gains
+        # and no drag.
+        model_thrust_gain=1.034,
+        model_attitude_gain=0.95,
+        thrust_lag=20.4,  # 1/s
+        rpy_cmd_lag=300.0,  # 1/s, effectively no lag
+        drag_x=0.427,  # 1/s, body frame
+        drag_y=0.375,
+        residual_gain=0.1299,
+        residual_max=4.0,
+        residual_xy=0.0,  # Scale of the horizontal residual estimate, 0 estimates only z
+        # Cost weights
+        contour_weight=42.7,
+        lag_weight=228.9,
+        rate_weight=0.0189,
+        yaw_weight=1.0,
+        attitude_slew_weight=0.2098,
+        thrust_slew_weight=1.7698,
+        progress_weight=5.3216,
+        progress_acc_weight=0.01,
+        reference_speed=2*4.214,
+        slack_l1=5000.0,  # Linear penalty of soft constraint violations (tunnel, tilt, speed)
+        slack_l2=1e5,  # Quadratic penalty of soft constraint violations
+        # Bounds. max_angle also sets the drone's vertical extent for the free space.
+        max_speed=1.5*8.0,
+        max_progress_acc=25.0,
+        max_angle=0.926,
+        thrust_headroom=1.0,  # Fraction of the maximum thrust the MPC may command
+        plan_angle=0.7256,  # Soft roll and pitch bound of the predicted states, rad
+        plan_angle_start=5,  # First stage of the soft bound, earlier stages may use max_angle
+        # Speed limit along the path before gates whose true pose is not yet known
+        unobserved_speed=1.2*2.0877,
+        unobserved_distance=1.0,
+        adaptive_caps=0.0,  # 1: speed limits per gate from the reveal model, 0: unobserved_speed
+        reveal_acc=8.0,  # m/s^2, lateral acceleration available for corrections after a reveal
+        reveal_delay=0.1,  # s, response delay after a reveal
+        reveal_margin=0.02,  # m, safety margin between the drone and the opening of a gate
+        # Recovery before a revealed gate: when the drone is further from the centerline than
+        # hold_tol + hold_slope * (distance to the gate plane), the correction does not fit before
+        # the gate. The leg is rebuilt to move sideways onto the gate's center line first, and the
+        # progress speed is limited to hold_speed until the gate is passed.
+        hold_window=1.0,  # m, only within this distance of the gate, along the path and direct
+        hold_tol=0.05,  # m
+        hold_slope=0.5,  # m of correction per m of remaining path
+        hold_speed=0.5,  # m/s
     )
 
     def __init__(self, obs: dict[str, NDArray[np.floating]], info: dict, config: dict):
@@ -819,13 +931,18 @@ class MPCCPlusPlus(Controller):
                     point = nominal_rot[gate].inv().apply(point - nominal_pos[gate])
                 local.append((gate, point))
             self._route[leg] = {**leg_route, "via": local}
+        self._recovery = None  # Replacement leg {passage: route} after a bad reveal, see hold_*
 
         # Unobserved obstacles may be anywhere within their randomization range. The tunnel avoids
         # all of these positions until the true position is observed.
         randomizations = config.env.get("randomizations") or {}
         obstacle_rand = randomizations.get("obstacle_pos")
+        # The pole axis may be anywhere in this box around the nominal position (half extents in x
+        # and y). A box instead of the circle around it keeps the tunnel 0.06 m wider on the axes.
+        # Only half the randomization range is assumed: avoiding every possible position blocks
+        # routes past poles near gates, and the pole is detected at sensor range anyway.
         shift = np.abs(obstacle_rand.kwargs.maxval[:2]) if obstacle_rand else np.zeros(2)
-        self._obstacle_uncertainty = float(np.linalg.norm(shift))
+        self._obstacle_uncertainty = 0.5 * np.asarray(shift, dtype=float)
         self._gate_uncertainty, self._gate_speed_caps = self._gate_reveal_model(config, obs)
         self._start = np.array(obs["pos"])
         self._build_track(obs)
@@ -856,6 +973,7 @@ class MPCCPlusPlus(Controller):
         self._tick = 0
         self.solve_times = []
         self.solver_failures = 0
+        self.hold_count = 0  # Recovery routes built before revealed gates, see hold_*
 
     def _configure_solver(self):
         """Set the weights, references, bounds and slack penalties from the settings."""
@@ -887,18 +1005,28 @@ class MPCCPlusPlus(Controller):
         self._solver.cost_set(N, "W", W_e)
         # Plan with less tilt than the commands may use. The model overestimates how fast the drone
         # turns at large tilt, and the reserve is left for corrections.
+        self._set_state_bounds(s["max_speed"])
         for k in range(1, N + 1):
-            tilt = s["plan_angle"] if k >= s["plan_angle_start"] else 1.5
-            lbx, ubx = [-tilt, -tilt], [tilt, tilt]
-            if k < N:
-                lbx, ubx = lbx + [0.0], ubx + [s["max_speed"]]
-            self._solver.constraints_set(k, "lbx", np.array(lbx))
-            self._solver.constraints_set(k, "ubx", np.array(ubx))
             l1, l2 = s["slack_l1"], s["slack_l2"]
             self._solver.cost_set(k, "zl", np.full(5, l1))
             self._solver.cost_set(k, "zu", np.full(5, l1))
             self._solver.cost_set(k, "Zl", np.full(5, l2))
             self._solver.cost_set(k, "Zu", np.full(5, l2))
+
+    def _set_state_bounds(self, max_progress_speed: float | NDArray):
+        """Set the soft tilt bounds and the hard progress speed bound of the predicted states.
+
+        The progress speed bound is a scalar or one value per stage (N + 1, the first is unused).
+        """
+        s, N = self.settings, self._N
+        caps = np.broadcast_to(max_progress_speed, N + 1)
+        for k in range(1, N + 1):
+            tilt = s["plan_angle"] if k >= s["plan_angle_start"] else 1.5
+            lbx, ubx = [-tilt, -tilt], [tilt, tilt]
+            if k < N:
+                lbx, ubx = lbx + [0.0], ubx + [caps[k]]
+            self._solver.constraints_set(k, "lbx", np.array(lbx))
+            self._solver.constraints_set(k, "ubx", np.array(ubx))
 
     def _gate_reveal_model(self, config: dict, obs: dict) -> tuple[NDArray, NDArray]:
         """Position uncertainty of each gate in its frame, and the speed limit before its reveal.
@@ -943,17 +1071,23 @@ class MPCCPlusPlus(Controller):
             np.asarray(obs["gates_pos"]),
             np.asarray(obs["gates_quat"]),
             np.asarray(obs["obstacles_pos"]),
-            np.where(obs["obstacles_visited"], 0.0, self._obstacle_uncertainty),
+            np.where(
+                np.asarray(obs["obstacles_visited"])[:, None],
+                0.0,
+                self._obstacle_uncertainty * self.settings["unseen_pole_scale"],
+            ),
             np.where(
                 np.asarray(obs["gates_visited"])[:, None],
                 0.0,
                 self._gate_uncertainty * self.settings["robust_gates"],
             ),
             self._gate_order,
-            self._route,
+            self._route if self._recovery is None else {**self._route, **self._recovery},
             self.settings,
             self._limits,
         )
+        if hasattr(self, "_theta"):  # Progress on the new track, which may be shorter
+            self._theta = self._track.project(np.asarray(obs["pos"]), self._theta, window=1.0)
 
     def _state(self, obs: dict) -> NDArray:
         rpy = R.from_quat(obs["quat"]).as_euler("xyz")
@@ -972,6 +1106,7 @@ class MPCCPlusPlus(Controller):
         ):
             self._build_track(obs)
         self._gates_visited, self._obstacles_visited = gates_visited, obstacles_visited
+        self._gates_pos, self._gates_quat = np.asarray(obs["gates_pos"]), obs["gates_quat"]
 
         drone = self._state(obs)
         self._update_residual(obs)
@@ -979,7 +1114,15 @@ class MPCCPlusPlus(Controller):
         theta = self._track.project(obs["pos"], theta_guess)
         theta = max(theta, self._theta)  # Progress never decreases
         self._theta = theta
+        if self._update_hold(obs, theta):
+            theta = self._theta  # Projected onto the rebuilt track
         v_theta = 0.0 if self._x is None else float(self._x[1, V_THETA])
+        if self._recovery is not None:
+            # Ramp the progress speed down to hold_speed at a deceleration the solver can follow.
+            # A step to hold_speed is infeasible above hold_speed + max_progress_acc * dt.
+            s = self.settings
+            ramp = v_theta - 0.8 * s["max_progress_acc"] * self._stage_times
+            self._set_state_bounds(np.maximum(ramp, s["hold_speed"]))
         x0 = np.concatenate(
             (drone, [self._thrust], self._cmd_rpy, [theta, v_theta], self._last_cmd)
         )
@@ -1081,6 +1224,65 @@ class MPCCPlusPlus(Controller):
         for k in range(1, len(thetas)):
             self._solver.constraints_set(k, "lh", lh[k])
             self._solver.constraints_set(k, "uh", uh[k])
+
+    def _update_hold(self, obs: dict, theta: float) -> bool:
+        """Recover before a revealed gate if the drone is too far off the centerline to make it.
+
+        A revealed gate can leave the drone close to the gate plane but far to the side, e.g. when
+        it approaches at an angle and the gate moved towards it. The leg is then rebuilt to go
+        from the drone sideways onto the gate's center line, at the drone's current distance from
+        the gate plane, and from there straight through the gate. The progress speed is limited to
+        hold_speed until the gate is passed.
+
+        Returns:
+            True if the track was rebuilt.
+        """
+        s, track = self.settings, self._track
+        if self._recovery is not None:
+            passage = next(iter(self._recovery))
+            if theta > track.gate_s[passage] + 0.05:  # Passed, the original route applies again
+                self._recovery = None
+                self._set_state_bounds(s["max_speed"])
+            return False
+        ahead = np.flatnonzero(track.gate_s > theta)
+        if len(ahead) == 0:
+            return False
+        passage, gate = ahead[0], self._gate_order[ahead[0]]
+        if not self._gates_visited[gate]:
+            return False
+        pos = np.asarray(obs["pos"])
+        rot = R.from_quat(self._gates_quat[gate])
+        offset = rot.inv().apply(pos - self._gates_pos[gate])
+        # Distance to the gate plane. Progress is not used: after a reveal the drone can be much
+        # closer to the gate than its projection onto the rebuilt centerline suggests.
+        distance = abs(offset[0])
+        error = np.linalg.norm(pos - track.lookup(np.array([theta]))[0][0])
+        # Only on the final approach: within the window both along the path and from the gate
+        # center. A drone beside a gate, or far from one it approaches at an angle, can be close
+        # to the extended gate plane while its route still swings around to the gate.
+        near = max(track.gate_s[passage] - theta, np.linalg.norm(offset)) < s["hold_window"]
+        if not near or error < s["hold_tol"] + s["hold_slope"] * distance:
+            return False
+        # The sideways leg ends at least 0.2 m in front of the gate (shortest entry plus 0.1 m).
+        # Closer than that it would lie behind the drone and send it back, so it goes through.
+        if distance < 0.2:
+            return False
+        entry = float(np.clip(0.5 * distance, 0.1, GATE_OFFSET))
+        side_point = np.array([-max(distance, entry + 0.1), 0.0, 0.0])  # On the center line
+        leg_route = self._route.get(passage, {})
+        # Keep the via points the drone has not reached yet only if they are further out
+        via = []
+        for attached, local in leg_route.get("via", []):
+            world = local if attached < 0 else (
+                self._gates_pos[attached] + R.from_quat(self._gates_quat[attached]).apply(local)
+            )
+            if rot.inv().apply(world - self._gates_pos[gate])[0] < -(distance + 0.1):
+                via.append((attached, local))
+        via += [(-1, pos.copy()), (gate, side_point)]
+        self._recovery = {passage: {**leg_route, "via": via, "angle": 0.0, "entry": entry}}
+        self.hold_count += 1
+        self._build_track(obs)
+        return True
 
     def _update_residual(self, obs: dict):
         """Low-pass filter the one-step acceleration prediction error into the residual."""
