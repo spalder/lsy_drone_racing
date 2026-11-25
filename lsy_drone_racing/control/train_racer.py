@@ -253,6 +253,21 @@ class Agent(nn.Module):
         return action, probs.log_prob(action).sum(1), probs.entropy().sum(1), self.critic(x)
 
 
+def pad_input(ck: dict, n_old: int, n_new: int):
+    """Grow a checkpoint from before the mass input (the last input) to n_new inputs, in place.
+
+    The new inputs get zero weights in both first layers, so the policy and value are unchanged at
+    the start. Their statistics start at the mass input's distribution (uniform on [0, 1]).
+    """
+    n = n_new - n_old
+    for key in ("actor_mean.0.weight", "critic.0.weight"):
+        w = ck["agent"][key]
+        ck["agent"][key] = torch.cat([w, torch.zeros(w.shape[0], n, dtype=w.dtype)], 1)
+    ck["obs_mean"] = torch.cat([ck["obs_mean"], torch.full((n,), 0.5, dtype=torch.float64)])
+    ck["obs_var"] = torch.cat([ck["obs_var"], torch.full((n,), 1 / 12, dtype=torch.float64)])
+    print(f"Checkpoint inputs padded {n_old} -> {n_new} (new inputs start with zero weights)")
+
+
 def save_checkpoint(path: Path, agent: Agent, obs_rms: RunningMeanStd, args: Args):
     """Save the torch checkpoint and the numpy actor export used for deployment."""
     torch.save(
@@ -311,6 +326,8 @@ def train(**kwargs: Any) -> Path:
     obs_rms = RunningMeanStd(obs_dim, args.obs_clip)
     if args.resume:
         ck = torch.load(ROOT / args.resume / "checkpoint.pt", weights_only=False)
+        if (n_old := ck["obs_mean"].shape[0]) < obs_dim:
+            pad_input(ck, n_old, obs_dim)
         agent.load_state_dict(ck["agent"])
         obs_rms.mean, obs_rms.var, obs_rms.count = ck["obs_mean"], ck["obs_var"], ck["obs_count"]
         n_done = sum(1 for _ in open(ROOT / args.resume / "progress.csv")) - 1

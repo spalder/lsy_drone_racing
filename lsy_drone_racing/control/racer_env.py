@@ -55,6 +55,7 @@ from lsy_drone_racing.control.racer_core import (
     OBS_DIM,
     ActionMap,
     build_obs,
+    mass_input,
     quat2mat,
 )
 from lsy_drone_racing.envs.drone_race import VecDroneRaceEnv
@@ -237,7 +238,7 @@ def stall_cutoff(
 
 
 class RacerEnv(VecDroneRaceEnv):
-    """Vectorized race env taking network actions in [-1, 1]^3 and returning (N, 50) observations."""
+    """Vectorized race env taking network actions in [-1, 1]^3 and returning (N, 51) observations."""
 
     def __init__(
         self,
@@ -272,7 +273,17 @@ class RacerEnv(VecDroneRaceEnv):
         super().__init__(*args, control_mode="attitude", **kwargs)
         action_map = ActionMap(self.sim.drone, self.sim.dynamics, c_offset, c_scale)
         self._action_map = jax.jit(action_map.__call__)
-        self._build_obs = jax.jit(build_obs)
+        # Mass input: the true (randomized) mass of each world, scaled so that the whole
+        # randomization range spans [0, 1] around the nominal mass at 0.5
+        mass_rand = (kwargs.get("randomizations") or {}).get("drone_mass")
+        half_range = 1.0
+        if mass_rand is not None:
+            lim = mass_rand["kwargs"]
+            half_range = max(abs(float(lim["minval"])), abs(float(lim["maxval"]))) or 1.0
+        nominal = float(load_dynamics_params(self.sim.dynamics, self.sim.drone)["mass"])
+        self._obs_fn = jax.jit(
+            lambda obs, mass: build_obs(obs, mass_input(mass, nominal, half_range))
+        )
         # Hover cutoff: steps without a gate pass before the episode ends (0 disables it)
         stall_steps = int(round(stall_time * self.settings.freq))
         self._stall = partial(stall_cutoff, stall_steps=stall_steps, penalty=stall_penalty)
@@ -388,6 +399,10 @@ class RacerEnv(VecDroneRaceEnv):
             return data, (race_obs(data), {})
 
         return reset
+
+    def _build_obs(self, obs: dict[str, Array]) -> Array:
+        """Network observations, with the mass input of each world's current (randomized) mass."""
+        return self._obs_fn(obs, self.data.sim_data.params.mass[:, 0, 0])
 
     def reset(self, seed: int | None = None, options: dict | None = None) -> tuple[Array, dict]:
         """Reset all worlds and return network observations."""

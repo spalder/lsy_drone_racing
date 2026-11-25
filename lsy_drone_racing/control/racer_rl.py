@@ -50,7 +50,10 @@ class RacerRL(Controller):
         self, obs: dict[str, NDArray[np.floating]], info: dict | None = None
     ) -> NDArray[np.floating]:
         """Attitude command [roll, pitch, yaw, thrust] from the network's mean action."""
+        # The true mass is unknown in deployment: the mass input is the nominal mass (0.5).
+        # Actors trained before the mass input take the first 50 entries.
         x = np.asarray(build_obs({k: np.asarray(v)[None] for k, v in obs.items()}))[0]
+        x = x[: self.obs_mean.shape[0]]
         h = np.clip((x - self.obs_mean) / self.obs_std, -self.obs_clip, self.obs_clip)
         for W, b in self.layers:
             h = np.tanh(W @ h + b)  # Every actor layer, including the output, ends in tanh
