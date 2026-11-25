@@ -14,11 +14,11 @@ from crazyflow.dynamics import load_params as load_dynamics_params
 if TYPE_CHECKING:
     from jax import Array
 
-# Mass-normalized thrust c = C_MID + C_SCALE * a_c. C_MID is the midpoint of the thrust range, about
-# 4% above hover (altitude hold at ~16 deg tilt). C_SCALE reaches slightly past both ends so that
-# max thrust is reached at a_c ~ 0.95, which tanh can actually output.
-C_MID = 10.19
-C_SCALE = 8.6
+# Mass-normalized thrust c = C_OFFSET + C_SCALE * a_c. a_c = 0 is hover at the nominal mass. C_SCALE
+# reaches past the thrust limits so that max thrust is reached at a_c ~ 0.96, which tanh can output.
+# Checkpoints store the constants they were trained with (runs before this change: 10.19 / 8.6).
+C_OFFSET = 9.81
+C_SCALE = 9.0
 TILT_SCALE = jp.pi / 2  # Full env range, required to lead attitude setpoints
 
 OBS_DIM = 50
@@ -79,16 +79,20 @@ def build_obs(obs: dict[str, Array]) -> Array:
 class ActionMap:
     """Map network outputs to the environment's attitude command."""
 
-    def __init__(self, drone: str, dynamics: str):
+    def __init__(
+        self, drone: str, dynamics: str, c_offset: float = C_OFFSET, c_scale: float = C_SCALE
+    ):
         """Load the nominal mass and thrust limits of the drone model."""
         params = load_dynamics_params(dynamics, drone)
         self.mass = float(params["mass"])
         self.thrust_min = float(params["thrust_min"]) * 4
         self.thrust_max = float(params["thrust_max"]) * 4
+        self.c_offset, self.c_scale = c_offset, c_scale
 
     def __call__(self, a: Array) -> Array:
         """Convert network outputs (..., 3) into env actions (..., 4) [roll, pitch, yaw, thrust]."""
-        thrust = jp.clip((C_MID + C_SCALE * a[..., 0]) * self.mass, self.thrust_min, self.thrust_max)
+        c = self.c_offset + self.c_scale * a[..., 0]
+        thrust = jp.clip(c * self.mass, self.thrust_min, self.thrust_max)
         roll = TILT_SCALE * a[..., 1]
         pitch = TILT_SCALE * a[..., 2]
         return jp.stack([roll, pitch, jp.zeros_like(roll), thrust], axis=-1)

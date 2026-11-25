@@ -28,6 +28,7 @@ from gymnasium.wrappers.vector.jax_to_torch import JaxToTorch
 from torch import Tensor
 from torch.distributions.normal import Normal
 
+from lsy_drone_racing.control.racer_core import C_OFFSET, C_SCALE
 from lsy_drone_racing.control.racer_env import RacerEnv
 from lsy_drone_racing.utils import load_config
 
@@ -41,6 +42,8 @@ class Args:
 
     seed: int = 42
     config: str = "level2_racer_train.toml"
+    resume: str | None = None  # Run dir whose checkpoint.pt (weights, sigma, obs statistics) to continue
+    note: str = ""  # Short description of the run, written to note.md in the run dir
     run_dir: str = "runs/racer"
 
     # PPO
@@ -56,7 +59,7 @@ class Args:
     norm_adv: bool = True
     clip_coef: float = 0.2
     clip_vloss: bool = True
-    ent_coef: float = 0.005
+    ent_coef: float = 0.01
     vf_coef: float = 0.5
     max_grad_norm: float = 0.5
     target_kl: float | None = None
@@ -66,10 +69,41 @@ class Args:
     logstd_init: tuple[float, float, float] = (-1.0, -1.5, -1.5)
     obs_clip: float = 5.0
 
-    # Reward
+    # Reward. progress_coef = 5 restores the paper's ratio of progress to the other terms for
+    # this slower drone (progress per step ~0.02 here vs ~0.2 in the paper).
+    progress_coef: float = 5.0
+    height_weight: float = 4.0  # Progress distance sqrt(dx^2 + dy^2 + 4 dz^2): height error counts 2x
+    approach_dist: float = 0.0  # Behind/beside the target gate, progress counts toward this point
+    # Via-point curriculum: for pass k with via_pass_dist[k] > 0, progress first counts toward a
+    # point that far in front of the gate (reached within via_radius, +via_bonus). Both passes into
+    # gate 1 need it; pass 4 uses 0.6 m so the line from gate 3 clears pole 1 on the front side.
+    # Empty tuple disables it (runs 11-12 used (0.0, 0.35, 0.0, 0.0, 0.6) with via_bonus 5).
+    via_pass_dist: tuple[float, ...] = ()
+    via_radius: float = 0.25
+    via_bonus: float = 5.0
+    wrong_way_crash: bool = False  # Flying backwards through the target gate is a crash
+    # Invisible wall in the target gate's plane: reaching its far side without passing it is a crash
+    wall_crash: bool = True
+    # Progress per step is capped at this speed (m/s) while the target gate is not revealed (0: off)
+    unrevealed_speed_cap: float = 0.0
     rate_coef: float = 0.01
     crash_penalty: float = 10.0
+    gate_bonus: float = 10.0  # Every gate pass, including the last one
     finish_bonus: float = 10.0
+
+    # Thrust mapping c = c_offset + c_scale * a_c (m/s^2); a_c = 0 is hover at the nominal mass
+    c_offset: float = C_OFFSET
+    c_scale: float = C_SCALE
+
+    # Start states: fraction of mid-air starts (rest on the ground), route-start noise std in m, and
+    # fraction of mid-air starts placed right in front of the target gate instead of along a leg
+    air_start_frac: float = 1.0
+    air_start_sigma: float = 0.283  # Half the inner gate diagonal
+    front_start_frac: float = 0.3
+
+    # Hover cutoff: episodes without a gate pass for stall_time s end with -stall_penalty
+    stall_time: float = 0.0  # 0 disables the cutoff
+    stall_penalty: float = 10.0
 
     checkpoint_every: int = 10
 
@@ -106,11 +140,39 @@ def make_env(args: Args) -> JaxToTorch:
         randomizations=config.env.get("randomizations"),
         seed=args.seed,
         device="cpu",
+        progress_coef=args.progress_coef,
+        height_weight=args.height_weight,
+        approach_dist=args.approach_dist,
+        via_pass_dist=tuple(args.via_pass_dist),
+        via_radius=args.via_radius,
+        via_bonus=args.via_bonus,
+        wrong_way_crash=args.wrong_way_crash,
+        wall_crash=args.wall_crash,
+        unrevealed_speed_cap=args.unrevealed_speed_cap,
         rate_coef=args.rate_coef,
         crash_penalty=args.crash_penalty,
+        gate_bonus=args.gate_bonus,
         finish_bonus=args.finish_bonus,
+        air_start_frac=args.air_start_frac,
+        air_start_sigma=args.air_start_sigma,
+        front_start_frac=args.front_start_frac,
+        stall_time=args.stall_time,
+        stall_penalty=args.stall_penalty,
+        c_offset=args.c_offset,
+        c_scale=args.c_scale,
     )
     return JaxToTorch(env, torch.device("cpu"))
+
+
+def episode_start(envs: JaxToTorch) -> tuple[Tensor, Tensor]:
+    """Gate index each world currently targets and whether it sits on the ground (z < 0.1 m).
+
+    Read right after a reset, this is the start gate and start type of the new episode.
+    """
+    data = envs.unwrapped.data
+    n0 = torch.as_tensor(np.asarray(data.n_gates_passed[:, 0]))
+    ground = torch.as_tensor(np.asarray(data.sim_data.states.pos[:, 0, 2]) < 0.1)
+    return n0, ground
 
 
 # region Normalization
@@ -211,7 +273,22 @@ def save_checkpoint(path: Path, agent: Agent, obs_rms: RunningMeanStd, args: Arg
         obs_mean=obs_rms.mean.numpy().astype(np.float32),
         obs_std=obs_rms.std.numpy().astype(np.float32),
         obs_clip=np.float32(obs_rms.clip),
+        c_offset=np.float32(args.c_offset),
+        c_scale=np.float32(args.c_scale),
     )
+
+
+def write_note(run_path: Path, args: Args, overrides: dict[str, Any]):
+    """Write note.md: description, start checkpoint and the settings that differ from the defaults."""
+    lines = [f"# Run {run_path.name}", "", args.note or "(no description given)", ""]
+    lines.append(f"- Started: {time.strftime('%Y-%m-%d %H:%M')}")
+    lines.append(f"- Resumed from: {args.resume or 'scratch'}")
+    lines.append(f"- Config: {args.config}")
+    changed = {k: v for k, v in overrides.items() if k != "note"}
+    lines.append("- Settings changed on the command line: " + (
+        ", ".join(f"{k}={v}" for k, v in changed.items()) if changed else "none"
+    ))
+    (run_path / "note.md").write_text("\n".join(lines) + "\n")
 
 
 # region Train
@@ -221,6 +298,7 @@ def train(**kwargs: Any) -> Path:
     set_seeds(args.seed)
     run_path = ROOT / args.run_dir / time.strftime("%Y%m%d-%H%M%S")
     run_path.mkdir(parents=True, exist_ok=True)
+    write_note(run_path, args, kwargs)
     print(f"Run dir: {run_path}")
     print(f"{args.num_iterations} iterations of {args.batch_size} samples")
 
@@ -231,6 +309,12 @@ def train(**kwargs: Any) -> Path:
     agent = Agent(obs_dim, act_dim, args.hidden, args.logstd_init)
     optimizer = optim.AdamW(agent.parameters(), lr=args.learning_rate, eps=1e-5)
     obs_rms = RunningMeanStd(obs_dim, args.obs_clip)
+    if args.resume:
+        ck = torch.load(ROOT / args.resume / "checkpoint.pt", weights_only=False)
+        agent.load_state_dict(ck["agent"])
+        obs_rms.mean, obs_rms.var, obs_rms.count = ck["obs_mean"], ck["obs_var"], ck["obs_count"]
+        n_done = sum(1 for _ in open(ROOT / args.resume / "progress.csv")) - 1
+        print(f"Resumed from {args.resume} (checkpoint of iteration {n_done // 10 * 10})")
 
     T, N = args.num_steps, args.num_envs
     obs = torch.zeros((T, N, obs_dim))  # normalized with the statistics of this rollout
@@ -245,6 +329,8 @@ def train(**kwargs: Any) -> Path:
 
     next_obs, _ = envs.reset(seed=args.seed)
     ep_len = torch.zeros(N)
+    n_start, ground = episode_start(envs)  # Start gate index and ground/mid-air of each episode
+    reported = torch.zeros(N, dtype=torch.bool)  # Timeouts are reported on two consecutive steps
     log_file = open(run_path / "progress.csv", "w", newline="")
     log_writer = None
     global_step = 0
@@ -258,7 +344,8 @@ def train(**kwargs: Any) -> Path:
             ) * args.learning_rate
 
         ep_gates, ep_lens, lap_times = [], [], []
-        n_finish = n_crash = n_trunc = 0
+        n_finish = n_crash = n_stall = n_wrong = n_wall = n_via = 0
+        n_trunc = n_ground = n_ground_finish = 0
         for step in range(T):
             global_step += N
             raw_obs[step] = next_obs
@@ -276,18 +363,30 @@ def train(**kwargs: Any) -> Path:
             truncs[step] = trunc.float()
             valids[step] = valid
 
-            # Episode statistics. Lap time counts the valid steps up to the finishing step.
+            # Episode statistics. Gates count only passes flown in the episode (mid-air starts begin
+            # at a later gate). Laps and lap times come from ground starts only.
             ep_len += valid.float()
             finished, crashed = info["finished"].bool(), info["crashed"].bool()
-            lap_times += (ep_len[finished] * dt).tolist()
-            ended = valid & (term.bool() | trunc.bool())
-            ep_gates += info["gates_passed"][ended].tolist()
+            lap_times += (ep_len[finished & ground] * dt).tolist()
+            ended = valid & (term.bool() | trunc.bool()) & ~reported
+            reported |= ended
+            ep_gates += (info["gates_passed"] - n_start)[ended].tolist()
             ep_lens += (ep_len[ended] * dt).tolist()
             n_finish += int(finished.sum())
+            n_ground_finish += int((finished & ground).sum())
+            n_ground += int((ended & ground).sum())
             n_crash += int(crashed.sum())
-            n_trunc += int((valid & trunc.bool() & ~term.bool()).sum())
-            ep_len[~valid] = 0  # The junk step starts a new episode
-            ep_len[ended] = 0
+            n_stall += int(info["stalled"].sum())
+            n_wrong += int(info["wrong_way"].sum())
+            n_via += int(info["via_reached"].sum())
+            n_wall += int(info["wall"].sum())
+            n_trunc += int((ended & trunc.bool() & ~term.bool()).sum())
+            if (~valid).any():  # The junk step starts a new episode
+                new = ~valid
+                n0, g0 = episode_start(envs)
+                n_start[new], ground[new] = n0[new], g0[new]
+                ep_len[new] = 0
+                reported[new] = False
 
         # GAE. Terminations cut the value, truncations only cut the advantage chain. Junk steps
         # always follow a termination or truncation, so they never leak into valid advantages.
@@ -370,7 +469,13 @@ def train(**kwargs: Any) -> Path:
             "gates_mean": float(np.mean(ep_gates)) if n_eps else np.nan,
             "gates_max": int(np.max(ep_gates)) if n_eps else 0,
             "finish_rate": n_finish / max(n_eps, 1),
+            "ground_episodes": n_ground,
+            "ground_finish_rate": n_ground_finish / max(n_ground, 1),
             "crash_rate": n_crash / max(n_eps, 1),
+            "stall_rate": n_stall / max(n_eps, 1),
+            "wrong_way_rate": n_wrong / max(n_eps, 1),
+            "via_per_episode": n_via / max(n_eps, 1),
+            "wall_rate": n_wall / max(n_eps, 1),
             "trunc_rate": n_trunc / max(n_eps, 1),
             "ep_len_s": float(np.mean(ep_lens)) if n_eps else np.nan,
             "lap_s": float(np.mean(lap_times)) if lap_times else np.nan,
@@ -395,7 +500,9 @@ def train(**kwargs: Any) -> Path:
         print(
             f"it {iteration:4d}/{args.num_iterations} step {global_step / 1e6:6.1f}M | "
             f"gates {row['gates_mean']:.2f} (max {row['gates_max']}) fin {row['finish_rate']:.2f} "
-            f"crash {row['crash_rate']:.2f} lap {row['lap_s']:.2f}s ep {row['ep_len_s']:.1f}s | "
+            f"lap {row['ground_finish_rate']:.2f} in {row['lap_s']:.2f}s "
+            f"crash {row['crash_rate']:.2f} wall {row['wall_rate']:.2f} "
+            f"stall {row['stall_rate']:.2f} ep {row['ep_len_s']:.1f}s | "
             f"r/step {row['reward_per_step']:.4f} vl {row['v_loss']:.3f} kl {row['approx_kl']:.4f} "
             f"ev {row['explained_var']:.2f} sig {sigma[0]:.2f}/{sigma[1]:.2f}/{sigma[2]:.2f} | "
             f"{row['sps']} sps",

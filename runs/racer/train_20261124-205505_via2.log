@@ -1,0 +1,91 @@
+Run dir: /home/spalder/Work/lsy_drone_racing/runs/racer/20261124-205506
+190 iterations of 262144 samples
+/home/spalder/Work/lsy_drone_racing/.pixi/envs/tests/lib/python3.13/site-packages/jax/_src/core.py:692: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+Resumed from runs/racer/20261124-204346 (checkpoint of iteration 20)
+/home/spalder/Work/lsy_drone_racing/lsy_drone_racing/control/train_racer.py:166: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)
+  n0 = torch.as_tensor(np.asarray(data.n_gates_passed[:, 0]))
+/home/spalder/Work/lsy_drone_racing/.pixi/envs/tests/lib/python3.13/site-packages/jax/_src/core.py:692: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+it    1/190 step    0.3M | gates 0.43 (max 1) fin 0.37 lap 0.00 in nans crash 0.60 wrong 0.04 via 0.14 ep 0.6s | r/step 0.1717 vl 3.963 kl 0.0045 ev 0.85 sig 0.50/0.19/0.20 | 10530 sps
+it    2/190 step    0.5M | gates 0.58 (max 2) fin 0.16 lap 0.00 in nans crash 0.55 wrong 0.28 via 2.67 ep 1.3s | r/step 0.1717 vl 3.729 kl 0.0038 ev 0.88 sig 0.51/0.19/0.20 | 10604 sps
+it    3/190 step    0.8M | gates 1.17 (max 3) fin 0.07 lap 0.00 in nans crash 0.60 wrong 0.33 via 0.57 ep 2.5s | r/step 0.1046 vl 1.237 kl 0.0047 ev 0.95 sig 0.51/0.19/0.20 | 10744 sps
+it    4/190 step    1.0M | gates 1.12 (max 4) fin 0.10 lap 0.00 in nans crash 0.38 wrong 0.53 via 0.34 ep 3.2s | r/step 0.0595 vl 0.854 kl 0.0043 ev 0.94 sig 0.51/0.18/0.19 | 10972 sps
+it    5/190 step    1.3M | gates 1.19 (max 5) fin 0.07 lap 0.00 in nans crash 0.28 wrong 0.64 via 0.33 ep 4.1s | r/step 0.0044 vl 0.599 kl 0.0039 ev 0.94 sig 0.51/0.18/0.19 | 11846 sps
+it    6/190 step    1.6M | gates 1.84 (max 4) fin 0.06 lap 0.00 in nans crash 0.24 wrong 0.71 via 0.32 ep 5.3s | r/step -0.0038 vl 0.603 kl 0.0063 ev 0.94 sig 0.51/0.18/0.19 | 11299 sps
+it    7/190 step    1.8M | gates 1.46 (max 4) fin 0.15 lap 0.00 in nans crash 0.25 wrong 0.61 via 0.36 ep 5.3s | r/step -0.0046 vl 0.442 kl 0.0035 ev 0.95 sig 0.51/0.18/0.19 | 12361 sps
+it    8/190 step    2.1M | gates 1.42 (max 4) fin 0.16 lap 0.00 in nans crash 0.31 wrong 0.53 via 0.43 ep 5.9s | r/step -0.0066 vl 0.346 kl 0.0053 ev 0.95 sig 0.52/0.17/0.19 | 12087 sps
+it    9/190 step    2.4M | gates 1.22 (max 4) fin 0.06 lap 0.00 in nans crash 0.36 wrong 0.57 via 0.28 ep 6.7s | r/step -0.0131 vl 0.235 kl 0.0033 ev 0.96 sig 0.52/0.17/0.18 | 11828 sps
+it   10/190 step    2.6M | gates 1.38 (max 4) fin 0.08 lap 0.00 in nans crash 0.26 wrong 0.65 via 0.26 ep 8.3s | r/step -0.0148 vl 0.171 kl 0.0057 ev 0.96 sig 0.52/0.17/0.18 | 11883 sps
+it   11/190 step    2.9M | gates 1.46 (max 4) fin 0.04 lap 0.00 in nans crash 0.34 wrong 0.62 via 0.19 ep 9.9s | r/step -0.0175 vl 0.133 kl 0.0047 ev 0.95 sig 0.52/0.16/0.18 | 11262 sps
+it   12/190 step    3.1M | gates 1.54 (max 4) fin 0.09 lap 0.00 in nans crash 0.20 wrong 0.71 via 0.29 ep 10.2s | r/step -0.0180 vl 0.166 kl 0.0035 ev 0.95 sig 0.52/0.16/0.17 | 12840 sps
+it   13/190 step    3.4M | gates 1.48 (max 4) fin 0.06 lap 0.00 in nans crash 0.30 wrong 0.64 via 0.33 ep 10.7s | r/step -0.0163 vl 0.153 kl 0.0045 ev 0.96 sig 0.52/0.16/0.17 | 16352 sps
+it   14/190 step    3.7M | gates 1.41 (max 4) fin 0.08 lap 0.00 in nans crash 0.23 wrong 0.69 via 0.41 ep 13.0s | r/step -0.0156 vl 0.079 kl 0.0048 ev 0.97 sig 0.52/0.15/0.16 | 12568 sps
+it   15/190 step    3.9M | gates 1.05 (max 4) fin 0.04 lap 0.00 in nans crash 0.38 wrong 0.59 via 0.30 ep 11.4s | r/step -0.0183 vl 0.131 kl 0.0047 ev 0.95 sig 0.53/0.15/0.16 | 12278 sps
+it   16/190 step    4.2M | gates 1.42 (max 4) fin 0.13 lap 0.00 in nans crash 0.25 wrong 0.62 via 0.15 ep 12.1s | r/step -0.0182 vl 0.107 kl 0.0075 ev 0.96 sig 0.53/0.15/0.16 | 11271 sps
+it   17/190 step    4.5M | gates 1.35 (max 4) fin 0.09 lap 0.00 in nans crash 0.42 wrong 0.49 via 0.33 ep 10.8s | r/step -0.0176 vl 0.094 kl 0.0050 ev 0.96 sig 0.53/0.14/0.15 | 11899 sps
+it   18/190 step    4.7M | gates 1.38 (max 4) fin 0.00 lap 0.00 in nans crash 0.57 wrong 0.43 via 0.86 ep 13.4s | r/step -0.0169 vl 0.083 kl 0.0068 ev 0.96 sig 0.53/0.14/0.15 | 11956 sps
+it   19/190 step    5.0M | gates 0.56 (max 4) fin 0.06 lap 0.00 in nans crash 0.44 wrong 0.50 via 0.22 ep 15.0s | r/step -0.0172 vl 0.048 kl 0.0065 ev 0.97 sig 0.53/0.14/0.15 | 12349 sps
+it   20/190 step    5.2M | gates 0.61 (max 4) fin 0.06 lap 0.00 in nans crash 0.28 wrong 0.67 via 0.28 ep 16.6s | r/step -0.0172 vl 0.043 kl 0.0061 ev 0.97 sig 0.53/0.13/0.14 | 13297 sps
+it   21/190 step    5.5M | gates 1.06 (max 4) fin 0.06 lap 0.00 in nans crash 0.18 wrong 0.76 via 0.21 ep 19.9s | r/step -0.0172 vl 0.070 kl 0.0031 ev 0.96 sig 0.53/0.13/0.14 | 13082 sps
+it   22/190 step    5.8M | gates 0.75 (max 4) fin 0.08 lap 0.00 in nans crash 0.21 wrong 0.71 via 0.17 ep 17.2s | r/step -0.0167 vl 0.061 kl 0.0086 ev 0.96 sig 0.54/0.13/0.14 | 11923 sps
+it   23/190 step    6.0M | gates 0.89 (max 4) fin 0.06 lap 0.00 in nans crash 0.11 wrong 0.83 via 0.28 ep 21.2s | r/step -0.0157 vl 0.032 kl 0.0039 ev 0.97 sig 0.54/0.12/0.13 | 11801 sps
+it   24/190 step    6.3M | gates 1.91 (max 4) fin 0.02 lap 0.00 in nans crash 0.09 wrong 0.24 via 0.09 ep 26.8s | r/step 0.0195 vl 1.279 kl 0.0055 ev 0.95 sig 0.55/0.12/0.13 | 10968 sps
+it   25/190 step    6.6M | gates 1.04 (max 4) fin 0.09 lap 0.00 in nans crash 0.42 wrong 0.17 via 0.86 ep 13.5s | r/step 0.1241 vl 2.522 kl 0.0051 ev 0.95 sig 0.55/0.12/0.13 | 10702 sps
+it   26/190 step    6.8M | gates 1.35 (max 4) fin 0.07 lap 0.00 in nans crash 0.28 wrong 0.28 via 0.90 ep 17.4s | r/step 0.1018 vl 0.916 kl 0.0045 ev 0.98 sig 0.55/0.12/0.13 | 12145 sps
+it   27/190 step    7.1M | gates 1.69 (max 4) fin 0.04 lap 0.00 in nans crash 0.20 wrong 0.28 via 0.43 ep 20.9s | r/step 0.0647 vl 0.383 kl 0.0053 ev 0.98 sig 0.55/0.12/0.13 | 14115 sps
+it   28/190 step    7.3M | gates 1.84 (max 4) fin 0.03 lap 0.00 in nans crash 0.16 wrong 0.26 via 0.37 ep 22.8s | r/step 0.0231 vl 0.270 kl 0.0033 ev 0.98 sig 0.56/0.12/0.13 | 13500 sps
+it   29/190 step    7.6M | gates 1.53 (max 4) fin 0.04 lap 0.00 in nans crash 0.20 wrong 0.22 via 0.36 ep 21.5s | r/step 0.0105 vl 0.271 kl 0.0029 ev 0.98 sig 0.56/0.12/0.13 | 14157 sps
+it   30/190 step    7.9M | gates 1.67 (max 4) fin 0.01 lap 0.00 in nans crash 0.13 wrong 0.29 via 0.25 ep 23.1s | r/step 0.0060 vl 0.164 kl 0.0061 ev 0.98 sig 0.57/0.12/0.13 | 10458 sps
+it   31/190 step    8.1M | gates 1.47 (max 4) fin 0.04 lap 0.00 in nans crash 0.20 wrong 0.19 via 0.36 ep 21.9s | r/step 0.0020 vl 0.169 kl 0.0026 ev 0.98 sig 0.57/0.12/0.13 | 10976 sps
+it   32/190 step    8.4M | gates 1.53 (max 4) fin 0.02 lap 0.00 in nans crash 0.16 wrong 0.32 via 0.45 ep 21.7s | r/step -0.0008 vl 0.148 kl 0.0023 ev 0.98 sig 0.58/0.12/0.13 | 10815 sps
+it   33/190 step    8.7M | gates 1.49 (max 4) fin 0.03 lap 0.00 in nans crash 0.17 wrong 0.30 via 0.35 ep 22.3s | r/step -0.0048 vl 0.119 kl 0.0031 ev 0.98 sig 0.58/0.12/0.13 | 10866 sps
+it   34/190 step    8.9M | gates 2.00 (max 4) fin 0.01 lap 0.00 in nans crash 0.12 wrong 0.35 via 0.28 ep 22.7s | r/step -0.0067 vl 0.071 kl 0.0050 ev 0.99 sig 0.58/0.12/0.12 | 13618 sps
+it   35/190 step    9.2M | gates 1.68 (max 4) fin 0.00 lap 0.00 in nans crash 0.23 wrong 0.22 via 0.24 ep 22.5s | r/step -0.0085 vl 0.114 kl 0.0045 ev 0.97 sig 0.59/0.11/0.12 | 13857 sps
+it   36/190 step    9.4M | gates 1.88 (max 4) fin 0.03 lap 0.00 in nans crash 0.13 wrong 0.20 via 0.37 ep 24.0s | r/step -0.0067 vl 0.103 kl 0.0057 ev 0.98 sig 0.59/0.11/0.12 | 14160 sps
+it   37/190 step    9.7M | gates 1.51 (max 4) fin 0.00 lap 0.00 in nans crash 0.25 wrong 0.34 via 0.60 ep 20.9s | r/step -0.0068 vl 0.091 kl 0.0076 ev 0.98 sig 0.60/0.11/0.12 | 14156 sps
+it   38/190 step   10.0M | gates 1.32 (max 4) fin 0.04 lap 0.00 in nans crash 0.15 wrong 0.26 via 0.40 ep 23.2s | r/step -0.0081 vl 0.040 kl 0.0068 ev 0.99 sig 0.60/0.11/0.12 | 14156 sps
+it   39/190 step   10.2M | gates 1.31 (max 4) fin 0.02 lap 0.00 in nans crash 0.29 wrong 0.39 via 0.29 ep 20.2s | r/step -0.0097 vl 0.072 kl 0.0042 ev 0.98 sig 0.61/0.11/0.12 | 12784 sps
+it   40/190 step   10.5M | gates 2.15 (max 4) fin 0.02 lap 0.00 in nans crash 0.15 wrong 0.31 via 0.24 ep 23.7s | r/step -0.0102 vl 0.065 kl 0.0048 ev 0.98 sig 0.62/0.11/0.12 | 10332 sps
+it   41/190 step   10.7M | gates 1.35 (max 4) fin 0.12 lap 0.00 in nans crash 0.12 wrong 0.35 via 0.38 ep 21.0s | r/step -0.0093 vl 0.038 kl 0.0056 ev 0.99 sig 0.62/0.10/0.11 | 9621 sps
+it   42/190 step   11.0M | gates 1.52 (max 4) fin 0.19 lap 0.00 in nans crash 0.24 wrong 0.19 via 0.43 ep 17.0s | r/step -0.0107 vl 0.030 kl 0.0066 ev 0.99 sig 0.62/0.10/0.11 | 7149 sps
+it   43/190 step   11.3M | gates 1.29 (max 4) fin 0.00 lap 0.00 in nans crash 0.25 wrong 0.42 via 0.38 ep 21.2s | r/step -0.0113 vl 0.026 kl 0.0045 ev 0.98 sig 0.63/0.10/0.11 | 7066 sps
+it   44/190 step   11.5M | gates 1.81 (max 4) fin 0.00 lap 0.00 in nans crash 0.14 wrong 0.47 via 0.12 ep 23.6s | r/step -0.0121 vl 0.055 kl 0.0045 ev 0.97 sig 0.63/0.10/0.11 | 8108 sps
+it   45/190 step   11.8M | gates 1.81 (max 4) fin 0.07 lap 0.00 in nans crash 0.21 wrong 0.29 via 0.31 ep 22.4s | r/step -0.0109 vl 0.036 kl 0.0033 ev 0.98 sig 0.64/0.10/0.11 | 6862 sps
+it   46/190 step   12.1M | gates 1.45 (max 4) fin 0.10 lap 0.00 in nans crash 0.35 wrong 0.26 via 0.35 ep 16.0s | r/step -0.0101 vl 0.064 kl 0.0034 ev 0.97 sig 0.65/0.10/0.10 | 6842 sps
+it   47/190 step   12.3M | gates 1.94 (max 4) fin 0.00 lap 0.00 in nans crash 0.01 wrong 0.26 via 0.11 ep 29.8s | r/step -0.0107 vl 0.040 kl 0.0066 ev 0.99 sig 0.65/0.10/0.10 | 7443 sps
+it   48/190 step   12.6M | gates 1.47 (max 4) fin 0.04 lap 0.00 in nans crash 0.26 wrong 0.18 via 0.16 ep 20.6s | r/step 0.0782 vl 1.990 kl 0.0039 ev 0.96 sig 0.66/0.10/0.10 | 5977 sps
+it   49/190 step   12.8M | gates 1.38 (max 4) fin 0.08 lap 0.00 in nans crash 0.36 wrong 0.15 via 1.10 ep 16.7s | r/step 0.1211 vl 0.770 kl 0.0036 ev 0.98 sig 0.67/0.10/0.10 | 5648 sps
+it   50/190 step   13.1M | gates 1.62 (max 4) fin 0.04 lap 0.00 in nans crash 0.32 wrong 0.19 via 0.51 ep 18.7s | r/step 0.0820 vl 0.406 kl 0.0074 ev 0.99 sig 0.67/0.10/0.10 | 6961 sps
+it   51/190 step   13.4M | gates 1.78 (max 4) fin 0.02 lap 0.00 in nans crash 0.21 wrong 0.25 via 0.38 ep 22.0s | r/step 0.0493 vl 0.315 kl 0.0039 ev 0.98 sig 0.67/0.10/0.10 | 8142 sps
+it   52/190 step   13.6M | gates 1.69 (max 4) fin 0.02 lap 0.00 in nans crash 0.20 wrong 0.24 via 0.35 ep 22.7s | r/step 0.0214 vl 0.202 kl 0.0069 ev 0.99 sig 0.68/0.10/0.10 | 9401 sps
+it   53/190 step   13.9M | gates 1.58 (max 4) fin 0.03 lap 0.00 in nans crash 0.12 wrong 0.34 via 0.42 ep 24.6s | r/step 0.0148 vl 0.158 kl 0.0041 ev 0.99 sig 0.68/0.10/0.10 | 8734 sps
+it   54/190 step   14.2M | gates 1.56 (max 4) fin 0.04 lap 0.00 in nans crash 0.14 wrong 0.28 via 0.33 ep 22.2s | r/step 0.0113 vl 0.180 kl 0.0043 ev 0.98 sig 0.69/0.09/0.10 | 9648 sps
+it   55/190 step   14.4M | gates 1.50 (max 4) fin 0.08 lap 0.00 in nans crash 0.15 wrong 0.36 via 0.36 ep 20.6s | r/step 0.0074 vl 0.093 kl 0.0033 ev 0.99 sig 0.69/0.09/0.10 | 9497 sps
+it   56/190 step   14.7M | gates 1.24 (max 4) fin 0.03 lap 0.00 in nans crash 0.16 wrong 0.26 via 0.37 ep 21.7s | r/step 0.0030 vl 0.137 kl 0.0044 ev 0.99 sig 0.70/0.09/0.10 | 10622 sps
+it   57/190 step   14.9M | gates 1.34 (max 4) fin 0.03 lap 0.00 in nans crash 0.19 wrong 0.37 via 0.40 ep 20.3s | r/step -0.0004 vl 0.151 kl 0.0079 ev 0.98 sig 0.71/0.09/0.10 | 9342 sps
+it   58/190 step   15.2M | gates 1.73 (max 4) fin 0.04 lap 0.00 in nans crash 0.19 wrong 0.30 via 0.28 ep 21.1s | r/step 0.0006 vl 0.095 kl 0.0086 ev 0.99 sig 0.71/0.09/0.10 | 9102 sps
+it   59/190 step   15.5M | gates 1.85 (max 4) fin 0.05 lap 0.00 in nans crash 0.17 wrong 0.26 via 0.27 ep 22.4s | r/step -0.0008 vl 0.121 kl 0.0028 ev 0.98 sig 0.71/0.09/0.10 | 9798 sps
+it   60/190 step   15.7M | gates 1.92 (max 4) fin 0.01 lap 0.00 in nans crash 0.22 wrong 0.32 via 0.41 ep 22.0s | r/step -0.0024 vl 0.079 kl 0.0034 ev 0.99 sig 0.72/0.09/0.10 | 10713 sps
+it   61/190 step   16.0M | gates 1.19 (max 4) fin 0.06 lap 0.00 in nans crash 0.25 wrong 0.34 via 0.45 ep 18.8s | r/step -0.0036 vl 0.102 kl 0.0089 ev 0.98 sig 0.72/0.09/0.10 | 10572 sps
+it   62/190 step   16.3M | gates 1.57 (max 4) fin 0.08 lap 0.00 in nans crash 0.21 wrong 0.21 via 0.28 ep 19.5s | r/step -0.0047 vl 0.075 kl 0.0035 ev 0.99 sig 0.73/0.09/0.10 | 10877 sps
+it   63/190 step   16.5M | gates 1.73 (max 4) fin 0.05 lap 0.00 in nans crash 0.13 wrong 0.38 via 0.37 ep 24.2s | r/step -0.0060 vl 0.091 kl 0.0030 ev 0.98 sig 0.73/0.09/0.10 | 10840 sps
+it   64/190 step   16.8M | gates 1.67 (max 4) fin 0.08 lap 0.00 in nans crash 0.17 wrong 0.44 via 0.37 ep 19.7s | r/step -0.0060 vl 0.090 kl 0.0037 ev 0.98 sig 0.73/0.09/0.10 | 10206 sps
+it   65/190 step   17.0M | gates 1.65 (max 4) fin 0.03 lap 0.00 in nans crash 0.32 wrong 0.22 via 0.41 ep 17.9s | r/step -0.0065 vl 0.053 kl 0.0040 ev 0.99 sig 0.74/0.09/0.09 | 10162 sps
+it   66/190 step   17.3M | gates 1.17 (max 4) fin 0.06 lap 0.00 in nans crash 0.31 wrong 0.46 via 0.25 ep 17.7s | r/step -0.0084 vl 0.119 kl 0.0061 ev 0.96 sig 0.75/0.09/0.09 | 9730 sps
+it   67/190 step   17.6M | gates 1.50 (max 4) fin 0.09 lap 0.00 in nans crash 0.09 wrong 0.38 via 0.38 ep 23.2s | r/step -0.0079 vl 0.025 kl 0.0045 ev 0.99 sig 0.75/0.09/0.09 | 9147 sps
+it   68/190 step   17.8M | gates 1.73 (max 4) fin 0.02 lap 0.00 in nans crash 0.16 wrong 0.31 via 0.27 ep 23.6s | r/step -0.0078 vl 0.074 kl 0.0041 ev 0.98 sig 0.75/0.09/0.09 | 8986 sps
+it   69/190 step   18.1M | gates 1.24 (max 4) fin 0.04 lap 0.00 in nans crash 0.27 wrong 0.41 via 0.22 ep 20.5s | r/step -0.0080 vl 0.058 kl 0.0030 ev 0.98 sig 0.76/0.09/0.09 | 9492 sps
+it   70/190 step   18.4M | gates 1.55 (max 4) fin 0.04 lap 0.00 in nans crash 0.16 wrong 0.37 via 0.33 ep 23.2s | r/step -0.0070 vl 0.041 kl 0.0033 ev 0.98 sig 0.77/0.08/0.09 | 9226 sps
+it   71/190 step   18.6M | gates 1.83 (max 4) fin 0.01 lap 0.00 in nans crash 0.07 wrong 0.27 via 0.11 ep 27.5s | r/step 0.0173 vl 0.909 kl 0.0050 ev 0.98 sig 0.78/0.08/0.09 | 9677 sps
+it   72/190 step   18.9M | gates 1.49 (max 4) fin 0.05 lap 0.00 in nans crash 0.26 wrong 0.20 via 0.58 ep 20.4s | r/step 0.1047 vl 1.574 kl 0.0044 ev 0.98 sig 0.78/0.09/0.09 | 6285 sps
+it   73/190 step   19.1M | gates 1.60 (max 4) fin 0.06 lap 0.00 in nans crash 0.21 wrong 0.24 via 0.77 ep 21.8s | r/step 0.0973 vl 0.739 kl 0.0051 ev 0.99 sig 0.79/0.09/0.09 | 6323 sps
+it   74/190 step   19.4M | gates 1.62 (max 4) fin 0.06 lap 0.00 in nans crash 0.23 wrong 0.24 via 0.42 ep 21.1s | r/step 0.0705 vl 0.427 kl 0.0040 ev 0.99 sig 0.79/0.09/0.09 | 8992 sps
+it   75/190 step   19.7M | gates 1.78 (max 4) fin 0.04 lap 0.00 in nans crash 0.20 wrong 0.24 via 0.41 ep 22.7s | r/step 0.0341 vl 0.367 kl 0.0039 ev 0.98 sig 0.79/0.09/0.09 | 9149 sps
+it   76/190 step   19.9M | gates 1.69 (max 4) fin 0.05 lap 0.00 in nans crash 0.20 wrong 0.27 via 0.39 ep 21.8s | r/step 0.0225 vl 0.223 kl 0.0038 ev 0.99 sig 0.80/0.09/0.09 | 10101 sps
+it   77/190 step   20.2M | gates 1.62 (max 4) fin 0.04 lap 0.00 in nans crash 0.21 wrong 0.24 via 0.40 ep 22.7s | r/step 0.0152 vl 0.316 kl 0.0024 ev 0.98 sig 0.80/0.09/0.09 | 9999 sps
+it   78/190 step   20.4M | gates 1.61 (max 4) fin 0.04 lap 0.00 in nans crash 0.18 wrong 0.23 via 0.50 ep 23.8s | r/step 0.0120 vl 0.246 kl 0.0050 ev 0.98 sig 0.80/0.09/0.09 | 9738 sps
+it   79/190 step   20.7M | gates 1.87 (max 4) fin 0.04 lap 0.00 in nans crash 0.18 wrong 0.22 via 0.42 ep 22.8s | r/step 0.0072 vl 0.230 kl 0.0032 ev 0.98 sig 0.81/0.09/0.09 | 9130 sps
+it   80/190 step   21.0M | gates 1.88 (max 4) fin 0.01 lap 0.00 in nans crash 0.16 wrong 0.33 via 0.34 ep 24.7s | r/step 0.0023 vl 0.158 kl 0.0055 ev 0.98 sig 0.82/0.09/0.09 | 9980 sps
+it   81/190 step   21.2M | gates 1.83 (max 4) fin 0.06 lap 0.00 in nans crash 0.14 wrong 0.25 via 0.40 ep 23.7s | r/step 0.0005 vl 0.066 kl 0.0031 ev 0.99 sig 0.82/0.09/0.09 | 9099 sps
+it   82/190 step   21.5M | gates 1.69 (max 4) fin 0.01 lap 0.00 in nans crash 0.13 wrong 0.27 via 0.31 ep 24.4s | r/step 0.0001 vl 0.096 kl 0.0031 ev 0.99 sig 0.83/0.09/0.09 | 9644 sps

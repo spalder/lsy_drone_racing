@@ -1,0 +1,32 @@
+Run dir: /home/spalder/Work/lsy_drone_racing/runs/racer/20261124-185709
+190 iterations of 262144 samples
+/home/spalder/Work/lsy_drone_racing/.pixi/envs/tests/lib/python3.13/site-packages/jax/_src/core.py:692: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+/home/spalder/Work/lsy_drone_racing/lsy_drone_racing/control/train_racer.py:149: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)
+  n0 = torch.as_tensor(np.asarray(data.n_gates_passed[:, 0]))
+/home/spalder/Work/lsy_drone_racing/.pixi/envs/tests/lib/python3.13/site-packages/jax/_src/core.py:692: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+it    1/190 step    0.3M | gates 0.01 (max 1) fin 0.00 lap 0.00 in nans crash 1.00 stall 0.00 ep 0.8s | r/step -0.0860 vl 2.531 kl 0.0035 ev 0.05 sig 0.37/0.22/0.22 | 11008 sps
+it    2/190 step    0.5M | gates 0.00 (max 1) fin 0.00 lap 0.00 in nans crash 1.00 stall 0.00 ep 1.6s | r/step -0.1322 vl 3.476 kl 0.0031 ev 0.12 sig 0.37/0.22/0.22 | 12350 sps
+it    3/190 step    0.8M | gates 0.01 (max 1) fin 0.00 lap 0.00 in nans crash 1.00 stall 0.00 ep 1.9s | r/step -0.1144 vl 2.911 kl 0.0044 ev 0.11 sig 0.38/0.22/0.22 | 12775 sps
+it    4/190 step    1.0M | gates 0.01 (max 1) fin 0.00 lap 0.00 in nans crash 0.72 stall 0.28 ep 2.9s | r/step -0.1207 vl 3.300 kl 0.0038 ev 0.05 sig 0.38/0.23/0.23 | 11161 sps
+it    5/190 step    1.3M | gates 0.01 (max 1) fin 0.00 lap 0.00 in nans crash 0.83 stall 0.17 ep 2.4s | r/step -0.0917 vl 2.180 kl 0.0045 ev 0.10 sig 0.38/0.23/0.23 | 10837 sps
+it    6/190 step    1.6M | gates 0.01 (max 1) fin 0.00 lap 0.00 in nans crash 0.72 stall 0.28 ep 2.8s | r/step -0.0923 vl 2.175 kl 0.0032 ev 0.09 sig 0.38/0.23/0.23 | 10623 sps
+it    7/190 step    1.8M | gates 0.02 (max 1) fin 0.00 lap 0.00 in nans crash 0.72 stall 0.27 ep 2.8s | r/step -0.0843 vl 1.902 kl 0.0040 ev 0.09 sig 0.39/0.23/0.23 | 11451 sps
+it    8/190 step    2.1M | gates 0.02 (max 1) fin 0.01 lap 0.00 in nans crash 0.63 stall 0.36 ep 3.1s | r/step -0.0825 vl 1.978 kl 0.0035 ev 0.07 sig 0.39/0.23/0.23 | 10848 sps
+it    9/190 step    2.4M | gates 0.03 (max 1) fin 0.01 lap 0.00 in nans crash 0.69 stall 0.29 ep 2.9s | r/step -0.0777 vl 1.869 kl 0.0038 ev 0.09 sig 0.39/0.23/0.23 | 10724 sps
+it   10/190 step    2.6M | gates 0.03 (max 2) fin 0.01 lap 0.00 in nans crash 0.68 stall 0.31 ep 3.0s | r/step -0.0783 vl 1.914 kl 0.0033 ev 0.10 sig 0.39/0.23/0.23 | 10942 sps
+it   11/190 step    2.9M | gates 0.03 (max 2) fin 0.01 lap 0.00 in nans crash 0.71 stall 0.28 ep 2.8s | r/step -0.0788 vl 1.777 kl 0.0030 ev 0.13 sig 0.39/0.23/0.23 | 11128 sps
+it   12/190 step    3.1M | gates 0.04 (max 1) fin 0.01 lap 0.00 in nans crash 0.72 stall 0.27 ep 2.8s | r/step -0.0730 vl 1.723 kl 0.0032 ev 0.15 sig 0.39/0.23/0.23 | 10572 sps
+it   13/190 step    3.4M | gates 0.04 (max 1) fin 0.02 lap 0.00 in nans crash 0.71 stall 0.27 ep 2.8s | r/step -0.0767 vl 1.768 kl 0.0036 ev 0.18 sig 0.39/0.23/0.22 | 13624 sps
+it   14/190 step    3.7M | gates 0.05 (max 2) fin 0.01 lap 0.00 in nans crash 0.73 stall 0.26 ep 2.7s | r/step -0.0760 vl 1.761 kl 0.0033 ev 0.21 sig 0.39/0.23/0.23 | 13526 sps
+it   15/190 step    3.9M | gates 0.05 (max 2) fin 0.02 lap 0.00 in nans crash 0.74 stall 0.25 ep 2.7s | r/step -0.0745 vl 1.684 kl 0.0034 ev 0.22 sig 0.40/0.23/0.23 | 13583 sps
+it   16/190 step    4.2M | gates 0.05 (max 1) fin 0.02 lap 0.00 in nans crash 0.72 stall 0.26 ep 2.7s | r/step -0.0749 vl 1.633 kl 0.0032 ev 0.24 sig 0.40/0.23/0.23 | 10634 sps
+it   17/190 step    4.5M | gates 0.05 (max 2) fin 0.02 lap 0.00 in nans crash 0.69 stall 0.29 ep 2.8s | r/step -0.0717 vl 1.576 kl 0.0030 ev 0.28 sig 0.41/0.23/0.23 | 11033 sps
+it   18/190 step    4.7M | gates 0.05 (max 1) fin 0.02 lap 0.00 in nans crash 0.68 stall 0.30 ep 2.8s | r/step -0.0687 vl 1.468 kl 0.0036 ev 0.30 sig 0.41/0.23/0.23 | 10471 sps
+it   19/190 step    5.0M | gates 0.06 (max 2) fin 0.03 lap 0.00 in nans crash 0.61 stall 0.35 ep 3.0s | r/step -0.0658 vl 1.425 kl 0.0031 ev 0.31 sig 0.41/0.23/0.23 | 11141 sps
+it   20/190 step    5.2M | gates 0.06 (max 1) fin 0.04 lap 0.00 in nans crash 0.57 stall 0.39 ep 3.1s | r/step -0.0673 vl 1.501 kl 0.0036 ev 0.35 sig 0.41/0.23/0.23 | 10943 sps
+it   21/190 step    5.5M | gates 0.05 (max 2) fin 0.03 lap 0.00 in nans crash 0.55 stall 0.41 ep 3.2s | r/step -0.0621 vl 1.319 kl 0.0042 ev 0.39 sig 0.42/0.23/0.23 | 11781 sps
+it   22/190 step    5.8M | gates 0.06 (max 2) fin 0.03 lap 0.00 in nans crash 0.54 stall 0.43 ep 3.2s | r/step -0.0629 vl 1.281 kl 0.0042 ev 0.42 sig 0.42/0.23/0.23 | 10951 sps
+it   23/190 step    6.0M | gates 0.08 (max 2) fin 0.06 lap 0.00 in nans crash 0.53 stall 0.42 ep 3.2s | r/step -0.0576 vl 1.414 kl 0.0041 ev 0.42 sig 0.42/0.23/0.23 | 10220 sps
+it   24/190 step    6.3M | gates 0.08 (max 2) fin 0.06 lap 0.00 in nans crash 0.48 stall 0.46 ep 3.3s | r/step -0.0619 vl 1.462 kl 0.0034 ev 0.45 sig 0.43/0.23/0.23 | 12028 sps

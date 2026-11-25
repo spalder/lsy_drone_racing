@@ -20,9 +20,10 @@ input vector: [[v, R, g_t, t_f, g_n, n_f, poles]]
 output vector: [[c, roll, pitch]]
 
 action mapping (network output a in [-1, 1]^3, a = 0 is near hover):
-c = 10.19 + 8.6 * a_c, linear, slightly past the range [1.97, 18.4] m/s^2 (env thrust 0.085-0.8 N / 0.0434 kg)
-  the env clips the ends, so max thrust is reached at a_c ~ 0.95 (tanh never outputs exactly 1)
-  a_c = 0 gives 10.19, 4% above hover (9.81) = holding altitude at ~16 deg tilt
+c = 9.81 + 9.0 * a_c, linear, past the range [1.97, 18.4] m/s^2 (env thrust 0.085-0.8 N / 0.0434 kg)
+  a_c = 0 is hover at the nominal mass
+  the ends are clipped: max thrust at a_c ~ 0.96 (tanh never outputs exactly 1), min thrust at a_c ~ -0.87
+  checkpoints store c_offset / c_scale; runs before this change used 10.19 + 8.6 * a_c
 thrust [N] = c * 0.0434 (nominal mass)
 roll, pitch = pi/2 * a (full env range, needed to lead setpoints)
 yaw = 0 (fixed)

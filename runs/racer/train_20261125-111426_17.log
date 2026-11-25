@@ -1,0 +1,84 @@
+Run dir: /home/spalder/Work/lsy_drone_racing/runs/racer/20261125-111428
+190 iterations of 262144 samples
+/home/spalder/Work/lsy_drone_racing/.pixi/envs/tests/lib/python3.13/site-packages/jax/_src/core.py:692: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+Resumed from runs/racer/20261125-073432 (checkpoint of iteration 190)
+/home/spalder/Work/lsy_drone_racing/lsy_drone_racing/control/train_racer.py:173: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /pytorch/torch/csrc/utils/tensor_numpy.cpp:203.)
+  n0 = torch.as_tensor(np.asarray(data.n_gates_passed[:, 0]))
+/home/spalder/Work/lsy_drone_racing/.pixi/envs/tests/lib/python3.13/site-packages/jax/_src/core.py:692: RuntimeWarning: overflow encountered in cast
+  c_arg = dtypes.canonicalize_value(arg)
+it    1/190 step    0.3M | gates 0.60 (max 2) fin 0.58 lap 0.00 in nans crash 0.41 wall 0.09 stall 0.00 ep 0.7s | r/step 0.1431 vl 9.977 kl 0.0070 ev 0.66 sig 0.80/0.17/0.17 | 10538 sps
+it    2/190 step    0.5M | gates 1.47 (max 3) fin 0.77 lap 0.00 in nans crash 0.22 wall 0.05 stall 0.00 ep 1.6s | r/step 0.2657 vl 7.342 kl 0.0047 ev 0.63 sig 0.80/0.17/0.17 | 11172 sps
+it    3/190 step    0.8M | gates 2.18 (max 4) fin 0.80 lap 0.00 in nans crash 0.20 wall 0.05 stall 0.00 ep 2.4s | r/step 0.2562 vl 6.847 kl 0.0060 ev 0.58 sig 0.80/0.17/0.17 | 10870 sps
+it    4/190 step    1.0M | gates 2.85 (max 5) fin 0.83 lap 0.03 in 5.08s crash 0.16 wall 0.05 stall 0.00 ep 3.2s | r/step 0.2681 vl 5.974 kl 0.0055 ev 0.62 sig 0.80/0.17/0.17 | 11530 sps
+it    5/190 step    1.3M | gates 3.62 (max 5) fin 0.87 lap 0.93 in 5.80s crash 0.13 wall 0.03 stall 0.00 ep 4.2s | r/step 0.3083 vl 8.191 kl 0.0062 ev 0.60 sig 0.80/0.17/0.17 | 11783 sps
+it    6/190 step    1.6M | gates 2.74 (max 5) fin 0.83 lap 0.85 in 6.01s crash 0.16 wall 0.04 stall 0.00 ep 3.1s | r/step 0.2780 vl 6.972 kl 0.0045 ev 0.62 sig 0.80/0.17/0.17 | 10434 sps
+it    7/190 step    1.8M | gates 2.75 (max 5) fin 0.82 lap 0.83 in 5.86s crash 0.18 wall 0.05 stall 0.00 ep 3.1s | r/step 0.2734 vl 7.803 kl 0.0049 ev 0.59 sig 0.80/0.17/0.17 | 10419 sps
+it    8/190 step    2.1M | gates 2.92 (max 5) fin 0.84 lap 0.83 in 5.82s crash 0.16 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2753 vl 7.616 kl 0.0041 ev 0.60 sig 0.80/0.17/0.17 | 10320 sps
+it    9/190 step    2.4M | gates 3.08 (max 5) fin 0.83 lap 0.82 in 5.78s crash 0.17 wall 0.03 stall 0.00 ep 3.5s | r/step 0.2804 vl 7.952 kl 0.0103 ev 0.59 sig 0.80/0.17/0.17 | 10347 sps
+it   10/190 step    2.6M | gates 2.97 (max 5) fin 0.81 lap 0.80 in 5.83s crash 0.18 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2719 vl 9.234 kl 0.0090 ev 0.56 sig 0.80/0.18/0.17 | 9852 sps
+it   11/190 step    2.9M | gates 2.81 (max 5) fin 0.81 lap 0.79 in 5.84s crash 0.19 wall 0.04 stall 0.00 ep 3.2s | r/step 0.2665 vl 8.451 kl 0.0051 ev 0.56 sig 0.80/0.18/0.17 | 12688 sps
+it   12/190 step    3.1M | gates 2.89 (max 5) fin 0.83 lap 0.80 in 5.83s crash 0.17 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2732 vl 7.608 kl 0.0060 ev 0.58 sig 0.80/0.18/0.17 | 13390 sps
+it   13/190 step    3.4M | gates 2.99 (max 5) fin 0.81 lap 0.80 in 5.86s crash 0.18 wall 0.05 stall 0.00 ep 3.4s | r/step 0.2720 vl 8.135 kl 0.0044 ev 0.59 sig 0.80/0.18/0.17 | 12783 sps
+it   14/190 step    3.7M | gates 2.99 (max 5) fin 0.85 lap 0.85 in 5.87s crash 0.15 wall 0.03 stall 0.00 ep 3.4s | r/step 0.2819 vl 7.317 kl 0.0058 ev 0.60 sig 0.79/0.18/0.17 | 12910 sps
+it   15/190 step    3.9M | gates 2.99 (max 5) fin 0.83 lap 0.87 in 5.90s crash 0.17 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2748 vl 7.559 kl 0.0059 ev 0.61 sig 0.79/0.18/0.17 | 13141 sps
+it   16/190 step    4.2M | gates 2.93 (max 5) fin 0.83 lap 0.85 in 5.87s crash 0.17 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2782 vl 7.737 kl 0.0045 ev 0.58 sig 0.79/0.18/0.17 | 11847 sps
+it   17/190 step    4.5M | gates 2.94 (max 5) fin 0.83 lap 0.84 in 5.90s crash 0.17 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2759 vl 7.869 kl 0.0061 ev 0.59 sig 0.79/0.18/0.17 | 10657 sps
+it   18/190 step    4.7M | gates 3.02 (max 5) fin 0.83 lap 0.86 in 5.85s crash 0.16 wall 0.03 stall 0.00 ep 3.5s | r/step 0.2768 vl 7.561 kl 0.0045 ev 0.61 sig 0.80/0.18/0.17 | 10157 sps
+it   19/190 step    5.0M | gates 2.91 (max 5) fin 0.83 lap 0.78 in 5.83s crash 0.17 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2773 vl 7.704 kl 0.0052 ev 0.58 sig 0.80/0.18/0.17 | 13320 sps
+it   20/190 step    5.2M | gates 2.94 (max 5) fin 0.82 lap 0.83 in 5.85s crash 0.17 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2769 vl 7.388 kl 0.0062 ev 0.60 sig 0.80/0.18/0.17 | 10326 sps
+it   21/190 step    5.5M | gates 2.97 (max 5) fin 0.84 lap 0.85 in 5.81s crash 0.16 wall 0.03 stall 0.00 ep 3.4s | r/step 0.2802 vl 7.380 kl 0.0066 ev 0.59 sig 0.80/0.18/0.17 | 10384 sps
+it   22/190 step    5.8M | gates 2.92 (max 5) fin 0.82 lap 0.80 in 5.85s crash 0.18 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2760 vl 8.602 kl 0.0109 ev 0.56 sig 0.79/0.18/0.17 | 10146 sps
+it   23/190 step    6.0M | gates 2.88 (max 5) fin 0.83 lap 0.85 in 5.81s crash 0.17 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2735 vl 7.552 kl 0.0050 ev 0.59 sig 0.79/0.18/0.17 | 10151 sps
+it   24/190 step    6.3M | gates 2.97 (max 5) fin 0.85 lap 0.82 in 5.85s crash 0.15 wall 0.03 stall 0.00 ep 3.4s | r/step 0.2806 vl 6.725 kl 0.0049 ev 0.60 sig 0.79/0.18/0.17 | 7990 sps
+it   25/190 step    6.6M | gates 2.89 (max 5) fin 0.82 lap 0.83 in 5.92s crash 0.18 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2711 vl 7.971 kl 0.0043 ev 0.60 sig 0.79/0.18/0.17 | 10603 sps
+it   26/190 step    6.8M | gates 3.01 (max 5) fin 0.84 lap 0.82 in 5.88s crash 0.16 wall 0.03 stall 0.00 ep 3.4s | r/step 0.2779 vl 7.734 kl 0.0045 ev 0.59 sig 0.79/0.18/0.17 | 10689 sps
+it   27/190 step    7.1M | gates 3.00 (max 5) fin 0.82 lap 0.85 in 5.94s crash 0.18 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2743 vl 7.461 kl 0.0060 ev 0.58 sig 0.79/0.18/0.17 | 11099 sps
+it   28/190 step    7.3M | gates 2.89 (max 5) fin 0.82 lap 0.83 in 5.91s crash 0.17 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2719 vl 7.981 kl 0.0044 ev 0.60 sig 0.79/0.18/0.17 | 10725 sps
+it   29/190 step    7.6M | gates 2.97 (max 5) fin 0.86 lap 0.85 in 5.92s crash 0.14 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2794 vl 6.593 kl 0.0075 ev 0.61 sig 0.79/0.18/0.17 | 10026 sps
+it   30/190 step    7.9M | gates 2.94 (max 5) fin 0.84 lap 0.85 in 5.88s crash 0.17 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2756 vl 7.844 kl 0.0044 ev 0.58 sig 0.79/0.18/0.17 | 10955 sps
+it   31/190 step    8.1M | gates 2.98 (max 5) fin 0.83 lap 0.84 in 5.94s crash 0.16 wall 0.05 stall 0.00 ep 3.4s | r/step 0.2763 vl 6.569 kl 0.0059 ev 0.60 sig 0.80/0.18/0.17 | 11710 sps
+it   32/190 step    8.4M | gates 2.91 (max 5) fin 0.82 lap 0.81 in 5.89s crash 0.18 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2752 vl 7.778 kl 0.0048 ev 0.56 sig 0.80/0.18/0.17 | 10531 sps
+it   33/190 step    8.7M | gates 2.88 (max 5) fin 0.84 lap 0.85 in 5.89s crash 0.16 wall 0.03 stall 0.00 ep 3.3s | r/step 0.2776 vl 7.348 kl 0.0047 ev 0.60 sig 0.80/0.18/0.17 | 10719 sps
+it   34/190 step    8.9M | gates 2.88 (max 5) fin 0.81 lap 0.81 in 5.93s crash 0.18 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2704 vl 8.246 kl 0.0052 ev 0.57 sig 0.80/0.19/0.17 | 11222 sps
+it   35/190 step    9.2M | gates 2.94 (max 5) fin 0.83 lap 0.78 in 5.88s crash 0.16 wall 0.03 stall 0.00 ep 3.4s | r/step 0.2775 vl 8.095 kl 0.0049 ev 0.56 sig 0.80/0.18/0.18 | 10908 sps
+it   36/190 step    9.4M | gates 2.96 (max 5) fin 0.84 lap 0.82 in 5.87s crash 0.16 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2778 vl 7.453 kl 0.0060 ev 0.59 sig 0.80/0.18/0.17 | 11153 sps
+it   37/190 step    9.7M | gates 2.86 (max 5) fin 0.82 lap 0.81 in 5.93s crash 0.18 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2691 vl 8.137 kl 0.0065 ev 0.57 sig 0.79/0.18/0.18 | 10056 sps
+it   38/190 step   10.0M | gates 2.92 (max 5) fin 0.83 lap 0.82 in 5.87s crash 0.17 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2769 vl 7.236 kl 0.0044 ev 0.59 sig 0.80/0.18/0.18 | 9955 sps
+it   39/190 step   10.2M | gates 2.96 (max 5) fin 0.84 lap 0.83 in 5.82s crash 0.16 wall 0.03 stall 0.00 ep 3.4s | r/step 0.2777 vl 7.596 kl 0.0077 ev 0.60 sig 0.80/0.18/0.18 | 9706 sps
+it   40/190 step   10.5M | gates 2.89 (max 5) fin 0.82 lap 0.81 in 5.88s crash 0.17 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2745 vl 7.753 kl 0.0051 ev 0.57 sig 0.80/0.19/0.18 | 8186 sps
+it   41/190 step   10.7M | gates 2.95 (max 5) fin 0.84 lap 0.78 in 5.92s crash 0.16 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2784 vl 7.315 kl 0.0055 ev 0.59 sig 0.80/0.19/0.18 | 8443 sps
+it   42/190 step   11.0M | gates 2.89 (max 5) fin 0.82 lap 0.81 in 5.87s crash 0.17 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2692 vl 7.824 kl 0.0044 ev 0.59 sig 0.81/0.19/0.18 | 9001 sps
+it   43/190 step   11.3M | gates 2.94 (max 5) fin 0.84 lap 0.84 in 5.90s crash 0.16 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2744 vl 7.364 kl 0.0045 ev 0.60 sig 0.80/0.19/0.18 | 9591 sps
+it   44/190 step   11.5M | gates 3.01 (max 5) fin 0.83 lap 0.83 in 5.92s crash 0.17 wall 0.03 stall 0.00 ep 3.5s | r/step 0.2716 vl 7.661 kl 0.0047 ev 0.58 sig 0.81/0.18/0.18 | 10253 sps
+it   45/190 step   11.8M | gates 2.86 (max 5) fin 0.83 lap 0.81 in 5.89s crash 0.16 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2715 vl 6.799 kl 0.0056 ev 0.60 sig 0.81/0.18/0.18 | 9986 sps
+it   46/190 step   12.1M | gates 2.91 (max 5) fin 0.83 lap 0.81 in 5.92s crash 0.16 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2744 vl 6.934 kl 0.0052 ev 0.60 sig 0.81/0.18/0.18 | 10009 sps
+it   47/190 step   12.3M | gates 3.01 (max 5) fin 0.86 lap 0.89 in 5.96s crash 0.14 wall 0.04 stall 0.00 ep 3.5s | r/step 0.2767 vl 6.065 kl 0.0058 ev 0.62 sig 0.82/0.19/0.18 | 11217 sps
+it   48/190 step   12.6M | gates 2.98 (max 5) fin 0.83 lap 0.79 in 5.93s crash 0.17 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2680 vl 7.130 kl 0.0071 ev 0.58 sig 0.82/0.19/0.18 | 10196 sps
+it   49/190 step   12.8M | gates 2.99 (max 5) fin 0.82 lap 0.85 in 5.98s crash 0.17 wall 0.04 stall 0.00 ep 3.5s | r/step 0.2713 vl 8.336 kl 0.0054 ev 0.57 sig 0.81/0.18/0.18 | 10061 sps
+it   50/190 step   13.1M | gates 2.90 (max 5) fin 0.82 lap 0.80 in 5.96s crash 0.17 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2706 vl 8.533 kl 0.0057 ev 0.55 sig 0.82/0.19/0.18 | 11217 sps
+it   51/190 step   13.4M | gates 2.94 (max 5) fin 0.83 lap 0.85 in 5.98s crash 0.16 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2715 vl 6.936 kl 0.0045 ev 0.59 sig 0.82/0.19/0.18 | 5043 sps
+it   52/190 step   13.6M | gates 2.90 (max 5) fin 0.82 lap 0.78 in 5.96s crash 0.18 wall 0.05 stall 0.00 ep 3.4s | r/step 0.2712 vl 7.605 kl 0.0040 ev 0.58 sig 0.82/0.19/0.18 | 9444 sps
+it   53/190 step   13.9M | gates 2.95 (max 5) fin 0.80 lap 0.80 in 5.93s crash 0.19 wall 0.05 stall 0.00 ep 3.4s | r/step 0.2672 vl 8.537 kl 0.0054 ev 0.56 sig 0.81/0.18/0.18 | 9027 sps
+it   54/190 step   14.2M | gates 2.83 (max 5) fin 0.80 lap 0.81 in 5.93s crash 0.20 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2634 vl 9.351 kl 0.0039 ev 0.55 sig 0.81/0.19/0.18 | 8972 sps
+it   55/190 step   14.4M | gates 2.95 (max 5) fin 0.82 lap 0.79 in 5.96s crash 0.16 wall 0.05 stall 0.00 ep 3.4s | r/step 0.2715 vl 7.563 kl 0.0043 ev 0.58 sig 0.81/0.18/0.18 | 9624 sps
+it   56/190 step   14.7M | gates 2.97 (max 5) fin 0.84 lap 0.83 in 5.89s crash 0.16 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2757 vl 7.169 kl 0.0049 ev 0.60 sig 0.81/0.18/0.18 | 9083 sps
+it   57/190 step   14.9M | gates 2.94 (max 5) fin 0.82 lap 0.81 in 5.89s crash 0.17 wall 0.05 stall 0.00 ep 3.4s | r/step 0.2725 vl 8.488 kl 0.0053 ev 0.57 sig 0.81/0.19/0.18 | 9247 sps
+it   58/190 step   15.2M | gates 2.94 (max 5) fin 0.83 lap 0.82 in 5.84s crash 0.16 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2756 vl 8.606 kl 0.0049 ev 0.57 sig 0.82/0.19/0.18 | 9250 sps
+it   59/190 step   15.5M | gates 2.82 (max 5) fin 0.81 lap 0.81 in 5.90s crash 0.18 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2688 vl 8.088 kl 0.0053 ev 0.58 sig 0.82/0.19/0.18 | 9955 sps
+it   60/190 step   15.7M | gates 2.90 (max 5) fin 0.84 lap 0.84 in 5.86s crash 0.16 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2779 vl 6.931 kl 0.0042 ev 0.60 sig 0.82/0.19/0.18 | 9210 sps
+it   61/190 step   16.0M | gates 2.84 (max 5) fin 0.81 lap 0.78 in 5.83s crash 0.18 wall 0.05 stall 0.00 ep 3.2s | r/step 0.2694 vl 8.474 kl 0.0044 ev 0.58 sig 0.82/0.19/0.18 | 7840 sps
+it   62/190 step   16.3M | gates 2.99 (max 5) fin 0.83 lap 0.85 in 5.88s crash 0.16 wall 0.04 stall 0.00 ep 3.4s | r/step 0.2721 vl 7.179 kl 0.0061 ev 0.61 sig 0.82/0.19/0.18 | 8501 sps
+it   63/190 step   16.5M | gates 2.96 (max 5) fin 0.81 lap 0.76 in 5.92s crash 0.18 wall 0.05 stall 0.00 ep 3.4s | r/step 0.2687 vl 8.295 kl 0.0043 ev 0.57 sig 0.82/0.19/0.18 | 8804 sps
+it   64/190 step   16.8M | gates 2.87 (max 5) fin 0.81 lap 0.82 in 5.87s crash 0.19 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2707 vl 8.852 kl 0.0047 ev 0.59 sig 0.82/0.19/0.18 | 8268 sps
+it   65/190 step   17.0M | gates 2.89 (max 5) fin 0.83 lap 0.82 in 5.85s crash 0.17 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2719 vl 7.678 kl 0.0046 ev 0.61 sig 0.82/0.19/0.18 | 8999 sps
+it   66/190 step   17.3M | gates 2.89 (max 5) fin 0.82 lap 0.77 in 5.88s crash 0.18 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2711 vl 8.438 kl 0.0043 ev 0.57 sig 0.82/0.19/0.18 | 9075 sps
+it   67/190 step   17.6M | gates 2.84 (max 5) fin 0.81 lap 0.84 in 5.88s crash 0.19 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2666 vl 8.770 kl 0.0046 ev 0.57 sig 0.82/0.19/0.18 | 9745 sps
+it   68/190 step   17.8M | gates 2.88 (max 5) fin 0.81 lap 0.83 in 5.83s crash 0.18 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2714 vl 8.352 kl 0.0052 ev 0.59 sig 0.81/0.19/0.18 | 8521 sps
+it   69/190 step   18.1M | gates 2.87 (max 5) fin 0.82 lap 0.80 in 5.89s crash 0.17 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2719 vl 7.617 kl 0.0053 ev 0.60 sig 0.81/0.19/0.18 | 8688 sps
+it   70/190 step   18.4M | gates 2.90 (max 5) fin 0.84 lap 0.80 in 5.91s crash 0.17 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2752 vl 7.967 kl 0.0050 ev 0.58 sig 0.81/0.19/0.18 | 8558 sps
+it   71/190 step   18.6M | gates 2.88 (max 5) fin 0.80 lap 0.80 in 5.90s crash 0.20 wall 0.05 stall 0.00 ep 3.3s | r/step 0.2676 vl 8.851 kl 0.0043 ev 0.58 sig 0.81/0.19/0.18 | 8494 sps
+it   72/190 step   18.9M | gates 2.89 (max 5) fin 0.81 lap 0.84 in 5.86s crash 0.18 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2722 vl 8.342 kl 0.0043 ev 0.57 sig 0.81/0.19/0.18 | 8523 sps
+it   73/190 step   19.1M | gates 2.95 (max 5) fin 0.84 lap 0.86 in 5.88s crash 0.16 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2763 vl 7.679 kl 0.0040 ev 0.60 sig 0.81/0.19/0.18 | 8553 sps
+it   74/190 step   19.4M | gates 2.95 (max 5) fin 0.84 lap 0.83 in 5.83s crash 0.16 wall 0.04 stall 0.00 ep 3.3s | r/step 0.2791 vl 7.730 kl 0.0049 ev 0.58 sig 0.81/0.19/0.18 | 4258 sps
+it   75/190 step   19.7M | gates 2.85 (max 5) fin 0.81 lap 0.78 in 5.83s crash 0.19 wall 0.04 stall 0.00 ep 3.2s | r/step 0.2709 vl 9.100 kl 0.0048 ev 0.55 sig 0.81/0.19/0.18 | 8714 sps
