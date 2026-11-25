@@ -37,8 +37,12 @@ class Actor:
         self.c_scale = float(a["c_scale"]) if "c_scale" in a else 8.6
 
     def __call__(self, obs: np.ndarray) -> np.ndarray:
-        """Network outputs (N, 3) for observations (N, 51); older actors take the first 50."""
-        obs = obs[..., : self.mean.shape[0]]
+        """Network outputs (N, 3) for observations (N, 50).
+
+        Run 18's actor has a 51st input, the drone mass; it gets the nominal mass (0.5).
+        """
+        if self.mean.shape[0] > obs.shape[-1]:
+            obs = np.concatenate([obs, np.full((*obs.shape[:-1], 1), 0.5, obs.dtype)], -1)
         h = np.clip((obs - self.mean) / self.std, -self.clip, self.clip)
         for W, b in self.layers:
             h = np.tanh(h @ W.T + b)

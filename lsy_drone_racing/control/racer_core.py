@@ -21,7 +21,7 @@ C_OFFSET = 9.81
 C_SCALE = 9.0
 TILT_SCALE = jp.pi / 2  # Full env range, required to lead attitude setpoints
 
-OBS_DIM = 51
+OBS_DIM = 50
 GATE_HALF_OPENING = 0.2  # Inner opening is 0.4 m square
 # Inner corners in the gate frame, seen by a drone approaching along +x (x forward, y left, z up):
 # top-left, top-right, bottom-right, bottom-left. Reverse passes mirror y.
@@ -58,18 +58,11 @@ def _gate_block(obs: dict[str, Array], seq_idx: Array) -> Array:
     return jp.concatenate([rel.reshape(-1, 12), unrevealed[:, None]], -1)
 
 
-def mass_input(mass: Array, nominal: float, half_range: float) -> Array:
-    """Mass input in [0, 1]: 0.5 is the nominal mass, 0 and 1 the ends of the randomization range."""
-    return 0.5 + 0.5 * (mass - nominal) / half_range
-
-
-def build_obs(obs: dict[str, Array], mass: Array | None = None) -> Array:
-    """Network input (N, 51) from a batch of race env observations. Layout in notes.md.
+def build_obs(obs: dict[str, Array]) -> Array:
+    """Network input (N, 50) from a batch of race env observations. Layout in notes.md.
 
     [v (3), R (9), target gate corners (12) + flag (1), next gate corners (12) + flag (1),
-     4 poles x (dx, dy, flag) (12), mass (1)]. All positions are relative to the drone in world axes.
-    mass is the mass input from mass_input (N,); None means the nominal mass (0.5). Actors trained
-    before the mass input take the first 50 entries.
+     4 poles x (dx, dy, flag) (12)]. All positions are relative to the drone in world axes.
     """
     n_pass = obs["gate_sequence"].shape[-1]
     target = jp.clip(obs["n_gates_passed"], 0, n_pass - 1)  # After finishing, keep the last gate
@@ -78,10 +71,8 @@ def build_obs(obs: dict[str, Array], mass: Array | None = None) -> Array:
     poles_rel = obs["obstacles_pos"][..., :2] - obs["pos"][:, None, :2]
     poles_flag = 1.0 - obs["obstacles_visited"].astype(poles_rel.dtype)
     poles = jp.concatenate([poles_rel, poles_flag[..., None]], -1).reshape(-1, 12)
-    if mass is None:
-        mass = jp.full(rot.shape[:1], 0.5, dtype=rot.dtype)
     return jp.concatenate(
-        [obs["vel"], rot, _gate_block(obs, target), _gate_block(obs, nxt), poles, mass[:, None]], -1
+        [obs["vel"], rot, _gate_block(obs, target), _gate_block(obs, nxt), poles], -1
     )
 
 
